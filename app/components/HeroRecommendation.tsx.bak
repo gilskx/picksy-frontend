@@ -1,0 +1,597 @@
+"use client";
+import { useState } from "react";
+export default function HeroRecommendation({
+  recommendation,
+  confidence,
+  cheaper,
+  recUrl,
+  aiActive,
+  mode,
+  setMode
+}: any) {
+
+  if (!recommendation?.bestPick) return null;
+
+  const p = recommendation.bestPick;
+  const rating = p.rating || 4.5;
+  const [showAIChat, setShowAIChat] = useState(false);		
+  const [aiQuestion, setAiQuestion] = useState("");
+const [aiAnswer, setAiAnswer] = useState("");
+const [aiLoading, setAiLoading] = useState(false);
+
+  // 🔥 NEW: Dynamic source detection
+  const getDomainName = (url: string) => {
+    try {
+      const hostname = new URL(url).hostname;
+      return hostname
+        .replace("www.", "")
+        .split(".")[0]
+        .replace(/^\w/, (c) => c.toUpperCase());
+    } catch {
+      return "Store";
+    }
+  };
+
+  const sourceName = p.source
+  ? p.source.replace(/^\w/, (c: string) => c.toUpperCase())
+  : getDomainName(p.link);
+    : getDomainName(p.link);
+	const askAI = async () => {
+  if (!aiQuestion) {
+  alert("Please enter a question");
+  return;
+}
+
+  try {
+    setAiLoading(true);
+    setAiAnswer("");
+
+    const res = await fetch("https://basket-pellet-constable.ngrok-free.dev/api/ask-product", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        question: aiQuestion,
+        product: p.name
+      })
+    });
+
+    const data = await res.json();
+    setAiAnswer(data.answer);
+
+  } catch (e) {
+    console.error(e);
+    setAiAnswer("⚠️ Failed to get AI response");
+  } finally {
+    setAiLoading(false);
+  }
+};
+
+  return (
+  <div style={{
+    width: "100%",
+    maxWidth: "1100px",          // slightly wider to use screen space
+    margin: "0 auto",
+    marginTop: "0px",
+    minHeight: "calc(100vh - 100px)",   // 🔥 THIS IS THE KEY LINE
+    display: "flex",
+    alignItems: "center"         // vertically center content
+  }}>
+
+      <div style={{
+        borderRadius: "24px",
+        padding: "20px 30px",
+        background: `
+          radial-gradient(circle at 70% 50%, rgba(59,130,246,0.35), transparent 40%),
+          linear-gradient(135deg, #0f172a, #020617)
+        `,
+        boxShadow: "0 25px 80px rgba(0,0,0,0.7)",
+        border: "1px solid rgba(255,255,255,0.08)"
+      }}>
+
+        {/* HEADER */}
+        <div style={{
+          textAlign: "center",
+          marginBottom: "20px",
+          borderBottom: "1px solid rgba(255,255,255,0.06)",
+          paddingBottom: "20px"
+        }}>
+
+          <div style={{
+            color: "#38bdf8",
+            fontSize: "13px",
+            marginBottom: "6px"
+          }}>
+            ✨ Smart Buy
+          </div>
+
+          <div style={{
+            fontSize: "26px",
+            fontWeight: "700",
+            color: "#fff"
+          }}>
+            Best choice for your search
+          </div>
+
+          <div style={{
+            fontSize: "13px",
+            color: "#94a3b8",
+            marginTop: "4px"
+          }}>
+            Based on price, performance, ratings & availability
+          </div>
+
+        </div>
+
+        {/* MAIN */}
+        <div style={{
+		display: "grid",
+		gridTemplateColumns: "1.2fr 1fr",
+		gap: "50px",
+		alignItems: "center"
+        }}>
+
+          {/* LEFT */}
+          <div style={{maxWidth: "520px"}}>
+
+            <div style={{
+              background: "rgba(251,191,36,0.15)",
+              color: "#facc15",
+              display: "inline-block",
+              padding: "6px 12px",
+              borderRadius: "20px",
+              fontSize: "12px",
+              marginBottom: "10px"
+            }}>
+              🏆 Best Recommendation
+            </div>
+
+            <div style={{
+  fontSize: "18px",
+  fontWeight: "700",
+  color: "#fff",
+  maxWidth: "520px",       // 🔥 ADD
+  lineHeight: "1.5"        // 🔥 ADD
+}}>
+              {p.name}
+            </div>
+
+            <div style={{
+              marginTop: "8px",
+              color: "#94a3b8",
+              fontSize: "14px",
+              maxWidth: "400px"
+            }}>
+              Premium product selected based on value, rating and performance
+            </div>
+
+            <div style={{
+  marginTop: "14px",
+  fontSize: "32px",        // 🔥 increased
+  fontWeight: "800",       // 🔥 stronger
+  letterSpacing: "-0.5px", // 🔥 tighter
+  color: "#fff"
+}}>
+              ${p.price}
+			  
+			  <button
+  onClick={() => {
+    const saved = JSON.parse(localStorage.getItem("savedProducts") || "[]");
+    saved.push(p);
+    localStorage.setItem("savedProducts", JSON.stringify(saved));
+    alert("Saved for tracking!");
+  }}
+  style={{
+    marginLeft: "12px",
+    padding: "6px 10px",
+    borderRadius: "10px",
+    background: "rgba(34,197,94,0.1)",
+    color: "#22c55e",
+    border: "1px solid rgba(34,197,94,0.3)",
+    cursor: "pointer",
+    fontSize: "12px"
+  }}
+>
+  💾 Save
+</button>
+<span style={{
+  marginLeft: "10px",
+  fontSize: "14px",
+  color: "#22c55e",
+  fontWeight: "600"
+}}>
+  Best value
+</span>
+              <span style={{
+                marginLeft: "10px",
+                fontSize: "16px",
+                color: "#f59e0b"
+              }}>
+                ⭐ {rating}
+              </span>
+            </div>
+
+            {/* 🔥 UPDATED BUTTON */}
+            <a
+              href={p.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+  display: "inline-block",
+  marginTop: "18px",
+  padding: "14px 28px",
+  borderRadius: "30px",
+  background: "linear-gradient(135deg, #6366f1, #2563eb)",
+  color: "#fff",
+  textDecoration: "none",
+  fontWeight: "600",
+  fontSize: "16px",
+  boxShadow: "0 20px 50px rgba(99,102,241,0.6)", // 🔥 stronger
+  transition: "all 0.25s ease"
+}}
+onMouseOver={(e) => {
+  e.currentTarget.style.transform = "scale(1.05)";
+}}
+onMouseOut={(e) => {
+  e.currentTarget.style.transform = "scale(1)";
+}}
+            >
+              Sold on {sourceName} →
+            </a>
+			<button
+  onClick={() => setShowAIChat(true)}
+  style={{
+    marginTop: "10px",
+    padding: "10px 16px",
+    borderRadius: "12px",
+    background: "rgba(59,130,246,0.1)",
+    color: "#93c5fd",
+    border: "1px solid rgba(59,130,246,0.3)",
+    cursor: "pointer",
+    fontSize: "13px"
+  }}
+>
+  🤖 Ask AI about this product
+</button>
+			<div style={{
+  marginTop: "10px",
+  fontSize: "12px",
+  color: "#94a3b8"
+}}>
+  🔒 Secure checkout • 🚚 Fast delivery • 🔁 Easy returns
+</div>
+{cheaper && (
+  <div style={{
+    marginTop: "16px",
+    padding: "12px",
+    borderRadius: "12px",
+    background: "rgba(34,197,94,0.08)",
+    border: "1px solid rgba(34,197,94,0.3)"
+  }}>
+
+    <div style={{
+      fontSize: "12px",
+      fontWeight: "600",
+      color: "#22c55e",
+      marginBottom: "6px"
+    }}>
+      💰 Cheaper Option
+    </div>
+
+    <a
+      href={cheaper.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        color: "#4ade80",
+        fontWeight: "600",
+        textDecoration: "none",
+        fontSize: "14px"
+      }}
+    >
+      {cheaper.name}
+    </a>
+
+    <div style={{
+      marginTop: "6px",
+      fontSize: "13px",
+      display: "flex",
+      gap: "8px",
+      flexWrap: "wrap"
+    }}>
+      <span style={{ color: "#22c55e", fontWeight: "600" }}>
+        ${cheaper.price}
+      </span>
+
+      <span style={{ color: "#94a3b8" }}>•</span>
+
+      <span style={{ color: "#f59e0b" }}>
+        ⭐ {Number(cheaper.rating || 3.5).toFixed(1)}
+      </span>
+
+      <span style={{ color: "#94a3b8" }}>•</span>
+
+      <span style={{ color: "#94a3b8" }}>
+        {cheaper.source}
+      </span>
+    </div>
+
+  </div>
+)}
+          </div>
+
+          {/* RIGHT (UNCHANGED) */}
+          <div style={{
+            flex: 1,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "20px"
+          }}>
+
+            <div style={{ position: "relative" }}>
+              <div style={{
+                position: "absolute",
+                bottom: "-10px",
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: "200px",
+                height: "50px",
+                background: "radial-gradient(circle, rgba(59,130,246,0.6), transparent 70%)",
+                filter: "blur(20px)"
+              }} />
+
+              <img
+                src={p.image}
+                style={{
+                  maxWidth: "220px",
+                  objectFit: "contain",
+                  filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.8))"
+                }}
+              />
+            </div>
+
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px"
+            }}>
+              {[1,2,3].map(i => (
+                <div key={i} style={{
+                  width: "50px",
+                  height: "50px",
+                  borderRadius: "12px",
+                  background: "rgba(255,255,255,0.05)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}>
+                  <div style={{
+  background: "radial-gradient(circle, rgba(255,255,255,0.08), transparent)",
+  padding: "20px",
+  borderRadius: "20px"
+}}>
+  <img
+    src={p.image}
+    style={{
+      maxWidth: "260px",
+      objectFit: "contain",
+      filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.9))"
+    }}
+  />
+</div>
+                </div>
+              ))}
+			  
+		{/* map ending */}
+		
+            </div>
+
+          </div>
+        </div>
+
+        {/* WHY SECTION (UNCHANGED) */}
+      {/* WHY SECTION */}
+<div style={{
+  display: "grid",
+  gridTemplateColumns: "2fr 1fr",
+  gap: "20px",
+  marginTop: "25px"
+}}>
+
+  {/* LEFT - WHY */}
+  <div style={{
+    flex: 2,
+    background: "rgba(255,255,255,0.04)",
+    borderRadius: "16px",
+    padding: "18px",
+    border: "1px solid rgba(255,255,255,0.08)"
+  }}>
+
+    <div style={{
+      fontSize: "14px",
+      fontWeight: "600",
+      marginBottom: "10px"
+    }}>
+      ✨ Why this is the best choice
+    </div>
+
+    {[
+      "Excellent balance of performance and price",
+      "High user rating with strong reviews",
+      "Reliable availability across stores",
+      "Good long-term value"
+    ].map((t, i) => (
+      <div key={i} style={{
+        fontSize: "13px",
+        color: "#94a3b8",
+        marginBottom: "6px"
+      }}>
+        ✔ {t}
+      </div>
+    ))}
+
+  </div>
+
+  {/* RIGHT - SAVE */}
+  
+  
+   {cheaper && (
+  <a
+    href={cheaper.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      flex: 1,
+      background: "rgba(34,197,94,0.08)",
+      border: "1px solid rgba(34,197,94,0.4)",
+      borderRadius: "16px",
+      padding: "18px",
+      textAlign: "center",
+      textDecoration: "none",
+      display: "block",
+      cursor: "pointer",
+      transition: "all 0.25s ease"
+    }}
+    onMouseOver={(e) => {
+      e.currentTarget.style.transform = "scale(1.03)";
+      e.currentTarget.style.boxShadow = "0 10px 30px rgba(34,197,94,0.3)";
+    }}
+    onMouseOut={(e) => {
+      e.currentTarget.style.transform = "scale(1)";
+      e.currentTarget.style.boxShadow = "none";
+    }}
+  >
+    <div style={{
+      color: "#22c55e",
+      fontSize: "18px",
+      fontWeight: "700"
+    }}>
+      Save ${Math.abs(p.price - cheaper.price)}
+    </div>
+
+    <div style={{
+      fontSize: "12px",
+      color: "#94a3b8",
+      marginTop: "6px"
+    }}>
+      compared to cheaper option
+    </div>
+
+    {/* 🔥 OPTIONAL CTA TEXT */}
+    <div style={{
+      marginTop: "10px",
+      fontSize: "13px",
+      color: "#4ade80",
+      fontWeight: "600"
+    }}>
+      View cheaper option →
+    </div>
+
+  </a>
+)}
+
+<div style={{
+  display: "flex",
+  justifyContent: "center",
+  gap: "10px",
+  marginTop: "20px",
+  marginBottom: "10px"
+}}>
+
+  
+
+
+
+</div>
+
+      </div>
+    </div>
+	
+	{showAIChat && (
+  <div
+    onClick={() => setShowAIChat(false)}   // ✅ close on outside click
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      background: "rgba(0,0,0,0.7)",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      zIndex: 9999   // 🔥 FIXED
+    }}
+  >
+    <div
+      onClick={(e) => e.stopPropagation()}   // ✅ prevent close inside
+      style={{
+        width: "420px",
+        background: "#020617",
+        borderRadius: "16px",
+        padding: "20px",
+        border: "1px solid rgba(255,255,255,0.1)"
+      }}
+    >
+      <div style={{
+        fontWeight: "600",
+        marginBottom: "10px",
+        color: "#fff"
+      }}>
+        🤖 Ask about this product
+      </div>
+console.log("🔥 Calling AI API...");
+      <input
+  value={aiQuestion}
+  onChange={(e) => setAiQuestion(e.target.value)}
+  placeholder="Ask about this product..."
+  style={{
+    width: "100%",
+    padding: "10px",
+    borderRadius: "10px",
+    border: "none",
+    marginBottom: "10px",
+    background: "#0f172a",
+    color: "#fff"
+  }}
+/>
+<button
+  onClick={askAI}
+  style={{
+    padding: "10px",
+    borderRadius: "10px",
+    background: "#3b82f6",
+    color: "#fff",
+    border: "none",
+    cursor: "pointer",
+    width: "100%"
+  }}
+>
+  Ask AI
+</button>
+
+      <button
+  onClick={() => setShowAIChat(false)}
+  style={{
+    marginTop: "10px",
+    padding: "8px 14px",
+    borderRadius: "8px",
+    background: "#1e293b",
+    color: "#fff",
+    border: "none",
+    cursor: "pointer"
+  }}
+>
+  Close
+</button>
+        
+    </div>
+  </div>
+  
+)}
+	</div>
+  );
+  
+}
