@@ -1,0 +1,287 @@
+"use client";
+
+import { useState, useEffect } from "react";
+
+export default function Home() {
+  const [query, setQuery] = useState("");
+  const [products, setProducts] = useState<any[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
+  const [sort, setSort] = useState("none");
+  const [selectedSources, setSelectedSources] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  const applyFilters = (data: any[]) => {
+    if (!Array.isArray(data)) return [];
+
+    let updated = [...data];
+
+    if (selectedSources.length > 0) {
+      updated = updated.filter((p) =>
+        selectedSources.includes(p.source?.toLowerCase())
+      );
+    }
+
+    if (sort === "low") {
+      updated.sort((a, b) => (a.price || 0) - (b.price || 0));
+    } else if (sort === "high") {
+      updated.sort((a, b) => (b.price || 0) - (a.price || 0));
+    }
+
+    return updated;
+  };
+
+  useEffect(() => {
+    setFilteredProducts(applyFilters(products));
+  }, [products, sort, selectedSources]);
+
+  const search = async () => {
+    if (!query.trim()) return;
+
+    setProducts([]);
+    setFilteredProducts([]);
+    setLoading(true);
+
+    try {
+      const res = await fetch("http://localhost:8081/search", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query }),
+      });
+
+      const data = await res.json();
+
+      if (Array.isArray(data)) {
+
+        // 🔥 FIX: map link → url + safe image fallback
+        const mappedData = data.map((p) => ({
+          ...p,
+          url: p.url || p.link,
+          image: p.image || "https://via.placeholder.com/150" // 👈 FIX
+        }));
+
+        setProducts(mappedData);
+
+      } else {
+        console.log("⚠️ Unexpected response:", data);
+        setProducts([]);
+      }
+
+    } catch (err) {
+      console.error(err);
+    }
+
+    setLoading(false);
+  };
+
+  return (
+    <div style={{ fontFamily: "Arial", background: "#f3f3f3", minHeight: "100vh" }}>
+      
+      <div
+        style={{
+          background: "#131921",
+          padding: "10px 20px",
+          color: "white",
+          display: "flex",
+          alignItems: "center",
+          gap: "20px",
+        }}
+      >
+        <h2 style={{ color: "#ff9900" }}>Picksy</h2>
+
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            search();
+          }}
+          style={{ flex: 1 }}
+        >
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            style={{
+              width: "100%",
+              padding: "10px",
+              borderRadius: "4px",
+              border: "none",
+            }}
+          />
+        </form>
+      </div>
+
+      <div style={{ display: "flex", padding: "20px" }}>
+
+        <div
+          style={{
+            width: "250px",
+            background: "white",
+            padding: "15px",
+            borderRadius: "8px",
+            marginRight: "20px",
+          }}
+        >
+          <h3>Filters</h3>
+
+          <div style={{ marginBottom: "20px" }}>
+            <label>Sort by:</label>
+            <select
+              onChange={(e) => setSort(e.target.value)}
+              style={{ width: "100%", marginTop: "5px" }}
+            >
+              <option value="none">Relevance</option>
+              <option value="low">Price Low → High</option>
+              <option value="high">Price High → Low</option>
+            </select>
+          </div>
+
+          <div>
+            <h4>Source</h4>
+
+            <label>
+              <input
+                type="checkbox"
+                onChange={(e) => {
+                  if (e.target.checked) {
+                    setSelectedSources([...selectedSources, "amazon"]);
+                  } else {
+                    setSelectedSources(
+                      selectedSources.filter((s) => s !== "amazon")
+                    );
+                  }
+                }}
+              />
+              Amazon
+            </label>
+
+            <br />
+
+            <label>
+              <input
+                type="checkbox"
+                onChange={(e) => {
+                  if (e.target.checked) {
+                    setSelectedSources([...selectedSources, "walmart"]);
+                  } else {
+                    setSelectedSources(
+                      selectedSources.filter((s) => s !== "walmart")
+                    );
+                  }
+                }}
+              />
+              Walmart
+            </label>
+          </div>
+        </div>
+
+        <div style={{ flex: 1 }}>
+
+          {loading && (
+            <div style={{ textAlign: "center", marginTop: "50px" }}>
+              <div style={{ fontSize: "20px", marginBottom: "10px" }}>
+                🔍 Searching products...
+              </div>
+            </div>
+          )}
+
+          {!loading && (
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
+                gap: "20px",
+              }}
+            >
+              {filteredProducts.map((p, i) => (
+                <div
+                  key={i}
+                  style={{
+                    background: "white",
+                    padding: "15px",
+                    borderRadius: "8px",
+                    boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between"
+                  }}
+                >
+                  {/* 🔥 FIXED IMAGE */}
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = "https://via.placeholder.com/150";
+                    }}
+                    style={{
+                      width: "100%",
+                      height: "150px",
+                      objectFit: "contain",
+                      pointerEvents: "none"
+                    }}
+                  />
+
+                  <div style={{ fontSize: "14px", marginTop: "10px" }}>
+                    {p.name}
+                  </div>
+
+                  <div style={{ color: "#b12704", fontWeight: "bold" }}>
+                    ${p.price || "N/A"}
+                  </div>
+
+                  <div>⭐ {p.rating || "N/A"}</div>
+
+                  <div style={{ fontSize: "12px", color: "#007185" }}>
+                    {p.source}
+                  </div>
+
+                  {p.url && p.url.startsWith("http") && (
+                    <div style={{ marginTop: "10px", display: "flex", gap: "5px" }}>
+                      <a
+                        href={p.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          flex: 1,
+                          padding: "8px",
+                          textAlign: "center",
+                          background: "#ffa41c",
+                          borderRadius: "5px",
+                          textDecoration: "none",
+                          color: "black",
+                          fontWeight: "bold"
+                        }}
+                      >
+                        Buy Now
+                      </a>
+
+                      <a
+                        href={p.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          flex: 1,
+                          padding: "8px",
+                          textAlign: "center",
+                          background: "#ffd814",
+                          borderRadius: "5px",
+                          textDecoration: "none",
+                          color: "black"
+                        }}
+                      >
+                        View
+                      </a>
+                    </div>
+                  )}
+
+                </div>
+              ))}
+            </div>
+          )}
+
+        </div>
+      </div>
+    </div>
+  );
+}

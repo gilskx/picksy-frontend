@@ -1,0 +1,306 @@
+"use client";
+
+import { useState } from "react";
+
+export default function ProductCard({
+  p,
+  recommendation,
+  cheaper,
+  bestDeal,
+  compareList,
+  setCompareList,
+   setShowComparePage
+}: any) {
+
+  // 🧠 AI LOGIC
+  const isBest = recommendation?.bestPick?.name === p.name;
+  const isCheap = cheaper?.name === p.name;
+  const isTopRated = p.rating && p.rating >= 4.5;
+
+  let aiInsight = "";
+
+  if (isBest) aiInsight = "Best overall choice based on value & rating";
+  else if (isCheap) aiInsight = "Most budget-friendly option";
+  else if (isTopRated) aiInsight = "Highly rated by users";
+  else aiInsight = "Balanced option across price and quality";
+
+  // ✅ EXPANDABLE AI
+  const [showWhy, setShowWhy] = useState(false);
+
+  // ✅ CHECK IF SELECTED FOR COMPARE
+  const isSelected = compareList?.find((x: any) => x.name === p.name);
+const toggleCompare = (item: any) => {
+  if (isSelected) {
+    setCompareList(compareList.filter((x: any) => x.name !== item.name));
+  } else {
+    setCompareList([...compareList, item]);
+  }
+};
+  return (
+    <div
+      style={{
+         //background: "#000000", 
+		 background: "rgba(255,255,255,0.03)",
+border: "1px solid rgba(255,255,255,0.08)",
+boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
+        borderRadius: "16px",
+        padding: "14px",
+        boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
+        transition: "all 0.25s ease",
+        position: "relative",
+        border: "1px solid #f0f0f0"
+      }}
+      onMouseOver={(e) => {
+        e.currentTarget.style.transform = "translateY(-6px)";
+        e.currentTarget.style.boxShadow = "0 20px 40px rgba(0,0,0,0.15)";
+      }}
+      onMouseOut={(e) => {
+        e.currentTarget.style.transform = "none";
+        e.currentTarget.style.boxShadow = "0 6px 18px rgba(0,0,0,0.08)";
+      }}
+    >
+
+      {/* ⭐ BEST PICK */}
+      {isBest && (
+        <div style={{
+          position: "absolute",
+          top: "10px",
+          right: "10px",
+          background: "#28a745",
+          color: "#fff",
+          fontSize: "11px",
+          padding: "5px 10px",
+          borderRadius: "20px",
+          fontWeight: "600"
+        }}>
+          ⭐ Best Pick
+        </div>
+      )}
+
+      {/* 🔵 BEST DEAL */}
+      {bestDeal && p.name === bestDeal?.name && (
+        <div style={{
+          position: "absolute",
+          top: "10px",
+          left: "10px",
+          background: "#2c7be5",
+          color: "#facc15",
+          fontSize: "11px",
+          padding: "5px 10px",
+          borderRadius: "20px",
+          fontWeight: "600"
+        }}>
+          Best Deal
+        </div>
+      )}
+
+      {/* IMAGE */}
+      <div style={{
+        height: "170px",
+        background: "#f9fafc",
+        borderRadius: "12px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+      }}>
+        <img
+  src={p.image}
+  style={{
+    maxHeight: "100%",
+    maxWidth: "100%",
+    objectFit: "contain",
+    transition: "transform 0.3s ease"   // 🔥 add this
+  }}
+  onMouseOver={(e) => {
+    e.currentTarget.style.transform = "scale(1.05)";  // 🔥 zoom in
+  }}
+  onMouseOut={(e) => {
+    e.currentTarget.style.transform = "scale(1)";     // 🔥 zoom out
+  }}
+/>
+      </div>
+
+      {/* TITLE */}
+      <div style={{
+        fontSize: "14px",
+        marginTop: "10px",
+        height: "42px",
+        overflow: "hidden",
+        color: "#f8fafc",
+		fontWeight: "600",
+        fontWeight: "500"
+      }}>
+        {p.name}
+      </div>
+
+      {/* PRICE */}
+      <div style={{
+        fontWeight: "700",
+        marginTop: "6px",
+        fontSize: "18px",
+        color: "#ffffff",
+		fontSize: "17px"
+      }}>
+        {p.price && p.price > 0 ? `$${p.price}` : <div style={{
+  fontSize: "12px",
+  color: "#9ca3af",   // soft grey
+  marginTop: "4px"
+}}>
+  Price unavailable
+</div>}
+		{(!p.price || p.price <= 0) && (
+  <a
+  href={(p.url || p.link)?.startsWith("http")
+    ? (p.url || p.link)
+    : `https://${p.url || p.link}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    color: "#2563eb",
+    textDecoration: "underline",
+    fontSize: "13px",
+    display: "inline-block",
+    marginTop: "6px"
+  }}
+>
+  Check Actual Price →
+</a>
+)}
+      </div>
+
+      {/* RATING */}
+      <div style={{
+        fontSize: "13px",
+        marginTop: "4px",
+        color: "#f59e0b"
+      }}>
+        ⭐ {p.rating ? p.rating.toFixed(1) : "N/A"}
+      </div>
+
+      {/* 🧠 AI INSIGHT */}
+      <div style={{
+        marginTop: "8px",
+        fontSize: "12px",
+        color: "#2c7be5",
+        background: "#eef4ff",
+        padding: "6px 10px",
+        borderRadius: "8px",
+        fontWeight: "500"
+      }}>
+        🧠 {aiInsight}
+      </div>
+
+      {/* WHY THIS PRODUCT */}
+      <div
+        onClick={() => setShowWhy(!showWhy)}
+        style={{
+          fontSize: "12px",
+          color: "#2c7be5",
+          cursor: "pointer",
+          marginTop: "6px",
+          fontWeight: "500"
+        }}
+      >
+        {showWhy ? "Hide details ▲" : "Why this product? ▼"}
+      </div>
+
+      {showWhy && (
+        <div style={{
+          marginTop: "6px",
+          fontSize: "12px",
+          color: "#555",
+          lineHeight: "1.4",
+          background: "#f9fafc",
+          padding: "8px",
+          borderRadius: "8px"
+        }}>
+          ✔ Price optimized compared to similar items  
+          ✔ Strong user ratings and reviews  
+          ✔ High availability across platforms  
+          ✔ Balanced quality and cost
+        </div>
+      )}
+
+      {/* SOURCE */}
+      <div style={{
+        fontSize: "12px",
+        color: "#6b7280",
+        marginBottom: "10px",
+        marginTop: "6px"
+      }}>
+        {p.source?.toUpperCase()}
+      </div>
+
+      {/* VIEW DEAL */}
+      {(p.url || p.link) && (
+        <a
+          href={(p.url || p.link).startsWith("http")
+            ? (p.url || p.link)
+            : `https://${p.url || p.link}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "block",
+            background: "linear-gradient(135deg, #2c7be5, #00c6ff)",
+            textAlign: "center",
+            borderRadius: "25px",
+            padding: "10px",
+            fontSize: "13px",
+            textDecoration: "none",
+            color: "#fff",
+            fontWeight: "600",
+            marginTop: "10px",
+            boxShadow: "0 6px 15px rgba(44,123,229,0.3)"
+          }}
+        >
+          View Deal →
+        </a>
+      )}
+{isSelected && (
+  <div style={{
+    fontSize: "12px",
+    fontWeight: "500",
+    color: "#374151",
+    marginTop: "6px",
+    textAlign: "center",
+    background: "#f0fdf4",
+    padding: "6px",
+    borderRadius: "8px"
+  }}>
+    ✓ {p.name}
+  </div>
+)}
+      {/* ✅ COMPARE BUTTON */}
+      <button
+  onClick={() => toggleCompare(p)}
+  style={{
+    width: "100%",
+    marginTop: "10px",
+    padding: "10px",
+    borderRadius: "25px",
+    border: isSelected
+      ? "2px solid #22c55e"
+      : "2px solid #3b82f6",
+    background: isSelected
+      ? "linear-gradient(135deg, #dcfce7, #bbf7d0)"
+      : "linear-gradient(135deg, #eff6ff, #dbeafe)",
+    color: isSelected
+      ? "#166534"
+      : "#1d4ed8",
+    fontWeight: "600",
+    cursor: "pointer",
+    transition: "all 0.2s ease"
+  }}
+  onMouseOver={(e) => {
+    e.currentTarget.style.transform = "scale(1.03)";
+  }}
+  onMouseOut={(e) => {
+    e.currentTarget.style.transform = "scale(1)";
+  }}
+>
+  {isSelected ? "✓ Added" : "Compare"}
+</button>
+
+    </div>
+  );
+}

@@ -1,0 +1,43 @@
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    #111111 25%,
+    #2a2a2a 50%,
+    #111111 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.2s infinite linear;
+}
+/* 🔥 Make placeholders visible on dark UI */
+input::placeholder {
+  color: #475569;   /* soft grey */
+  opacity: 1;       /* important */
+}
+
+/* Optional: slightly brighter on focus */
+input:focus::placeholder {
+color: #475569;
+}
+@keyframes placeholderPulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.5; }
+}
+
+input::placeholder {
+  color: #475569;
+  animation: placeholderPulse 2.5s ease-in-out infinite;
+}
+input::placeholder {
+  color: #475569;
+  opacity: 1;
+}
+
+input:focus::placeholder {
+  opacity: 0.2;
+}

@@ -1,0 +1,62 @@
+"use client";
+
+export default function Footer({ setActiveCard }: any) {
+  return (
+    <div style={{
+      marginTop: "40px",
+      padding: "20px",
+      textAlign: "center",
+      borderTop: "1px solid #eee",
+      color: "#555",
+      fontSize: "14px"
+    }}>
+      
+      {/* LINKS */}
+      <div style={{ marginBottom: "10px" }}>
+        <span 
+          onClick={() => setActiveCard("about")} 
+          style={{ margin: "0 10px", cursor: "pointer" }}
+        >
+          About
+        </span>
+
+        <span 
+          onClick={() => setActiveCard("privacy")} 
+          style={{ margin: "0 10px", cursor: "pointer" }}
+        >
+          Privacy
+        </span>
+
+        <span 
+          onClick={() => setActiveCard("contact")} 
+          style={{ margin: "0 10px", cursor: "pointer" }}
+        >
+          Contact
+        </span>
+      </div>
+
+      {/* COPYRIGHT */}
+      <div style={{ marginTop: "8px", fontSize: "12px", color: "#777" }}>
+        © {new Date().getFullYear()} Alginexa LLC. All rights reserved.
+      </div>
+
+      {/* CLICKABLE DOMAIN */}
+      <div style={{ marginTop: "5px" }}>
+        <a
+          href="https://www.alginexa.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "#2563eb", textDecoration: "none", fontWeight: "500" }}
+        >
+          www.alginexa.com
+        </a>
+      </div>
+
+      {/* AFFILIATE DISCLOSURE */}
+      <div style={{ marginTop: "10px", fontSize: "12px", color: "#777" }}>
+        We may earn a commission when you purchase through links on our site.
+      </div>
+
+    </div>
+  );
+}

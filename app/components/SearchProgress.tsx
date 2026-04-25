@@ -1,0 +1,114 @@
+"use client";
+
+export default function SearchProgress({
+  progress,
+  stage,
+  activeSources,
+  query
+}: any) {
+
+  return (
+    <div style={{
+      maxWidth: "520px",
+      width: "100%",
+      margin: "30px auto",
+      background: "rgba(15,23,42,0.9)",
+      borderRadius: "16px",
+      padding: "30px",
+      textAlign: "center",
+      border: "1px solid rgba(255,255,255,0.1)"
+    }}>
+
+      {/* TITLE */}
+      <div style={{
+        color: "#93c5fd",
+        fontSize: "14px",
+        marginBottom: "20px"
+      }}>
+        ✨ Searching for "{query}"...
+      </div>
+
+      {/* ORBIT */}
+      <div style={{
+        position: "relative",
+        height: "120px",
+        marginBottom: "20px"
+      }}>
+        <div style={{
+          width: "70px",
+          height: "70px",
+          borderRadius: "50%",
+          margin: "0 auto",
+          background: "radial-gradient(circle, #3b82f6, #6366f1)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#fff",
+          fontSize: "22px",
+          boxShadow: "0 0 30px rgba(59,130,246,0.6)"
+        }}>
+          🔍
+        </div>
+
+        <div className="orbit amazon">a</div>
+        <div className="orbit walmart">🟡</div>
+        <div className="orbit ebay">e</div>
+      </div>
+
+      {/* STAGE */}
+      <div style={{
+        color: "#cbd5f5",
+        fontSize: "14px",
+        marginBottom: "10px"
+      }}>
+        {stage}
+      </div>
+
+      {/* SOURCES */}
+      <div style={{
+        display: "flex",
+        justifyContent: "center",
+        gap: "10px",
+        marginBottom: "15px",
+        flexWrap: "wrap"
+      }}>
+        {activeSources?.map((s: string, i: number) => (
+          <div key={i} style={{
+            padding: "6px 12px",
+            borderRadius: "20px",
+            background: "rgba(59,130,246,0.2)",
+            color: "#93c5fd",
+            fontSize: "12px"
+          }}>
+            {s}
+          </div>
+        ))}
+      </div>
+
+      {/* PROGRESS BAR */}
+      <div style={{
+        height: "8px",
+        borderRadius: "10px",
+        background: "rgba(255,255,255,0.1)",
+        overflow: "hidden"
+      }}>
+        <div style={{
+          width: `${progress}%`,
+          height: "100%",
+          background: "linear-gradient(90deg, #3b82f6, #6366f1)",
+          transition: "width 0.4s ease"
+        }} />
+      </div>
+
+      {/* PERCENT */}
+      <div style={{
+        fontSize: "12px",
+        color: "#94a3b8",
+        marginTop: "6px"
+      }}>
+        {Math.floor(progress)}% complete
+      </div>
+
+    </div>
+  );
+}
