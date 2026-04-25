@@ -9,67 +9,58 @@ export default function FiltersPanel({
   setMaxPrice
 }: any) {
   return (
-    <div style={{
-  width: "260px",
-   background: "#000000",   // 🔥 dark glass
- // color: "#e2e8f0",                       // 🔥 light text
-  padding: "20px",
-  borderRadius: "16px",
-  boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
-  border: "1px solid rgba(255,255,255,0.08)",
-  backdropFilter: "blur(12px)",           // 🔥 premium feel
-  height: "fit-content",
-  position: "sticky",
-  top: "20px",
-
-}}>
+    <div
+      style={{
+        width: "260px",
+        background: "#000000",
+        padding: "20px",
+        borderRadius: "16px",
+        boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
+        border: "1px solid rgba(255,255,255,0.08)",
+        backdropFilter: "blur(12px)",
+        height: "fit-content",
+        position: "sticky",
+        top: "20px"
+      }}
+    >
       <h3>Filters</h3>
-<input
-  className="dark-input"
-  placeholder="Search in results"
-  value={searchInResults}
-  onChange={(e) => setSearchInResults(e.target.value)}
-  style={{
-    background: "#000000",
-    border: "1px solid rgba(255,255,255,0.2)",
-    color: "#f8fafc",
-    fontSize: "14px",
-    outline: "none",
-    padding: "10px 12px",
-    borderRadius: "8px",
-    marginBottom: "10px",
-    width: "100%"
-  }}
-/>
-    style={{
-  background: "#000000",
-  border: "1px solid rgba(255,255,255,0.2)",
-  color: "#f8fafc",   // 🔥 brighter typed text
-  fontSize: "14px",
-  outline: "none",
-    padding: "8px 12px",
-    borderRadius: "8px",
-    marginBottom: "10px",
-    width: "100%"
-  }}
-/>
 
-     <input
-  placeholder="Max"
-  value={maxPrice}
-  onChange={(e) => setMaxPrice(e.target.value)}
-  style={{
-    background: "#000000",
-    border: "1px solid rgba(255,255,255,0.2)",
-    color: "#f8fafc",
-    padding: "8px 12px",
-    borderRadius: "8px",
-    marginBottom: "10px",
-    width: "100%",
-    fontSize: "14px",
-    outline: "none"
-  }}
-/>
+      {/* Search in results */}
+      <input
+        className="dark-input"
+        placeholder="Search in results"
+        value={searchInResults}
+        onChange={(e) => setSearchInResults(e.target.value)}
+        style={{
+          background: "#000000",
+          border: "1px solid rgba(255,255,255,0.2)",
+          color: "#f8fafc",
+          fontSize: "14px",
+          outline: "none",
+          padding: "10px 12px",
+          borderRadius: "8px",
+          marginBottom: "10px",
+          width: "100%"
+        }}
+      />
+
+      {/* Max price */}
+      <input
+        placeholder="Max"
+        value={maxPrice}
+        onChange={(e) => setMaxPrice(e.target.value)}
+        style={{
+          background: "#000000",
+          border: "1px solid rgba(255,255,255,0.2)",
+          color: "#f8fafc",
+          padding: "8px 12px",
+          borderRadius: "8px",
+          marginBottom: "10px",
+          width: "100%",
+          fontSize: "14px",
+          outline: "none"
+        }}
+      />
     </div>
   );
 }
