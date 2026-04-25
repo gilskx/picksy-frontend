@@ -55,11 +55,10 @@ const toggleCompare = (item: any) => {
       style={{
          //background: "#000000", 
 		 background: "rgba(255,255,255,0.03)",
-border: "1px solid rgba(255,255,255,0.08)",
+
 boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
         borderRadius: "16px",
         padding: "14px",
-        boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
         transition: "all 0.25s ease",
         position: "relative",
         border: "1px solid #f0f0f0"
@@ -142,7 +141,7 @@ boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
         height: "42px",
         overflow: "hidden",
         color: "#f8fafc",
-		fontWeight: "600",
+		
         fontWeight: "500"
       }}>
         {p.name}
@@ -152,7 +151,7 @@ boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
       <div style={{
         fontWeight: "700",
         marginTop: "6px",
-        fontSize: "18px",
+        
         color: "#ffffff",
 		fontSize: "17px"
       }}>

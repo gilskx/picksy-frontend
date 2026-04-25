@@ -33,8 +33,9 @@ const [aiLoading, setAiLoading] = useState(false);
   };
 
   const sourceName = p.source
-    ? p.source.replace(/^\w/, (c) => c.toUpperCase())
-    : getDomainName(p.link);
+  ? p.source.replace(/^\w/, (c: string) => c.toUpperCase())
+  : getDomainName(p.link);
+    
 	const askAI = async () => {
   if (!aiQuestion) {
   alert("Please enter a question");

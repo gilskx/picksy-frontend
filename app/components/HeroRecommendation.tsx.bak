@@ -33,7 +33,8 @@ const [aiLoading, setAiLoading] = useState(false);
   };
 
   const sourceName = p.source
-    ? p.source.replace(/^\w/, (c) => c.toUpperCase())
+  ? p.source.replace(/^\w/, (c: string) => c.toUpperCase())
+  : getDomainName(p.link);
     : getDomainName(p.link);
 	const askAI = async () => {
   if (!aiQuestion) {
@@ -45,7 +46,7 @@ const [aiLoading, setAiLoading] = useState(false);
     setAiLoading(true);
     setAiAnswer("");
 
-    const res = await fetch("http://localhost:8081/api/ask-product", {
+    const res = await fetch("https://basket-pellet-constable.ngrok-free.dev/api/ask-product", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
