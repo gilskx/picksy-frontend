@@ -170,77 +170,68 @@
 	}
 	  return (
 	  <>
-		<div style={{
-	  fontFamily: "Arial",
-	  minHeight: "100vh",
-	  background: `
-		radial-gradient(circle at 20% 30%, rgba(0, 198, 255, 0.25), transparent 40%),
-		radial-gradient(circle at 80% 70%, rgba(124, 58, 237, 0.25), transparent 40%),
-		linear-gradient(135deg, #0f172a, #1e293b)
-	  `,
-	  backgroundBlendMode: "screen",
-	  color: "#e2e8f0"   // ✅ ADD THIS LINE
-	}}>
-		  
+		
+  <div style={{
+    fontFamily: "Arial",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "stretch",
+    background: `
+      radial-gradient(circle at 20% 30%, rgba(0, 198, 255, 0.25), transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(124, 58, 237, 0.25), transparent 40%),
+      linear-gradient(135deg, #0f172a, #1e293b)
+    `,
+    backgroundBlendMode: "screen",
+    color: "#e2e8f0"
+  }}>
 
-			{/* HEADER BADGE */}
-			<div style={{
-	  position: "fixed",
-	  top: "15px",
-	  left: "20px",
-	  zIndex: 1000,
-	  background: "#000000",
-	  padding: "6px 14px",
-	  borderRadius: "20px",
-	  fontFamily: "'Comic Sans MS', 'Comic Neue', cursive",   // 🎨 comic style
-	  fontWeight: "700",
-	  fontSize: "18px",
-	  backgroundImage: "linear-gradient(135deg, #facc15, #f59e0b)", // 🟡 gold
-	  WebkitBackgroundClip: "text",
-	  WebkitTextFillColor: "transparent",                      // 👈 makes text gold
-	}}>
-	  ✨ Picksy Ai
-	</div>
+    {/* HEADER BADGE */}
+    <div style={{
+      position: "fixed",
+      top: "15px",
+      left: "20px",
+      zIndex: 1000,
+      background: "#000000",
+      padding: "6px 14px",
+      borderRadius: "20px",
+      fontFamily: "'Comic Sans MS', 'Comic Neue', cursive",
+      fontWeight: "700",
+      fontSize: "18px",
+      backgroundImage: "linear-gradient(135deg, #facc15, #f59e0b)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent"
+    }}>
+      ✨ Picksy Ai
+    </div>
 
-			{/* STICKY SEARCH */}
-	 {hasSearched && (
-	  <div style={{
-		position: "sticky",
-		top: "20px",
-		zIndex: 1000,
-		display: "flex",
-		justifyContent: "center",
-		width: "100%"
-	  }}>
-				<div style={{
-	  pointerEvents: "auto",                // 👈 re-enable clicks
-	width: "100%",
-	maxWidth: "700px",
-	margin: "0 auto",                // 👈 smaller floating width
-	   borderRadius: "40px",
-	 //  background: "rgba(15,23,42,0.6)",
-	 background: "rgba(2,6,23,0.95)",   // ✅ solid dark base
+    {/* ✅ FIXED SEARCH BAR */}
+    <div style={{
+      position: "sticky",
+      top: "20px",
+      zIndex: 1000,
+      width: "100%",
+      display: "flex",
+      justifyContent: "center"
+    }}>
+      <div style={{ width: "100%", maxWidth: "700px" }}>
+        <SearchBar
+           query={query}
+  setQuery={setQuery}
+  search={search}
+  dynamicPlaceholder={dynamicPlaceholder}
+  isTyping={isTyping}
+  setIsTyping={setIsTyping}
+  hasSearched={hasSearched}
+  loading={loading}   // ✅ ADD THIS
+        />
+      </div>
+    </div>
 
-	 
-	//backdropFilter: "blur(12px)",
-	 padding: "14px 20px",
-	height: "64px",
-	boxShadow: "0 0 0 1px rgba(99,102,241,0.25), 0 20px 60px rgba(59,130,246,0.25)",
-	transition: "all 0.3s ease",
-	  backdropFilter: "blur(12px)"
-	}}>
-				  <SearchBar
-					query={query}
-					setQuery={setQuery}
-					search={search}
-					dynamicPlaceholder={dynamicPlaceholder}
-					isTyping={isTyping}
-					setIsTyping={setIsTyping}
-					hasSearched={true}
-				  />
-				</div>
-			  </div>
-			)}
+
+
+
 
 			{/* HERO */}
 			{!hasSearched && (
@@ -295,15 +286,7 @@ alignItems: "stretch",
 
 	</div>
 
-				<SearchBar
-				  query={query}
-				  setQuery={setQuery}
-				  search={search}
-				  dynamicPlaceholder={dynamicPlaceholder}
-				  isTyping={isTyping}
-				  setIsTyping={setIsTyping}
-				  hasSearched={false}
-				/>
+				
 
 				<SuggestionChips setQuery={setQuery} search={search} />
 			  </div>
@@ -315,8 +298,8 @@ alignItems: "stretch",
 	  minHeight: "calc(100vh - 120px)",
 	  display: "flex",
 	  flexDirection: "column",
-	  justifyContent: "center",
-	  alignItems: "center",
+	  justifyContent: "flex-start",
+		alignItems: "stretch",
 	  padding: "20px"
 	}}>
 	  <div style={{ width: "100%" }}>   {/* ✅ ADD THIS WRAPPER */}
@@ -325,7 +308,7 @@ alignItems: "stretch",
 			 
 
 			 
-			  <div style={{ flex: 1 }}>
+			  <div>
 			  
 			  {/* ✅ COMPARE PANEL (SAFE INSERT) */}
 
@@ -344,23 +327,11 @@ alignItems: "stretch",
 				/>
 
 	 
-	{/* 🔥 LOADING (always visible when active) */}
-{loading && (
-  <div style={{
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: "80px",
-    minHeight: "300px",
-    zIndex: 10
-  }}>
-   
-  </div>
-)}
+	{/* 🔥 LOADING (always visible when active - removed this block) */}
+
 
 {/* 🔥 RESULTS (only when not loading) */}
-{hasSearched && !loading && (
+{hasSearched && (loading || sortedProducts.length > 0) && (	
   <div style={{
     width: "100%",
     maxWidth: "1200px",
@@ -386,9 +357,9 @@ alignItems: "stretch",
 )}
 
 	</div>   {/* ✅ closes: <div style={{ flex: 1 }}> */}
-	</div>   {/* closes: width:100% 
+	</div>   {/* closes: width:100% */}
+	
 	</div>   {/*🔥 CLOSE MAIN container HERE */}
-</div>   
 	
 
 		<ChatWidget />

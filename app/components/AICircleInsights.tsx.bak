@@ -1,0 +1,70 @@
+"use client";
+
+export default function AICircleInsights({ insights = [] }: any) {
+  return (
+    <div style={{
+      textAlign: "center",
+      marginBottom: "40px"
+    }}>
+
+      <div className="ai-circle">
+
+        {/* TITLE */}
+        <div className="ai-title">
+          AI INSIGHTS
+        </div>
+
+        {/* CONTENT */}
+        <div className="ai-content">
+          {insights.map((text: string, i: number) => (
+            <div key={i} style={{ marginBottom: "8px" }}>
+              {text}
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+      <style jsx>{`
+        .ai-circle {
+          position: relative;
+          width: 260px;
+          height: 260px;
+          margin: 0 auto;
+          border-radius: 50%;
+          border: 2px solid rgba(59,130,246,0.3);
+          box-shadow: 0 0 30px rgba(59,130,246,0.25);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 20px;
+          text-align: center;
+          animation: pulse 3s infinite;
+        }
+
+        .ai-title {
+          font-size: 13px;
+          letter-spacing: 1px;
+          font-weight: 600;
+          color: #60a5fa;
+          margin-bottom: 10px;
+        }
+
+        .ai-content {
+          font-size: 12px;
+          color: #cbd5f5;
+          line-height: 1.5;
+          max-width: 180px;
+        }
+
+        @keyframes pulse {
+          0% { box-shadow: 0 0 10px rgba(59,130,246,0.2); }
+          50% { box-shadow: 0 0 40px rgba(59,130,246,0.5); }
+          100% { box-shadow: 0 0 10px rgba(59,130,246,0.2); }
+        }
+      `}</style>
+
+    </div>
+  );
+}

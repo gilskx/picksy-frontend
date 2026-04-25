@@ -1,8 +1,8 @@
 "use client";
-
+import AIWaveLoader from "./AIWaveLoader";
 import ProductCard from "./ProductCard";
 import "./globals.css";
-import SearchProgress from "./SearchProgress";
+import SearchProgress from "./SearchProgress"; // not using this instead using AIWaveLoader
 import { useState, useEffect, useRef } from "react";
 
 export default function ResultsSection({
@@ -44,7 +44,7 @@ export default function ResultsSection({
   setProgress(0);
   setActiveSources([]);
   setStage("🔍 Searching products...");
-
+console.log("loading:", loading);
   let p = 0;
 
 
@@ -74,7 +74,7 @@ intervalRef.current = setInterval(() => {
   }, [loading]);
 
 // ✅ ONLY AFTER ALL HOOKS
-if (!hasSearched && !loading) return null;
+//if (!hasSearched && !loading) return null;
 
   // 🔥 FILTER LOGIC (non-breaking)
   let filteredProducts = displayProducts;
@@ -90,10 +90,26 @@ if (!hasSearched && !loading) return null;
       (p: any) => p.name === cheaper.name
     );
   }
+const getStageDisplay = (stage: string) => {
+  if (!stage) return "🔍 Searching products...";
 
+  if (stage.toLowerCase().includes("search"))
+    return "🔍 Searching products...";
+
+  if (stage.toLowerCase().includes("compar"))
+    return "💰 Comparing prices...";
+
+  if (stage.toLowerCase().includes("rating"))
+    return "⭐ Checking ratings...";
+
+  if (stage.toLowerCase().includes("final"))
+    return "🤖 Finalizing best option...";
+
+  return `🔍 ${stage}`;
+};
   return (
     <div style={{
-      background: "#000000",
+     // background: "#000000",
       padding: "20px",
       borderRadius: "12px",
       backdropFilter: "blur(10px)"
@@ -279,12 +295,64 @@ if (!hasSearched && !loading) return null;
 </div>
       {/* LOADING / EMPTY / GRID */}
 {loading ? (
-  <SearchProgress
-    progress={progress}
-    stage={stage}
-    activeSources={activeSources}
-    query={query}
-  />
+  <div style={{ textAlign: "center", padding: "40px 0" }}>
+
+    {/* 🌊 AI WAVE */}
+    <div style={{
+  position: "relative",
+  width: "200px",
+  height: "120px",
+  margin: "0 auto"
+}}>
+
+  {/* 🌊 WAVE CENTER */}
+  <div style={{
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)"
+  }}>
+    <AIWaveLoader />
+  </div>
+
+  {/* 🔄 ORBITING ICONS */}
+  <div className="orbit amazon">a</div>
+  <div className="orbit walmart">w</div>
+  <div className="orbit ebay">e</div>
+
+</div>
+
+    {/* 🔤 STAGE TEXT */}
+    <div style={{
+      marginTop: "20px",
+      fontSize: "15px",
+      color: "#e2e8f0",
+      fontWeight: "500"
+    }}>
+      {stage}
+    </div>
+
+    {/* 🔎 ACTIVE SOURCES */}
+    {activeSources && activeSources.length > 0 && (
+      <div style={{
+        marginTop: "8px",
+        fontSize: "12px",
+        color: "#64748b"
+      }}>
+        Searching: {activeSources.join(" • ")}
+      </div>
+    )}
+
+    {/* OPTIONAL: QUERY */}
+    <div style={{
+      marginTop: "6px",
+      fontSize: "12px",
+      color: "#475569"
+    }}>
+      "{query}"
+    </div>
+
+  </div>
 ) : !loading && filteredProducts.length === 0 ? (
 
   <div style={{

@@ -111,7 +111,7 @@ const [aiLoading, setAiLoading] = useState(false);
             fontWeight: "700",
             color: "#fff"
           }}>
-            Best choice for your search
+            Stop Searching, Start Choosing..
           </div>
 
           <div style={{

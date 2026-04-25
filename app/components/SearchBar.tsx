@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function SearchBar({
   query,
@@ -9,7 +9,8 @@ export default function SearchBar({
   dynamicPlaceholder,
   isTyping,
   setIsTyping,
-  hasSearched
+  hasSearched,
+  loading 
 }: any) {
 
   const defaultPlaceholders = [
@@ -19,14 +20,23 @@ export default function SearchBar({
     "fitness tracker",
     "gaming laptop"
   ];
-  const [focused, setFocused] = useState(false);
 
+  const [focused, setFocused] = useState(false);
   const [placeholder, setPlaceholder] = useState(dynamicPlaceholder || defaultPlaceholders[0]);
   const [index, setIndex] = useState(0);
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
+  // 🔥 AUTO FOCUS (ADDED)
+ useEffect(() => {
+  if (!loading && hasSearched) {
+    inputRef.current?.focus();
+    inputRef.current?.select();   // 🔥 bonus: highlight text
+  }
+}, [loading, hasSearched]);
 
   useEffect(() => {
     if (dynamicPlaceholder) {
@@ -65,25 +75,24 @@ export default function SearchBar({
       zIndex: hasSearched ? 1000 : "auto",
 
       background: "transparent",
-      padding: hasSearched ? "6px" : "10px",   // 🔥 reduced
-
+      padding: hasSearched ? "6px" : "10px",
       boxShadow: hasSearched ? "0 4px 12px rgba(0,0,0,0.1)" : "none",
       transition: "all 0.3s ease"
     }}>
 
       <div style={{
         background: "rgba(255,255,255,0.06)",
-border: "1px solid rgba(255,255,255,0.15)",
-backdropFilter: "blur(12px)",
+        border: "1px solid rgba(255,255,255,0.15)",
+        backdropFilter: "blur(12px)",
         borderRadius: "40px",
         maxWidth: hasSearched ? "600px" : "700px",
         width: "100%",
         display: "flex",
         alignItems: "center",
-        padding: hasSearched ? "4px" : "6px",   // 🔥 reduced
+        padding: hasSearched ? "4px" : "6px",
         boxShadow: focused
-  ? "0 0 0 2px rgba(59,130,246,0.5), 0 10px 40px rgba(59,130,246,0.35)"
-  : "0 10px 40px rgba(59,130,246,0.25)",
+          ? "0 0 0 2px rgba(59,130,246,0.5), 0 10px 40px rgba(59,130,246,0.35)"
+          : "0 10px 40px rgba(59,130,246,0.25)",
         transition: "all 0.3s ease"
       }}>
 
@@ -92,7 +101,7 @@ backdropFilter: "blur(12px)",
           style={{
             marginLeft: "8px",
             marginRight: "6px",
-            fontSize: "18px",   // slightly reduced
+            fontSize: "18px",
             fontWeight: "600",
             animation: isTyping ? "twinkle 1.2s ease-in-out infinite" : "none",
             textShadow: isTyping
@@ -105,17 +114,18 @@ backdropFilter: "blur(12px)",
 
         {/* INPUT */}
         <input
+          ref={inputRef}
           value={query}
           onFocus={() => {
-  setIsTyping(true);
-  setShowSuggestions(true);
-  setFocused(true);       // 🔥 ADD THIS
-}}
-onBlur={() => {
-  setTimeout(() => setShowSuggestions(false), 200);
-  setIsTyping(false);
-  setFocused(false);      // 🔥 ADD THIS
-}}
+            setIsTyping(true);
+            setShowSuggestions(true);
+            setFocused(true);
+          }}
+          onBlur={() => {
+            setTimeout(() => setShowSuggestions(false), 200);
+            setIsTyping(false);
+            setFocused(false);
+          }}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === "Enter" && !e.repeat) {
@@ -129,8 +139,8 @@ onBlur={() => {
             flex: 1,
             border: "none",
             outline: "none",
-            padding: "6px 0",   // 🔥 reduced
-            fontSize: hasSearched ? "16px" : "18px", // 🔥 slightly increased for clarity
+            padding: "6px 0",
+            fontSize: hasSearched ? "16px" : "18px",
             background: "transparent",
             color: "#e5e7eb",
           }}
@@ -143,21 +153,21 @@ onBlur={() => {
             search();
           }}
           style={{
-  background: "linear-gradient(135deg, #3b82f6, #6366f1)",
-  color: "#fff",
-  borderRadius: "50%",
-  width: "38px",
-  height: "38px",
-  fontSize: "16px",
-  border: "none",
-  cursor: "pointer",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  marginLeft: "6px",
-  boxShadow: "0 6px 20px rgba(59,130,246,0.5)",
-  transition: "all 0.25s ease"
-}}
+            background: "linear-gradient(135deg, #3b82f6, #6366f1)",
+            color: "#fff",
+            borderRadius: "50%",
+            width: "38px",
+            height: "38px",
+            fontSize: "16px",
+            border: "none",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginLeft: "6px",
+            boxShadow: "0 6px 20px rgba(59,130,246,0.5)",
+            transition: "all 0.25s ease"
+          }}
           onMouseOver={(e) => {
             e.currentTarget.style.transform = "scale(1.1)";
           }}

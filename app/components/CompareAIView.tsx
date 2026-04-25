@@ -1,5 +1,6 @@
 "use client";
-
+import AIBalanceLoader from "./AIBalanceLoader";
+import AICircleInsights from "./AICircleInsights";
 import { useEffect, useState } from "react";
 
 export default function CompareAIView({ compareList, onBack }: any) {
@@ -13,12 +14,8 @@ export default function CompareAIView({ compareList, onBack }: any) {
 
       const res = await fetch("https://basket-pellet-constable.ngrok-free.dev/api/compare-ai", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          products: compareList
-        })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ products: compareList })
       });
 
       const data = await res.json();
@@ -32,9 +29,7 @@ export default function CompareAIView({ compareList, onBack }: any) {
   };
 
   useEffect(() => {
-    if (compareList?.length >= 2) {
-      runAICompare();
-    }
+    if (compareList?.length >= 2) runAICompare();
   }, []);
 
   const products = compareList?.slice(0, 2) || [];
@@ -49,7 +44,7 @@ export default function CompareAIView({ compareList, onBack }: any) {
       color: "#e5e7eb"
     }}>
 
-      {/* Background curves */}
+      {/* background */}
       <div style={{
         position: "absolute",
         right: "-120px",
@@ -57,30 +52,18 @@ export default function CompareAIView({ compareList, onBack }: any) {
         width: "600px",
         height: "600px",
         borderRadius: "50%",
-        border: "2px solid rgba(59,130,246,0.2)",
-        transform: "rotate(30deg)"
-      }} />
-
-      <div style={{
-        position: "absolute",
-        right: "-150px",
-        top: "150px",
-        width: "650px",
-        height: "650px",
-        borderRadius: "50%",
-        border: "2px solid rgba(59,130,246,0.1)",
-        transform: "rotate(30deg)"
+        border: "2px solid rgba(59,130,246,0.2)"
       }} />
 
       <div style={{
         position: "relative",
         zIndex: 2,
-        maxWidth: "1100px",
+        maxWidth: "1300px",
         margin: "0 auto",
-        padding: "20px"
+        padding: "20px 4px",
+        marginLeft: "-8px"
       }}>
 
-        {/* Back */}
         <button
           onClick={onBack}
           style={{
@@ -98,171 +81,216 @@ export default function CompareAIView({ compareList, onBack }: any) {
         </button>
 
         {loading && (
-          <div style={{
-            textAlign: "center",
-            marginTop: "100px"
-          }}>
-            🔄 Comparing products with AI...
-          </div>
+          <AIBalanceLoader
+            leftImg={products[0]?.image}
+            rightImg={products[1]?.image}
+          />
         )}
 
         {!loading && aiCompare && (
-  <>
 
-    {/* 🔥 MAIN GRID LAYOUT */}
-    <div style={{
-      display: "grid",
-      gridTemplateColumns: "2fr 1fr",
-      gap: "30px",
-      alignItems: "start"
-    }}>
-
-      {/* ================= LEFT SIDE (TABLE) ================= */}
-      <div style={{
-        background: "rgba(17, 24, 39, 0.85)",
-        backdropFilter: "blur(10px)",
-        borderRadius: "12px",
-        overflow: "hidden"
-      }}>
-
-        {/* HEADER */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "160px 1fr 1fr",
-          padding: "30px 25px",
-          background: "rgba(31, 41, 55, 0.55)"
-        }}>
-          <div></div>
-
-          {products.map((p: any, i: number) => (
-            <div key={i} style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: "12px"
-            }}>
-              <img src={p.image} style={{ height: "70px" }} />
-              <div style={{ fontSize: "13px", textAlign: "center" }}>
-                {p.name}
-              </div>
-              <div style={{ fontSize: "12px", color: "#94a3b8" }}>
-                {p.source?.toUpperCase()} • ${p.price}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* BUY ROW */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "160px 1fr 1fr",
-          padding: "14px",
-          borderTop: "1px solid rgba(255,255,255,0.08)"
-        }}>
-          <div style={{ color: "#94a3b8" }}>Buy Now</div>
-
-          {[0,1].map(i => (
-            <div key={i}>
-              {(products[i]?.url || products[i]?.link) ? (
-                <a
-                  href={(products[i]?.url || products[i]?.link)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: "inline-block",
-                    padding: "10px 20px",
-                    borderRadius: "25px",
-                    background: "linear-gradient(135deg, #6366f1, #3b82f6)",
-                    color: "#fff",
-                    fontSize: "14px",
-                    fontWeight: "600",
-                    textDecoration: "none"
-                  }}
-                >
-                  {`Sold on ${products[i]?.source || "Store"} →`}
-                </a>
-              ) : (
-                <span style={{ color: "#6b7280" }}>No link</span>
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* TABLE ROWS */}
-        {aiCompare.table?.map((row: any, i: number) => (
-          <div key={i} style={{
-            display: "grid",
-            gridTemplateColumns: "160px 1fr 1fr",
-            padding: "12px",
-            borderTop: "1px solid rgba(255,255,255,0.08)"
-          }}>
-            <div style={{ color: "#94a3b8" }}>{row.attribute}</div>
-            <div>{row.product1}</div>
-            <div>{row.product2}</div>
-          </div>
-        ))}
-
-      </div>
-
-      {/* ================= RIGHT SIDE (AI INSIGHTS) ================= */}
-      <div style={{
-        position: "sticky",
-        top: "20px",
-        padding: "20px",
-        borderRadius: "14px",
-        background: "rgba(255,255,255,0.03)",
-        backdropFilter: "blur(10px)",
-        border: "1px solid rgba(255,255,255,0.05)"
-      }}>
-
-        <div style={{
-          fontSize: "15px",
-          fontWeight: "600",
-          marginBottom: "15px"
-        }}>
-          🧠 AI Insights
-        </div>
-
-        {/* TAKEAWAYS */}
-        {aiCompare.takeaways?.map((t: string, i: number) => (
-          <div key={i} style={{ marginBottom: "8px", fontSize: "13px" }}>
-            • {t}
-          </div>
-        ))}
-
-        {/* WHICH TO CHOOSE */}
-        {aiCompare.which_should_you_choose && (
-          <div style={{ marginTop: "15px" }}>
-            <div style={{ fontWeight: "600", marginBottom: "8px" }}>
-              👉 Choose
-            </div>
-            {aiCompare.which_should_you_choose.map((line: string, i: number) => (
-              <div key={i} style={{ fontSize: "13px", marginBottom: "6px" }}>
-                {line}
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* VERDICT */}
-        {aiCompare.verdict && (
           <div style={{
-            marginTop: "15px",
-            padding: "10px",
-            borderRadius: "10px",
-            background: "rgba(34,197,94,0.08)"
+            display: "grid",
+            gridTemplateColumns: "380px 1fr",
+            gap: "12px",
+            alignItems: "start"
           }}>
-            <div style={{ fontWeight: "600" }}>🏁 Verdict</div>
-            <div style={{ fontSize: "13px" }}>{aiCompare.verdict}</div>
+
+            {/* LEFT */}
+            <div>
+              <AICircleInsights insights={aiCompare.takeaways} />
+            </div>
+
+            {/* RIGHT */}
+            <div style={{ display: "flex", flexDirection: "column" }}>
+
+              {/* TABLE */}
+              <div style={{
+                background: "rgba(17, 24, 39, 0.85)",
+                backdropFilter: "blur(10px)",
+                borderRadius: "12px",
+                overflow: "hidden",
+                marginLeft: "15px"
+              }}>
+
+                {/* HEADER (UPDATED) */}
+                <div style={{
+                  display: "grid",
+                  gridTemplateColumns: "140px 1fr 1fr",
+                  padding: "20px",
+                  background: "rgba(31, 41, 55, 0.6)"
+                }}>
+                  <div></div>
+
+                  {products.map((p: any, i: number) => (
+                    <div key={i} style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      gap: "8px"
+                    }}>
+                      <img src={p.image} style={{ height: "60px" }} />
+
+                      <div style={{
+                        fontSize: "13px",
+                        fontWeight: "600",
+                        textAlign: "center",
+                        maxWidth: "140px",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis"
+                      }}>
+                        {p.name}
+                      </div>
+
+                      <div style={{
+                        fontSize: "12px",
+                        color: "#94a3b8"
+                      }}>
+                        {p.source?.toUpperCase()}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+{/* 🔥 BUY NOW ROW */}
+<div style={{
+  display: "grid",
+  gridTemplateColumns: "140px 1fr 1fr",
+  padding: "14px 20px",
+  borderTop: "1px solid rgba(255,255,255,0.06)",
+  alignItems: "center"
+}}>
+
+  <div style={{ color: "#94a3b8", fontSize: "13px" }}>
+    Buy Now
+  </div>
+
+  {[0, 1].map(i => {
+    const url = products[i]?.url || products[i]?.link;
+
+    return (
+      <div key={i}>
+        {url ? (
+          <a
+            href={url.startsWith("http") ? url : `https://${url}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-block",
+              padding: "10px 18px",
+              borderRadius: "25px",
+              background: "linear-gradient(135deg, #6366f1, #3b82f6)",
+              color: "#fff",
+              fontSize: "13px",
+              fontWeight: "600",
+              textDecoration: "none",
+              boxShadow: "0 4px 14px rgba(59,130,246,0.4)"
+            }}
+          >
+            Buy Now →
+          </a>
+        ) : (
+          <span style={{ color: "#6b7280" }}>N/A</span>
+        )}
+      </div>
+    );
+  })}
+
+</div>
+                {/* ROWS (UPDATED) */}
+                {aiCompare.table?.map((row: any, i: number) => (
+                  <div key={i} style={{
+                    display: "grid",
+                    gridTemplateColumns: "140px 1fr 1fr",
+                    padding: "14px 20px",
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                    alignItems: "center"
+                  }}>
+
+                    <div style={{
+                      color: "#94a3b8",
+                      fontSize: "13px"
+                    }}>
+                      {row.attribute}
+                    </div>
+
+                    <div style={{
+                      fontSize: "14px",
+                      fontWeight: row.attribute === "Price" ? "600" : "400",
+                      color: row.attribute === "Price" ? "#22c55e" : "#e5e7eb"
+                    }}>
+                      {row.attribute === "Rating"
+                        ? `⭐ ${row.product1}`
+                        : row.product1}
+                    </div>
+
+                    <div style={{
+                      fontSize: "14px",
+                      fontWeight: row.attribute === "Price" ? "600" : "400",
+                      color: row.attribute === "Price" ? "#22c55e" : "#e5e7eb"
+                    }}>
+                      {row.attribute === "Rating"
+                        ? `⭐ ${row.product2}`
+                        : row.product2}
+                    </div>
+
+                  </div>
+                ))}
+
+              </div>
+
+              {/* DECISION */}
+              <div style={{
+                marginTop: "25px",
+                display: "flex",
+                flexDirection: "column",
+                gap: "15px",
+                alignItems: "flex-start"
+              }}>
+
+                {aiCompare.which_should_you_choose && (
+                  <div style={{
+                    width: "100%",
+                    maxWidth: "600px",
+                    padding: "18px",
+                    borderRadius: "12px",
+                    background: "rgba(59,130,246,0.08)",
+                    border: "1px solid rgba(59,130,246,0.2)"
+                  }}>
+                    <div style={{ fontWeight: "600", marginBottom: "10px" }}>
+                      👉 Choose
+                    </div>
+
+                    {aiCompare.which_should_you_choose.map((line: string, i: number) => (
+                      <div key={i} style={{ fontSize: "14px", marginBottom: "8px" }}>
+                        {line}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {aiCompare.verdict && (
+                  <div style={{
+                    width: "100%",
+                    maxWidth: "600px",
+                    padding: "14px",
+                    borderRadius: "25px",
+                    background: "linear-gradient(135deg, #22c55e, #4ade80)",
+                    color: "#022c22",
+                    fontWeight: "600",
+                    fontSize: "14px",
+                    boxShadow: "0 6px 20px rgba(34,197,94,0.4)"
+                  }}>
+                    🏁 {aiCompare.verdict}
+                  </div>
+                )}
+
+              </div>
+
+            </div>
+
           </div>
         )}
-
-      </div>
-
-    </div>
-
-  </>
-)}
 
       </div>
     </div>
