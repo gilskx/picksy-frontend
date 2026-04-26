@@ -207,27 +207,7 @@
     </div>
 
     {/* ✅ FIXED SEARCH BAR */}
-    <div style={{
-      position: "sticky",
-      top: "20px",
-      zIndex: 1000,
-      width: "100%",
-      display: "flex",
-      justifyContent: "center"
-    }}>
-      <div style={{ width: "100%", maxWidth: "700px" }}>
-        <SearchBar
-           query={query}
-  setQuery={setQuery}
-  search={search}
-  dynamicPlaceholder={dynamicPlaceholder}
-  isTyping={isTyping}
-  setIsTyping={setIsTyping}
-  hasSearched={hasSearched}
-  loading={loading}   // ✅ ADD THIS
-        />
-      </div>
-    </div>
+    
 
 
 
@@ -242,13 +222,14 @@
 				//color: "#fff"
 				color: "inherit"
 			  }}>
+			  {/* MAIN HEADLINE */}
 			   <div style={{
 	  textAlign: "center",
 	  marginBottom: "26px",
 	  animation: "fadeInUp 0.6s ease",
 	}}>
 
-	  {/* MAIN HEADLINE */}
+	  
 	  <div style={{
 		fontSize: "26px",
 		fontWeight: "700",
@@ -258,23 +239,46 @@
 		WebkitTextFillColor: "transparent",
 		textShadow: "0 4px 20px rgba(0,0,0,0.5)"
 	  }}>
-		Stop searching. Start choosing.
+		Stop searching, Start choosing.
 	  </div>
 
 	  {/* SUB HEADLINE */}
 	  <div style={{
-		fontSize: "15px",
-		color: "#94a3b8",
-		marginTop: "8px",
-		display: "flex",
-		justifyContent: "flex-start",
-alignItems: "stretch",
-		gap: "6px"
-	  }}>
-		<span style={{ opacity: 0.8 }}>✨</span>
-		Find your best deal, instantly.
-	  </div>
-
+  fontSize: "15px",
+  color: "#94a3b8",
+  marginTop: "8px",
+  display: "flex",
+  justifyContent: "center",   // ✅ FIX
+  alignItems: "center",
+  gap: "6px",
+  textAlign: "center",
+  width: "100%"               // ✅ IMPORTANT
+}}>
+  <span style={{ opacity: 0.8 }}>✨</span>
+  Find your best deal, instantly.
+</div>
+<div style={{
+      position: "sticky",
+      top: "20px",
+      zIndex: 1000,
+      width: "100%",
+      display: "flex",
+      justifyContent: "center"
+	  
+    }}>
+      <div style={{ width: "100%", maxWidth: "700px" }}>
+        <SearchBar
+           query={query}
+  setQuery={setQuery}
+  search={search}
+  dynamicPlaceholder={dynamicPlaceholder}
+  isTyping={isTyping}
+  setIsTyping={setIsTyping}
+  hasSearched={hasSearched}
+  loading={loading}   // ✅ ADD THIS
+        />
+      </div>
+    </div>
 	  {/* TRUST LINE */}
 	  <div style={{
 		marginTop: "8px",
