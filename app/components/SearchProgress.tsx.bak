@@ -11,7 +11,7 @@ export default function SearchProgress({
     <div style={{
       maxWidth: "520px",
       width: "100%",
-      margin: "30px autosss",
+      margin: "30px auto",
       background: "rgba(15,23,42,0.9)",
       borderRadius: "16px",
       padding: "30px",
@@ -50,9 +50,10 @@ export default function SearchProgress({
           🔍
         </div>
 
-        <div className="orbit amazon">a</div>
+        <div className="orbit amazon">amazon</div>
         <div className="orbit walmart">🟡</div>
-        <div className="orbit ebay">e</div>
+        <div className="orbit ebay">eBay</div>
+		<div className="orbit Google">Google</div>
       </div>
 
       {/* STAGE */}

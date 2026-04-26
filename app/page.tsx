@@ -210,6 +210,39 @@
     
 
 
+{hasSearched && (
+  <div style={{
+    position: "fixed",              // 🔥 change from sticky → fixed
+    top: "70px",                    // below your Picksy badge
+    left: "50%",
+    transform: "translateX(-50%)",
+    zIndex: 2000,
+
+    width: "100%",
+    maxWidth: "700px",
+    padding: "0 16px"
+  }}>
+    <div style={{
+      background: "transparent",    // ✅ remove dark bar
+      borderRadius: "40px",
+      padding: "6px 10px",
+
+      // optional subtle elevation (recommended)
+      boxShadow: "0 10px 30px rgba(0,0,0,0.4)"
+    }}>
+      <SearchBar
+        query={query}
+        setQuery={setQuery}
+        search={search}
+        dynamicPlaceholder={dynamicPlaceholder}
+        isTyping={isTyping}
+        setIsTyping={setIsTyping}
+        hasSearched={hasSearched}
+        loading={loading}
+      />
+    </div>
+  </div>
+)}
 
 
 
@@ -329,9 +362,10 @@
 				  mode={mode}
 				  setMode={setMode}
 				/>
-
+				
+				
 	 
-	{/* 🔥 LOADING (always visible when active - removed this block) */}
+	
 
 
 {/* 🔥 RESULTS (only when not loading) */}
@@ -434,7 +468,8 @@
       {activeCard === "privacy" && (
         <>
           <h2>Privacy Policy</h2>
-          <p>We do not store personal data...</p>
+          <p>Picksy is an AI-powered product discovery platform that helps users
+        find the best products across multiple online stores.</p>
         </>
       )}
 
@@ -444,7 +479,7 @@
           <p>
             For any questions or support, please reach out:
             <br />
-            📧 Email: your-email@domain.com
+            📧 Email: info@alginexa.com
             <br />
             We typically respond within 24–48 hours.
           </p>

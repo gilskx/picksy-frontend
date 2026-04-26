@@ -78,7 +78,7 @@ const [aiLoading, setAiLoading] = useState(false);
     width: "100%",
     maxWidth: "1100px",          // slightly wider to use screen space
     margin: "0 auto",
-    marginTop: "0px",
+    marginTop: hasSearched ? "120px" : "0px",
     minHeight: "calc(100vh - 100px)",   // 🔥 THIS IS THE KEY LINE
     display: "flex",
     alignItems: "center"         // vertically center content
@@ -111,23 +111,13 @@ const [aiLoading, setAiLoading] = useState(false);
             ✨ Smart Buy
           </div>
 
-          <motion.div
-  initial={{ opacity: 0, y: 10 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6 }}
-  style={{
-    fontSize: "28px",
-    fontWeight: "800",
-    letterSpacing: "-0.5px",
-    background: "linear-gradient(90deg, #38bdf8, #6366f1, #a855f7)",
-    backgroundSize: "200% auto",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    animation: "gradientMove 3s linear infinite"
-  }}
->
-  Stop Searching, Start Choosing..
-</motion.div>
+          <div style={{
+            fontSize: "26px",
+            fontWeight: "700",
+            color: "#fff"
+          }}>
+            Stop Searching, Start Choosing..
+          </div>
 
           <div style={{
             fontSize: "13px",

@@ -78,7 +78,7 @@ const [aiLoading, setAiLoading] = useState(false);
     width: "100%",
     maxWidth: "1100px",          // slightly wider to use screen space
     margin: "0 auto",
-    marginTop: "0px",
+   marginTop: "120px",
     minHeight: "calc(100vh - 100px)",   // 🔥 THIS IS THE KEY LINE
     display: "flex",
     alignItems: "center"         // vertically center content

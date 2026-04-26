@@ -50,9 +50,11 @@ export default function SearchProgress({
           🔍
         </div>
 
-        <div className="orbit amazon">a</div>
+        <div className="orbit amazon">amazon</div>
         <div className="orbit walmart">🟡</div>
-        <div className="orbit ebay">e</div>
+        <div className="orbit ebay">eBay</div>
+		<div className="orbit Google">Google</div>
+		<div className="orbit Walmart">Walmart</div>
       </div>
 
       {/* STAGE */}

@@ -210,6 +210,39 @@
     
 
 
+{hasSearched && (
+  <div style={{
+    position: "fixed",              // 🔥 change from sticky → fixed
+    top: "70px",                    // below your Picksy badge
+    left: "50%",
+    transform: "translateX(-50%)",
+    zIndex: 2000,
+
+    width: "100%",
+    maxWidth: "700px",
+    padding: "0 16px"
+  }}>
+    <div style={{
+      background: "transparent",    // ✅ remove dark bar
+      borderRadius: "40px",
+      padding: "6px 10px",
+
+      // optional subtle elevation (recommended)
+      boxShadow: "0 10px 30px rgba(0,0,0,0.4)"
+    }}>
+      <SearchBar
+        query={query}
+        setQuery={setQuery}
+        search={search}
+        dynamicPlaceholder={dynamicPlaceholder}
+        isTyping={isTyping}
+        setIsTyping={setIsTyping}
+        hasSearched={hasSearched}
+        loading={loading}
+      />
+    </div>
+  </div>
+)}
 
 
 
@@ -258,11 +291,14 @@
   Find your best deal, instantly.
 </div>
 <div style={{
-  marginTop: "20px",
-  width: "100%",
-  display: "flex",
-  justifyContent: "center"
-}}>
+      position: "sticky",
+      top: "20px",
+      zIndex: 1000,
+      width: "100%",
+      display: "flex",
+      justifyContent: "center"
+	  
+    }}>
       <div style={{ width: "100%", maxWidth: "700px" }}>
         <SearchBar
            query={query}
@@ -326,9 +362,10 @@
 				  mode={mode}
 				  setMode={setMode}
 				/>
-
+				
+				
 	 
-	{/* 🔥 LOADING (always visible when active - removed this block) */}
+	
 
 
 {/* 🔥 RESULTS (only when not loading) */}
@@ -431,7 +468,8 @@
       {activeCard === "privacy" && (
         <>
           <h2>Privacy Policy</h2>
-          <p>We do not store personal data...</p>
+          <p>Picksy respects your privacy. We do not collect personal information
+        unless you choose to provide it.</p>
         </>
       )}
 
@@ -441,7 +479,7 @@
           <p>
             For any questions or support, please reach out:
             <br />
-            📧 Email: your-email@domain.com
+            📧 Email: info@alginexa.com
             <br />
             We typically respond within 24–48 hours.
           </p>
