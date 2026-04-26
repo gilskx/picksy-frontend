@@ -258,14 +258,11 @@
   Find your best deal, instantly.
 </div>
 <div style={{
-      position: "sticky",
-      top: "20px",
-      zIndex: 1000,
-      width: "100%",
-      display: "flex",
-      justifyContent: "center"
-	  
-    }}>
+  marginTop: "20px",
+  width: "100%",
+  display: "flex",
+  justifyContent: "center"
+}}>
       <div style={{ width: "100%", maxWidth: "700px" }}>
         <SearchBar
            query={query}
