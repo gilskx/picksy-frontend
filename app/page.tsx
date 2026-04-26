@@ -203,17 +203,17 @@
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent"
     }}>
-      ✨ Picksy Ai
+      ✨ nokku.ai
     </div>
 
     {/* ✅ FIXED SEARCH BAR */}
     
 
 
-{hasSearched && (
+{hasSearched && !loading && (
   <div style={{
     position: "fixed",              // 🔥 change from sticky → fixed
-    top: "70px",                    // below your Picksy badge
+    top: "70px",                    // below your nokku badge
     left: "50%",
     transform: "translateX(-50%)",
     zIndex: 2000,
@@ -460,15 +460,15 @@
       {/* CONTENT */}
       {activeCard === "about" && (
         <>
-          <h2>About Picksy AI</h2>
-          <p>Picksy is an AI-powered product discovery platform...</p>
+          <h2>About nokku.ai</h2>
+          <p>nokku is an AI-powered product discovery platform...</p>
         </>
       )}
 
       {activeCard === "privacy" && (
         <>
           <h2>Privacy Policy</h2>
-          <p>Picksy is an AI-powered product discovery platform that helps users
+          <p>nokku is an AI-powered product discovery platform that helps users
         find the best products across multiple online stores.</p>
         </>
       )}

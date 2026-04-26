@@ -16,4 +16,4 @@ export function filterProducts(products: any[], minPrice: any, maxPrice: any, se
   }
 
   return updated;
-}
+}	

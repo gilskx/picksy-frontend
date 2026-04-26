@@ -4,7 +4,7 @@ export default function Privacy() {
       <h1>Privacy Policy</h1>
 
       <p style={{ marginTop: "20px" }}>
-        Picksy respects your privacy. We do not collect personal information
+        nokku respects your privacy. We do not collect personal information
         unless you choose to provide it.
       </p>
 
@@ -14,7 +14,7 @@ export default function Privacy() {
       </p>
 
       <p style={{ marginTop: "10px" }}>
-        Picksy may use cookies or similar technologies to enhance user experience.
+        nokku may use cookies or similar technologies to enhance user experience.
       </p>
 
       <p style={{ marginTop: "10px" }}>

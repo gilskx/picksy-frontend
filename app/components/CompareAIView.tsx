@@ -123,34 +123,63 @@ export default function CompareAIView({ compareList, onBack }: any) {
                   <div></div>
 
                   {products.map((p: any, i: number) => (
-                    <div key={i} style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      gap: "8px"
-                    }}>
-                      <img src={p.image} style={{ height: "60px" }} />
+  <div key={i} style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "10px",
 
-                      <div style={{
-                        fontSize: "13px",
-                        fontWeight: "600",
-                        textAlign: "center",
-                        maxWidth: "140px",
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis"
-                      }}>
-                        {p.name}
-                      </div>
+    background: "rgba(255,255,255,0.05)",
+    border: "1px solid rgba(255,255,255,0.1)",
+    borderRadius: "12px",
+    padding: "12px",
+    width: "160px",
+    backdropFilter: "blur(6px)"
+  }}>
 
-                      <div style={{
-                        fontSize: "12px",
-                        color: "#94a3b8"
-                      }}>
-                        {p.source?.toUpperCase()}
-                      </div>
-                    </div>
-                  ))}
+    {/* IMAGE BOX */}
+    <div style={{
+      width: "80px",
+      height: "80px",
+      borderRadius: "10px",
+      background: "rgba(255,255,255,0.08)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
+    }}>
+      <img 
+        src={p.image} 
+        style={{ 
+          maxWidth: "100%", 
+          maxHeight: "100%", 
+          objectFit: "contain" 
+        }} 
+      />
+    </div>
+
+    {/* NAME */}
+    <div style={{
+      fontSize: "13px",
+      fontWeight: "600",
+      textAlign: "center",
+      maxWidth: "140px",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis"
+    }}>
+      {p.name}
+    </div>
+
+    {/* SOURCE */}
+    <div style={{
+      fontSize: "12px",
+      color: "#94a3b8"
+    }}>
+      {p.source?.toUpperCase()}
+    </div>
+
+  </div>
+))}
                 </div>
 {/* 🔥 BUY NOW ROW */}
 <div style={{
@@ -268,7 +297,9 @@ export default function CompareAIView({ compareList, onBack }: any) {
                     ))}
                   </div>
                 )}
-
+ <div style={{ fontWeight: "600", marginBottom: "10px" }}>
+                      👉 Final Verdict
+                    </div>
                 {aiCompare.verdict && (
                   <div style={{
                     width: "100%",

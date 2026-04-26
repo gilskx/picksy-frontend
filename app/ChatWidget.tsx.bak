@@ -18,7 +18,7 @@ export default function ChatWidget() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:8081/search", {
+      const res = await fetch("https://basket-pellet-constable.ngrok-free.dev/search", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -100,7 +100,7 @@ export default function ChatWidget() {
               justifyContent: "space-between"
             }}
           >
-            <span>Picksy AI</span>
+            <span>nokku AI</span>
             <span
               style={{ cursor: "pointer" }}
               onClick={() => setOpen(false)}

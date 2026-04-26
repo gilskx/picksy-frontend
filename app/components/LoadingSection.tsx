@@ -19,7 +19,7 @@ export default function LoadingSection({ loading, loadingMessage }: any) {
           fontWeight: "600",
           fontSize: "15px"
         }}>
-          🤖 Picksy AI is working...
+          🤖 nokku.ai is working...
         </div>
 
         <div style={{

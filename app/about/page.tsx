@@ -19,18 +19,18 @@ export default function About() {
           fontSize: "24px",
           fontWeight: "600"
         }}>
-          About Picksy
+          About nokku.ai
         </h1>
       </div>
 
       {/* CONTENT */}
       <p style={{ marginBottom: "16px", color: "#cbd5f5" }}>
-        Picksy is an AI-powered product discovery platform that helps users
+        nokku is an AI-powered product discovery platform that helps users
         find the best products across multiple online stores.
       </p>
 
       <p style={{ marginBottom: "16px", color: "#cbd5f5" }}>
-        Instead of browsing multiple websites, users can search once on Picksy
+        Instead of browsing multiple websites, users can search once on nokku
         and compare options from retailers like Amazon, Walmart, and eBay.
       </p>
 

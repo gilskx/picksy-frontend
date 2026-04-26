@@ -235,6 +235,11 @@ export default function SearchBar({
           50% { transform: scale(1.2); opacity: 1; }
           100% { transform: scale(1); opacity: 0.7; }
         }
+		@keyframes pulseGlow {
+    0% { box-shadow: 0 0 20px rgba(59,130,246,0.4); }
+    50% { box-shadow: 0 0 60px rgba(59,130,246,0.8); }
+    100% { box-shadow: 0 0 20px rgba(59,130,246,0.4); }
+  }
       `}</style>
 
     </div>
