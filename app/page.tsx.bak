@@ -222,13 +222,14 @@
 				//color: "#fff"
 				color: "inherit"
 			  }}>
+			  {/* MAIN HEADLINE */}
 			   <div style={{
 	  textAlign: "center",
 	  marginBottom: "26px",
 	  animation: "fadeInUp 0.6s ease",
 	}}>
 
-	  {/* MAIN HEADLINE */}
+	  
 	  <div style={{
 		fontSize: "26px",
 		fontWeight: "700",

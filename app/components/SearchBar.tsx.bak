@@ -31,11 +31,12 @@ export default function SearchBar({
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   // 🔥 AUTO FOCUS (ADDED)
-  useEffect(() => {
-    if (hasSearched) {
-      inputRef.current?.focus();
-    }
-  }, [hasSearched]);
+ useEffect(() => {
+  if (!loading && hasSearched) {
+    inputRef.current?.focus();
+    inputRef.current?.select();   // 🔥 bonus: highlight text
+  }
+}, [loading, hasSearched]);
 
   useEffect(() => {
     if (dynamicPlaceholder) {

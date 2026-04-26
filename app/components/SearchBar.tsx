@@ -148,35 +148,52 @@ export default function SearchBar({
 
         {/* BUTTON */}
         <button
-          onClick={() => {
-            setShowSuggestions(false);
-            search();
-          }}
-          style={{
-            background: "linear-gradient(135deg, #3b82f6, #6366f1)",
-            color: "#fff",
-            borderRadius: "50%",
-            width: "38px",
-            height: "38px",
-            fontSize: "16px",
-            border: "none",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginLeft: "6px",
-            boxShadow: "0 6px 20px rgba(59,130,246,0.5)",
-            transition: "all 0.25s ease"
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.transform = "scale(1.1)";
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.transform = "scale(1)";
-          }}
-        >
-          🔍
-        </button>
+  onClick={() => {
+    setShowSuggestions(false);
+    search();
+  }}
+  style={{
+    background: "linear-gradient(135deg, #3b82f6, #6366f1)",
+    color: "#fff",
+    borderRadius: "50%",
+    width: "44px",            // ✅ bigger for mobile
+    height: "44px",           // ✅ Apple touch size
+    fontSize: "16px",
+    border: "none",
+    cursor: "pointer",
+
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+
+    marginLeft: "6px",
+
+    boxShadow: "0 6px 20px rgba(59,130,246,0.5)",
+    transition: "all 0.2s ease",
+
+    position: "relative",     // ✅ IMPORTANT (fix click issues)
+    zIndex: 5,                // ✅ prevents overlay block
+    WebkitTapHighlightColor: "transparent"
+  }}
+
+  // ✅ Desktop hover
+  onMouseOver={(e) => {
+    e.currentTarget.style.transform = "scale(1.1)";
+  }}
+  onMouseOut={(e) => {
+    e.currentTarget.style.transform = "scale(1)";
+  }}
+
+  // ✅ Mobile touch feedback (VERY IMPORTANT)
+  onTouchStart={(e) => {
+    e.currentTarget.style.transform = "scale(0.95)";
+  }}
+  onTouchEnd={(e) => {
+    e.currentTarget.style.transform = "scale(1)";
+  }}
+>
+  🔍
+</button>
 
       </div>
 
