@@ -1,3 +1,4 @@
+/* shimmer stays same */
 @keyframes shimmer {
   0% { background-position: -400px 0; }
   100% { background-position: 400px 0; }
@@ -13,31 +14,27 @@
   background-size: 800px 100%;
   animation: shimmer 1.2s infinite linear;
 }
-/* 🔥 Make placeholders visible on dark UI */
-input::placeholder {
-  color: #475569;   /* soft grey */
-  opacity: 1;       /* important */
-}
 
-/* Optional: slightly brighter on focus */
-input:focus::placeholder {
-color: #475569;
-}
+/* placeholder animation */
 @keyframes placeholderPulse {
   0% { opacity: 0.5; }
   50% { opacity: 0.8; }
   100% { opacity: 0.5; }
 }
 
-input::placeholder {
-  color: #475569;
-  animation: placeholderPulse 2.5s ease-in-out infinite;
-}
-input::placeholder {
-  color: #475569;
-  opacity: 1;
+/* 🎯 FILTER INPUT ONLY */
+.filter-input {
+  color: #ffffff;
 }
 
-input:focus::placeholder {
-  opacity: 0.2;
+.filter-input::placeholder {
+  color: #86efac;
+  opacity: 1;
+  animation: placeholderPulse 2.5s ease-in-out infinite;
+}
+
+/* autofill fix */
+input:-webkit-autofill {
+  -webkit-text-fill-color: #ffffff !important;
+  transition: background-color 9999s ease-in-out 0s;
 }

@@ -331,7 +331,8 @@ alignItems: "stretch",
 
 
 {/* 🔥 RESULTS (only when not loading) */}
-{hasSearched && (loading || sortedProducts.length > 0) && (	
+{/* 🔥 RESULTS */}
+{hasSearched && (
   <div style={{
     width: "100%",
     maxWidth: "1200px",
@@ -352,6 +353,14 @@ alignItems: "stretch",
       loadingMessage={loadingMessage}
       mode={mode}
       setMode={setMode}
+      searchInResults={searchInResults}
+      setSearchInResults={setSearchInResults}
+      minPrice={minPrice}
+      setMinPrice={setMinPrice}
+      maxPrice={maxPrice}
+      setMaxPrice={setMaxPrice}
+      sortBy={sortBy}
+      setSortBy={setSortBy}
     />
   </div>
 )}

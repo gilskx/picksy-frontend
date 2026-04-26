@@ -1,3 +1,4 @@
+/* shimmer stays same */
 @keyframes shimmer {
   0% { background-position: -400px 0; }
   100% { background-position: 400px 0; }
@@ -13,41 +14,42 @@
   background-size: 800px 100%;
   animation: shimmer 1.2s infinite linear;
 }
-/* 🔥 Make placeholders visible on dark UI */
-input::placeholder {
-  color: #475569;   /* soft grey */
-  opacity: 1;       /* important */
+
+/* 🔥 NEW: smooth fade + glow animation */
+@keyframes placeholderFade {
+  0% {
+    opacity: 0.4;
+    color: #86efac;
+  }
+  50% {
+    opacity: 0.9;
+    color: #bbf7d0; /* lighter green glow */
+  }
+  100% {
+    opacity: 0.4;
+    color: #86efac;
+  }
 }
 
-/* Optional: slightly brighter on focus */
-input:focus::placeholder {
-color: #475569;
-}
-@keyframes placeholderPulse {
-  0% { opacity: 0.5; }
-  50% { opacity: 0.8; }
-  100% { opacity: 0.5; }
+/* 🎯 FILTER INPUT ONLY */
+.filter-input {
+  color: #ffffff;
 }
 
-input::placeholder {
-  color: #475569;
-  animation: placeholderPulse 2.5s ease-in-out infinite;
-}
-input::placeholder {
-  color: #475569;
+/* ✅ APPLY FADE ANIMATION */
+.filter-input::placeholder {
+  color: #86efac;
   opacity: 1;
+  animation: placeholderFade 2.5s ease-in-out infinite;
 }
 
-input:focus::placeholder {
+/* ✅ smooth fade on focus */
+.filter-input:focus::placeholder {
   opacity: 0.2;
-}
-/* 🔥 Force input text visibility */
-input {
-  color: #ffffff !important;
-  opacity: 1 !important;
+  transition: opacity 0.3s ease;
 }
 
-/* 🔥 Fix Chrome autofill dim text */
+/* autofill fix */
 input:-webkit-autofill {
   -webkit-text-fill-color: #ffffff !important;
   transition: background-color 9999s ease-in-out 0s;

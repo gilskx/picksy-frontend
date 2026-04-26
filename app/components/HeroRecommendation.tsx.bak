@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { motion } from "framer-motion";
 export default function HeroRecommendation({
   recommendation,
   confidence,
@@ -69,7 +70,11 @@ const [aiLoading, setAiLoading] = useState(false);
 };
 
   return (
-  <div style={{
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    style={{
     width: "100%",
     maxWidth: "1100px",          // slightly wider to use screen space
     margin: "0 auto",
@@ -111,7 +116,7 @@ const [aiLoading, setAiLoading] = useState(false);
             fontWeight: "700",
             color: "#fff"
           }}>
-            Best choice for your search
+            Stop Searching, Start Choosing..
           </div>
 
           <div style={{
@@ -128,7 +133,7 @@ const [aiLoading, setAiLoading] = useState(false);
         <div style={{
 		display: "grid",
 		gridTemplateColumns: "1.2fr 1fr",
-		gap: "50px",
+		gap: "40px",
 		alignItems: "center"
         }}>
 
