@@ -105,7 +105,7 @@
 
 		  if (data.products) {
 			setProducts(data.products);
-			setRecommendation(data.recommendation);
+			setRecommendation(data);
 			setExplanation(data.reason || data.explanation);
 			setConfidence(data.confidence || 0);
 			setCheaper(data.cheaperAlternative || null);

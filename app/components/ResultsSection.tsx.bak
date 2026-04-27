@@ -98,6 +98,45 @@ const getStageDisplay = (stage: string) => {
   return `🔍 ${stage}`;
 };
 
+
+// ✅ FILTER + SORT LOGIC (ADD HERE)
+let filteredProducts = displayProducts || [];
+
+// 🔎 SEARCH FILTER
+if (searchInResults) {
+  filteredProducts = filteredProducts.filter((p: any) =>
+    p.name?.toLowerCase().includes(searchInResults.toLowerCase())
+  );
+}
+
+// 💰 PRICE FILTER
+if (minPrice) {
+  filteredProducts = filteredProducts.filter(
+    (p: any) => p.price && p.price >= Number(minPrice)
+  );
+}
+
+if (maxPrice) {
+  filteredProducts = filteredProducts.filter(
+    (p: any) => p.price && p.price <= Number(maxPrice)
+  );
+}
+
+// 🔄 SORTING
+if (sortBy === "priceLow") {
+  filteredProducts.sort((a: any, b: any) => a.price - b.price);
+} else if (sortBy === "priceHigh") {
+  filteredProducts.sort((a: any, b: any) => b.price - a.price);
+} else if (sortBy === "rating") {
+  filteredProducts.sort((a: any, b: any) => b.rating - a.rating);
+}
+
+
+
+
+
+
+
 ///OKoooooooooooooooo
 return (
   <div style={{

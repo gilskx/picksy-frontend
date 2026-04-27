@@ -100,8 +100,8 @@ export default function ChatWidget() {
               justifyContent: "space-between"
             }}
           >
-            <span>nokku AI</span>
-            <span
+            <span>nokku.ai</span>
+            <spans
               style={{ cursor: "pointer" }}
               onClick={() => setOpen(false)}
             >

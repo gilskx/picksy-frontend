@@ -53,10 +53,10 @@ intervalRef.current = setInterval(() => {
 
       if (p < 30) {
         setStage("🔍 Searching products...");
-        setActiveSources(["Amazon", "Walmart", "eBay"]);
+        setActiveSources(["Amazon", "Walmart", "eBay", "Google"]);
       } else if (p < 60) {
         setStage("💰 Comparing prices...");
-        setActiveSources(["Amazon", "Walmart", "eBay"]);
+        setActiveSources(["Amazon", "Walmart", "eBay ", "Google"]);
       } else if (p < 85) {
         setStage("⭐ Checking ratings...");
       } else {
