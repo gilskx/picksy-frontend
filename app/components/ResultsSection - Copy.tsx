@@ -139,7 +139,7 @@ if (sortBy === "priceLow") {
 
 ///OKoooooooooooooooo
 return (
-  <div className="nokku-results-section" style={{
+  <div style={{
     width: "100%",
     maxWidth: "1200px",
     margin: "20px auto",          // 🔥 center whole block

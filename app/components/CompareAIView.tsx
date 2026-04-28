@@ -56,9 +56,9 @@ export default function CompareAIView({ compareList, onBack }: any) {
         border: "2px solid rgba(59,130,246,0.2)"
       }} />
 
-      <div style={{
-        position: "relative",
-        zIndex: 2,
+      <div className="nokku-compare-page" style={{
+  position: "relative",
+  zIndex: 2,
         maxWidth: "1300px",
         margin: "0 auto",
         padding: "20px 4px",
@@ -90,9 +90,9 @@ export default function CompareAIView({ compareList, onBack }: any) {
 
         {!loading && aiCompare && (
 
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "380px 1fr",
+          <div className="nokku-compare-layout" style={{
+  display: "grid",
+  gridTemplateColumns: "380px 1fr",
             gap: "12px",
             alignItems: "start"
           }}>
@@ -106,8 +106,8 @@ export default function CompareAIView({ compareList, onBack }: any) {
             <div style={{ display: "flex", flexDirection: "column" }}>
 
               {/* TABLE */}
-              <div style={{
-                background: "rgba(17, 24, 39, 0.85)",
+              <div className="nokku-compare-table" style={{
+  background: "rgba(17, 24, 39, 0.85)",
                 backdropFilter: "blur(10px)",
                 borderRadius: "12px",
                 overflow: "hidden",

@@ -2,8 +2,8 @@
 
 export default function Footer({ setActiveCard }: any) {
   return (
-    <div style={{
-      marginTop: "60px",
+    <div className="nokku-footer" style={{
+  marginTop: "60px",
       padding: "30px 20px",
       textAlign: "center",
       borderTop: "1px solid rgba(255,255,255,0.1)",   // ✅ better for dark theme

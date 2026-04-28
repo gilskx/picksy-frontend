@@ -76,6 +76,23 @@ export default function AICircleInsights({ insights = [] }: any) {
           50% { box-shadow: 0 0 55px rgba(59,130,246,0.6); }
           100% { box-shadow: 0 0 15px rgba(59,130,246,0.25); }
         }
+		@media (max-width: 768px) {
+  .wrapper {
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .ai-circle {
+    width: 260px;
+    height: 260px;
+    padding: 28px;
+  }
+
+  .ai-content {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
       `}</style>
 
     </div>

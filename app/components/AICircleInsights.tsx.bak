@@ -25,12 +25,12 @@ export default function AICircleInsights({ insights = [] }: any) {
       <style jsx>{`
         .wrapper {
           display: flex;
-          justify-content: flex-end;   /* 👉 move to right */
+          justify-content: flex-end;
           margin-bottom: 40px;
         }
 
         .ai-circle {
-          width: 340px;   /* 🔥 BIGGER */
+          width: 340px;
           height: 340px;
           border-radius: 50%;
           border: 2px solid rgba(59,130,246,0.35);
@@ -44,20 +44,27 @@ export default function AICircleInsights({ insights = [] }: any) {
           animation: pulse 3s infinite;
         }
 
+        /* 🔥 UPDATED TITLE */
         .ai-title {
           font-size: 14px;
           letter-spacing: 2px;
-          font-weight: 600;
-          color: #60a5fa;
+          font-weight: 700;
           margin-bottom: 18px;
-          font-family: "Inter", "Segoe UI", sans-serif;  /* 🔥 better font */
+          font-family: "Inter", "Segoe UI", sans-serif;
+
+          color: transparent;
+          background: linear-gradient(90deg, #38bdf8, #6366f1, #a855f7);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
         }
 
+        /* 🔥 UPDATED CONTENT */
         .ai-content {
           font-size: 13px;
-          color: #cbd5f5;
+          color: #e0e7ff;   /* brighter + cleaner */
           line-height: 1.7;
           font-family: "Inter", "Segoe UI", sans-serif;
+          text-shadow: 0 0 10px rgba(99,102,241,0.3); /* subtle glow */
         }
 
         .ai-line {

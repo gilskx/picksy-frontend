@@ -199,8 +199,8 @@ const data = await searchProducts(query, userContext);
 	  return (
 	  <>
 		
-  <div style={{
-    fontFamily: "Arial",
+  <div className="nokku-page" style={{
+  fontFamily: "Arial",
     minHeight: "100vh",
     display: "flex",
     flexDirection: "column",
@@ -216,9 +216,9 @@ const data = await searchProducts(query, userContext);
   }}>
 
     {/* HEADER BADGE */}
-    <div style={{
-      position: "fixed",
-      top: "15px",
+    <div className="nokku-floating-logo" style={{
+  position: "fixed",
+  top: "15px",
       left: "20px",
       zIndex: 1000,
       background: "#000000",
@@ -276,9 +276,8 @@ const data = await searchProducts(query, userContext);
 
 			{/* HERO */}
 			{!hasSearched && (
-			  <div style={{
-			  //  background: "linear-gradient(180deg,#6fa8dc,#3c78d8)",
-				padding: "80px 20px 60px",
+  <div className="nokku-hero" style={{
+    padding: "80px 20px 60px",
 				textAlign: "center",
 				//color: "#fff"
 				color: "inherit"

@@ -2,6 +2,7 @@
 import "./globals.css";
 export default function LoadingSection({ loading, loadingMessage }: any) {
 
+
   if (!loading) return null;
 
   return (

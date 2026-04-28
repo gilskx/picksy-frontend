@@ -48,6 +48,15 @@ export default function AIWaveLoader() {
             opacity: 1;
           }
         }
+		@media (max-width: 768px) {
+  .wave-container {
+    gap: 3px;
+  }
+
+  .wave-bar {
+    width: 2px;
+  }
+}
       `}</style>
     </div>
   );

@@ -111,6 +111,7 @@ const renderList = (list: string[]) => {
 };
   return (
   <motion.div
+  className="nokku-hero-recommendation"
     initial={{ opacity: 0, y: 30 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6 }}
@@ -157,7 +158,7 @@ const renderList = (list: string[]) => {
         </div>
 
         {/* MAIN */}
-        <div style={{
+        <div className="nokku-hero-rec-grid" style={{
   display: "grid",
   gridTemplateColumns: "2.5fr 1fr",
 maxWidth: "1400px",
@@ -452,7 +453,7 @@ maxWidth: "1400px",
 
             
 		{/* PRODUCT IMAGE WITH CLEAN RING */}
-<div style={{
+<div className="nokku-hero-product-image" style={{
   position: "relative",
   width: "320px",
   height: "320px",
@@ -521,232 +522,159 @@ maxWidth: "1400px",
 {/* End Product Image */}
 
 
- 
-
-
-
-
 {/* 🔥 CHEAPER OPTION */}
-
 
 {cheaper && (
 
-  <div style={{ gridColumn: "1 / -1" }}>   {/* 🔥 BREAK COLUMN LIMIT */}
+  <div style={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
 
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
+    <div
       style={{
         width: "100%",
-        maxWidth: "1300px",   // 🔥 INCREASE WIDTH
-        margin: "0 auto",     // center it
+        maxWidth: "900px",          // keeps it compact on right
+        margin: "0",                // IMPORTANT (no center)
         padding: "18px",
-        borderRadius: "16px",
-        background: "linear-gradient(135deg, rgba(34,197,94,0.08), rgba(34,197,94,0.03))",
-        border: "1px solid rgba(34,197,94,0.25)",
-        boxShadow: "0 10px 30px rgba(34,197,94,0.1)",
-        backdropFilter: "blur(6px)",
         position: "relative",
-        overflow: "hidden",
-		 marginTop: "12px"
+        marginTop: "12px"
       }}
     >
 
-      {/* 🔥 SHIMMER */}
-      <div style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "2px",
-        background: "linear-gradient(90deg, transparent, #38bdf8, transparent)",
-        opacity: 0.6
-      }} />
-
-      <motion.div
-        animate={{
-          boxShadow: [
-            "0 0 0 rgba(59,130,246,0.0)",
-            "0 0 20px rgba(59,130,246,0.12)",
-            "0 0 0 rgba(59,130,246,0.0)"
-          ]
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "easeInOut"
+      {/* 🔥 MAIN GRID */}
+      <div
+        className="nokku-cheaper-grid"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "5fr 1.2fr 3fr",
+          gap: "28px",
+          alignItems: "center"
         }}
       >
 
-        {/* 🔥 MAIN GRID */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "1.2fr 1.1fr",   // 🔥 MORE SPACE LEFT
-          gap: "24px",
-          alignItems: "start"
-        }}>
+        {/* LEFT SIDE */}
+        <div style={{ alignSelf: "flex-start" }}>
 
-          {/* LEFT SIDE */}
-          <div>
-
-            <div style={{
-              fontSize: "12px",
-              color: "#38bdf8",
-              fontWeight: "600"
-            }}>
-              🤖 Smart Alternative / Cheaper Option
-            </div>
-
-            {saveAmount && (
-              <div style={{
-                fontSize: "24px",
-                fontWeight: "700",
-                color: "#22c55e",
-                marginTop: "6px"
-              }}>
-                Save ${saveAmount}
-              </div>
-            )}
-
-            <div style={{
-              marginTop: "10px",
-              fontSize: "14px",
-              fontWeight: "600",
-              color: "#f8fafc",
-              lineHeight: "1.4",
-			  maxWidth: "520px"
-            }}>
-              {cheaper.name}
-            </div>
-
-            <div style={{
-              marginTop: "10px",
-              display: "flex",
-              gap: "10px",
-              fontSize: "14px",
-              color: "#94a3b8"
-            }}>
-              <span style={{ color: "#22c55e", fontWeight: "600" }}>
-                ${cheaper.price}
-              </span>
-              <span>•</span>
-              <span style={{ color: "#fbbf24" }}>
-                ⭐ {Number(cheaper.rating || 3.5).toFixed(1)}
-              </span>
-              <span>•</span>
-              <span style={{ textTransform: "capitalize" }}>
-                {cheaper.source}
-              </span>
-            </div>
-
-            <a
-              href={cheaper.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-block",
-                marginTop: "16px",
-                padding: "10px 16px",
-                borderRadius: "12px",
-                background: "linear-gradient(135deg, #22c55e, #16a34a)",
-                color: "#fff",
-                textDecoration: "none",
-                fontSize: "14px",
-                fontWeight: "600"
-              }}
-            >
-              Buy on {cheaper.source} →
-            </a>
-
+          <div style={{
+            fontSize: "12px",
+            color: "#38bdf8",
+            fontWeight: "600"
+          }}>
+            🤖 Smart Alternative / Cheaper Option
           </div>
 
-          {/* RIGHT SIDE */}
-<div style={{
-  display: "flex",
-  alignItems: "flex-start",
-  justifyContent: "flex-start",
-  gap: "18px",
-  marginLeft: "-35px"
-}}>
+          <div style={{
+            marginTop: "10px",
+            fontSize: "14px",
+            fontWeight: "600",
+            color: "#f8fafc",
+            lineHeight: "1.4",
+            maxWidth: "520px"
+          }}>
+            {cheaper.name?.split(",")[0]}
+          </div>
 
-  {/* IMAGE */}
-  <div style={{ flexShrink: 0 }}>
-    <img
-      src={cheaper.image}
-      alt="product"
-      style={{
-        width: "150px",
-        height: "150px",
-        objectFit: "contain",
-        borderRadius: "12px",
-        background: "rgba(255,255,255,0.05)",
-        padding: "10px",
-        boxShadow: "0 10px 25px rgba(0,0,0,0.4)"
-      }}
-    />
-  </div>
+          {saveAmount && (
+            <div style={{
+              fontSize: "24px",
+              fontWeight: "700",
+              color: "#22c55e",
+              marginTop: "6px"
+            }}>
+              Save ${saveAmount}
+            </div>
+          )}
 
-  {/* TEXT */}
-  <div style={{
-    maxWidth: "260px",
-    marginTop: "4px"
-  }}>
+          <div style={{
+            marginTop: "10px",
+            display: "flex",
+            gap: "10px",
+            fontSize: "14px",
+            color: "#94a3b8"
+          }}>
+            <span style={{ color: "#22c55e", fontWeight: "600" }}>
+              ${cheaper.price}
+            </span>
+            <span>•</span>
+            <span style={{ color: "#fbbf24" }}>
+              ⭐ {Number(cheaper.rating || 3.5).toFixed(1)}
+            </span>
+            <span>•</span>
+            <span style={{ textTransform: "capitalize" }}>
+              {cheaper.source}
+            </span>
+          </div>
 
-    {recommendation?.why_cheaper_product?.length > 0 && (
-      <div>
+          <a
+            href={cheaper.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-block",
+              marginTop: "16px",
+              padding: "6px 13px",
+              borderRadius: "12px",
+              background: "#22c55e",
+              color: "#fff",
+              textDecoration: "none",
+              fontSize: "14px",
+              fontWeight: "600",
+              alignSelf: "flex-start"
+            }}
+          >
+            Buy on {cheaper.source} →
+          </a>
+
+        </div>
+
+        {/* IMAGE */}
         <div style={{
-          fontSize: "13px",
-          fontWeight: "600",
-          color: "#4ade80",
-          marginBottom: "6px"
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
         }}>
-          💡 Why this works
+          <img
+            src={cheaper.image}
+            alt="product"
+            style={{
+              width: "140px",
+              height: "140px",
+              objectFit: "contain",
+              borderRadius: "8px"
+            }}
+          />
         </div>
 
-        {renderList(recommendation?.why_cheaper_product)}
-      </div>
-    )}
-
-    {recommendation?.who_should_buy_cheaper?.length > 0 && (
-      <div style={{ marginTop: "12px" }}>
+        {/* RIGHT SIDE */}
         <div style={{
-          fontSize: "13px",
-          fontWeight: "600",
-          color: "#a78bfa",
-          marginBottom: "6px"
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center"
         }}>
-          👤 Who Should Buy
+
+          {recommendation?.who_should_buy_cheaper?.length > 0 && (
+            <div>
+              <div style={{
+                fontSize: "13px",
+                fontWeight: "600",
+                color: "#a78bfa",
+                marginBottom: "6px"
+              }}>
+                👤 Why Should Buy
+              </div>
+
+              {renderList(recommendation?.why_cheaper_product)}
+            </div>
+          )}
+
         </div>
 
-        {renderList(recommendation?.who_should_buy_cheaper)}
       </div>
-    )}
 
-  </div>
-
-</div>
-
-
-
-
-
-
-
-
-
-        </div>
-
-      </motion.div>
-
-    </motion.div>
+    </div>
 
   </div>
 )}
 
-{/* 🔥 CHEAPER End  */}
-
-
+{/* 🔥 CHEAPER End */}
 
          <div style={{
   display: "flex",

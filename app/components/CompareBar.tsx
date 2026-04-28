@@ -8,8 +8,8 @@ export default function CompareBar({
   if (!compareList || compareList.length < 2) return null;
 
   return (
-    <div style={{	
-      position: "fixed",
+    <div className="nokku-compare-bar" style={{	
+  position: "fixed",
       bottom: "20px",
       left: "50%",
       transform: "translateX(-50%)",

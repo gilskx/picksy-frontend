@@ -26,9 +26,9 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
   ];
 
   return (
-    <div style={{
-      display: "flex",
-      flexWrap: "wrap",
+    <div className="nokku-suggestion-chips" style={{
+  display: "flex",
+  flexWrap: "wrap",
       justifyContent: "center",
       gap: "10px",
       marginTop: "20px"

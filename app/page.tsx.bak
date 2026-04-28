@@ -199,8 +199,8 @@ const data = await searchProducts(query, userContext);
 	  return (
 	  <>
 		
-  <div style={{
-    fontFamily: "Arial",
+  <div className="nokku-page" style={{
+  fontFamily: "Arial",
     minHeight: "100vh",
     display: "flex",
     flexDirection: "column",
@@ -216,68 +216,24 @@ const data = await searchProducts(query, userContext);
   }}>
 
     {/* HEADER BADGE */}
-   {/* HEADER BADGE */}
-<div
-  style={{
-    position: "fixed",
-    top: "15px",
-    left: "20px",
-    zIndex: 1000,
-    display: "flex",
-    alignItems: "center",
-    gap: "10px",
-    padding: "8px 16px",
-    borderRadius: "24px",
-    background: "rgba(2,6,23,0.6)",
-    backdropFilter: "blur(10px)",
-    border: "1px solid rgba(255,255,255,0.08)",
-    boxShadow: "0 8px 30px rgba(0,0,0,0.6)",
-    cursor: "pointer"
-  }}
->
-
-  {/* 🔥 ROUND LOGO FIX */}
-  <div
-    style={{
-      width: "34px",
-      height: "34px",
-      borderRadius: "50%",
-      overflow: "hidden",          // 🔥 IMPORTANT
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      background: "#020617",
-      border: "1px solid rgba(59,130,246,0.3)",
-      boxShadow: "0 0 10px rgba(59,130,246,0.4)"
-    }}
-  >
-    <img
-    //  src="/og-image.png"   // 🔥 your current file
-      alt="Nokku AI"
-      style={{
-        width: "120%",      // 🔥 zoom in to avoid empty space
-        height: "120%",
-        objectFit: "cover"  // 🔥 fills circle properly
-      }}
-    />
-  </div>
-
-  {/* TEXT */}
-  <div
-    style={{
-      fontFamily: "'Inter', sans-serif",
+    <div className="nokku-floating-logo" style={{
+  position: "fixed",
+  top: "15px",
+      left: "20px",
+      zIndex: 1000,
+      background: "#000000",
+      padding: "6px 14px",
+      borderRadius: "20px",
+      fontFamily: "'Comic Sans MS', 'Comic Neue', cursive",
       fontWeight: "700",
-      fontSize: "16px",
-      letterSpacing: "0.5px",
+      fontSize: "18px",
       backgroundImage: "linear-gradient(135deg, #facc15, #f59e0b)",
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent"
-    }}
-  >
-    nokku.ai
-  </div>
+    }}>
+      ✨ nokku.ai
+    </div>
 
-</div>
     {/* ✅ FIXED SEARCH BAR */}
     
 

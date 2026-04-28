@@ -50,9 +50,10 @@ const toggleCompare = (item: any) => {
     setShowComparePage(true);
   }
 };
-  return (
-    <div
-      style={{
+return (
+  <div
+    className="nokku-product-card"
+    style={{
          //background: "#000000", 
 		 background: "rgba(255,255,255,0.03)",
 
@@ -151,7 +152,7 @@ boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
       <div style={{
         fontWeight: "700",
         marginTop: "6px",
-        fontSize: "18px",
+        
         color: "#ffffff",
 		fontSize: "17px"
       }}>

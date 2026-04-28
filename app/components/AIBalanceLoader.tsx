@@ -100,6 +100,20 @@ export default function AIBalanceLoader({ leftImg, rightImg }: any) {
           50% { box-shadow: 0 0 30px rgba(59,130,246,0.5); }
           100% { box-shadow: 0 0 10px rgba(59,130,246,0.2); }
         }
+		@media (max-width: 768px) {
+  .radar-container {
+    width: 220px;
+    height: 220px;
+  }
+
+  .left-img {
+    left: -18px;
+  }
+
+  .right-img {
+    right: -18px;
+  }
+}
       `}</style>
     </div>
   );

@@ -24,8 +24,11 @@ export default function AIBalanceLoader({ leftImg, rightImg }: any) {
   </div>
 )}
         {rightImg && (
-          <img className="right-img" src={rightImg} />
-        )}
+  <div className="img-wrapper right-img">
+    <img src={rightImg} />
+    <div className="shimmer"></div>
+  </div>
+)}
 
       </div>
 

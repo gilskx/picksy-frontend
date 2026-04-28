@@ -1,5 +1,5 @@
 "use client";
-
+import AIBalanceLoader from "./AIBalanceLoader";
 export default function CompareBar({
   compareList,
   setShowComparePage

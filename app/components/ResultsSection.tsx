@@ -139,7 +139,7 @@ if (sortBy === "priceLow") {
 
 ///OKoooooooooooooooo
 return (
-  <div style={{
+  <div className="nokku-results-section" style={{
     width: "100%",
     maxWidth: "1200px",
     margin: "20px auto",          // 🔥 center whole block
@@ -413,9 +413,9 @@ boxShadow: "0 10px 30px rgba(59,130,246,0.25)"
 
 ) : (
 
-  <div style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+  <div className="nokku-results-grid" style={{
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
     gap: "24px"
   }}>
     {filteredProducts.slice(0, 12).map((p: any, i: number) => (

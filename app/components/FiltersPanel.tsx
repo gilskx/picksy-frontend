@@ -10,8 +10,9 @@ export default function FiltersPanel({
 }: any) {
   return (
     <div
-      style={{
-        width: "260px",
+  className="nokku-filters-panel"
+  style={{
+    width: "260px",
         background: "#000000",
         padding: "20px",
         borderRadius: "16px",
