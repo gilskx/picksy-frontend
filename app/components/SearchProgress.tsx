@@ -48,14 +48,7 @@ export default function SearchProgress({
           boxShadow: "0 0 30px rgba(59,130,246,0.6)"
         }}>
           🔍
-        </div>
 
-        <div className="orbit amazon">amazon</div>
-        <div className="orbit walmart">🟡</div>
-        <div className="orbit ebay">eBay</div>
-		<div className="orbit Google">Google</div>
-		<div className="orbit Walmart">Walmart</div>
-      </div>
 
       {/* STAGE */}
       <div style={{

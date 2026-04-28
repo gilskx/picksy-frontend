@@ -152,13 +152,7 @@ const renderList = (list: string[]) => {
           </div>
 
           
-          <div style={{
-            fontSize: "13px",
-            color: "#94a3b8",
-            marginTop: "4px"
-          }}>
-            Based on price, performance, ratings & availability
-          </div>
+          
 
         </div>
 
@@ -179,45 +173,58 @@ maxWidth: "1400px",
 
 
 
-            <div style={{
-              background: "rgba(251,191,36,0.15)",
-              color: "#facc15",
-              display: "inline-block",
-              padding: "6px 12px",
-              borderRadius: "20px",
-              fontSize: "12px",
-              marginBottom: "10px"
-            }}>
-              
-			  {recommendation?.quick_decision && (
-  <div style={{
-    color: "#38bdf8",
-    fontSize: "13px",
-    marginBottom: "6px",
-    fontWeight: "600"
-  }}>
-    💡 {recommendation.quick_decision}
-  </div>
-)}
-            </div>
+          
+           
+		    
+			
+			
+			{/* Main Product Name */}   
+
+            {/* 🔥 PRODUCT TITLE CLEAN SPLIT */}
+{(() => {
+  const fullName = p.name || "";
+
+  // Split by comma
+  const parts = fullName.split(",");
+
+  const mainTitle = parts[0];                 // First name
+  const subItems = parts.slice(1, 4);         // Next 3 items
+
+  return (
+    <>
+      {/* MAIN TITLE */}
+      <div style={{
+        fontSize: "18px",
+        fontWeight: "700",
+         color: "#facc15",   // 🔥 NOKKU BRAND COLOR
+  maxWidth: "520px",
+        maxWidth: "520px",
+        lineHeight: "1.4"
+      }}>
+        {mainTitle}
+      </div>
+
+      {/* SUB ITEMS */}
+      <div style={{
+        marginTop: "6px",
+        fontSize: "12px",
+        color: "#94a3b8",
+        maxWidth: "520px",
+        lineHeight: "1.4"
+      }}>
+        {subItems.join(" • ")}
+      </div>
+    </>
+  );
+})()}
 
             <div style={{
-  fontSize: "18px",
-  fontWeight: "700",
-  color: "#fff",
-  maxWidth: "520px",       // 🔥 ADD
-  lineHeight: "1.5"        // 🔥 ADD
-}}>
-              {p.name}
-            </div>
-
-            <div style={{
-              marginTop: "8px",
+              marginTop: "20px",
               color: "#94a3b8",
               fontSize: "14px",
               maxWidth: "400px"
             }}>
-              Premium product selected based on value, rating and performance
+               
             </div>
  
 
@@ -227,8 +234,8 @@ maxWidth: "1400px",
   display: "flex",
   alignItems: "center",
   justifyContent: "flex-start",
-	gap: "20px",
-  marginTop: "16px",
+	gap: "25px",
+  marginTop: "5px",
   flexWrap: "wrap"
 }}>
 
@@ -239,16 +246,17 @@ maxWidth: "1400px",
     gap: "12px"
   }}>
     <div style={{
-      fontSize: "32px",
+      fontSize: "17px",
       fontWeight: "800",
       letterSpacing: "-0.5px",
-      color: "#fff"
+      color: "#facc15",
+		textShadow: "0 0 10px rgba(250,204,21,0.6)"
     }}>
       ${p.price}
     </div>
 
     <div style={{
-      fontSize: "16px",
+      fontSize: "13px",
       color: "#f59e0b",
       display: "flex",
       alignItems: "center",
@@ -264,17 +272,18 @@ maxWidth: "1400px",
     target="_blank"
     rel="noopener noreferrer"
     style={{
-      padding: "10px 22px",
-      borderRadius: "25px",
-      background: "linear-gradient(135deg, #6366f1, #2563eb)",
-      color: "#fff",
-      textDecoration: "none",
-      fontWeight: "600",
-      fontSize: "14px",
-      whiteSpace: "nowrap",
-      boxShadow: "0 10px 30px rgba(99,102,241,0.5)",
-      transition: "all 0.25s ease"
-    }}
+  padding: "6px 12px",
+  borderRadius: "25px",
+  background: "rgba(59,130,246,0.1)",   // same as Ask AI
+  color: "#facc15" ,
+  border: "1px solid rgba(59,130,246,0.3)",
+  textDecoration: "none",
+  fontWeight: "500",
+  fontSize: "14px",
+  whiteSpace: "nowrap",
+  transition: "all 0.25s ease",
+  cursor: "pointer"
+}}
     onMouseOver={(e) => {
       e.currentTarget.style.transform = "scale(1.05)";
     }}
@@ -284,21 +293,7 @@ maxWidth: "1400px",
   >
     Sold on {sourceName} →
   </a>
-<button
-  onClick={() => setShowAIChat(true)}
-  style={{
-    padding: "10px 16px",
-    borderRadius: "25px",
-    background: "rgba(59,130,246,0.1)",
-    color: "#93c5fd",
-    border: "1px solid rgba(59,130,246,0.3)",
-    cursor: "pointer",
-    fontSize: "14px",
-    whiteSpace: "nowrap"
-  }}
->
-  🤖 Ask AI
-</button>
+
 </div>
   
    {/* LEFT → PRICE Rate and - Sold on Button End*/}
@@ -313,14 +308,11 @@ maxWidth: "1400px",
   maxWidth: "520px",        // ⬅️ limit width
   width: "100%",
   padding: "16px 18px",     // ⬅️ tighter padding
-
+	marginTop: "150px",
   borderRadius: "16px",
   overflow: "hidden",
 
-  background: "rgba(2,6,23,0.65)",
-  border: "1px solid rgba(59,130,246,0.2)",
-
-  backdropFilter: "blur(6px)"   // ⬅️ premium look
+  
 }}>
 
   {/* RADAR BACKGROUND */}
@@ -379,37 +371,22 @@ maxWidth: "1400px",
     <div style={{
       fontWeight: "600",
       marginBottom: "10px",
-      color: "#38bdf8"
+      color: "#facc15"
     }}>
       🏆 Why this is best !!
+	  
     </div>
 
-	 {recommendation?.price_value_signal && (
-      <div style={{
-        marginTop: "6px",
-        fontSize: "13px",
-        color: "#22c55e",
-        fontWeight: "600"
-      }}>
-        💡 {recommendation.price_value_signal}
-      </div>
-    )}
 
-    {recommendation?.key_difference && (
-      <div style={{
-        marginTop: "6px",
-        fontSize: "13px",
-        color: "#93c5fd"
-      }}>
-        ⚡ {recommendation.key_difference}
-      </div>
-    )}
+ 
+
+  
     {renderList(recommendation?.why_best_product)}
 
     <div style={{
       marginTop: "10px",
       fontSize: "12px",
-      color: "#94a3b8"
+      color: "#facc15"
     }}>
       👤 Who should buy
     </div>
@@ -447,7 +424,7 @@ maxWidth: "1400px",
         fontSize: "13px",
         color: "#f59e0b"
       }}>
-        ⚖️ {recommendation.similarity_warning}
+        ⚖✔ {recommendation.similarity_warning}
       </div>
     )}
 
@@ -460,26 +437,7 @@ maxWidth: "1400px",
 
 
 
-			  <button
-  onClick={() => {
-    const saved = JSON.parse(localStorage.getItem("savedProducts") || "[]");
-    saved.push(p);
-    localStorage.setItem("savedProducts", JSON.stringify(saved));
-    alert("Saved for tracking!");
-  }}
-  style={{
-    marginLeft: "12px",
-    padding: "6px 10px",
-    borderRadius: "10px",
-    background: "rgba(34,197,94,0.1)",
-    color: "#22c55e",
-    border: "1px solid rgba(34,197,94,0.3)",
-    cursor: "pointer",
-    fontSize: "12px"
-  }}
->
- 💾 Save
-</button>
+			  
 <span style={{
   marginLeft: "10px",
   fontSize: "14px",
@@ -501,7 +459,7 @@ maxWidth: "1400px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  marginTop: "140px" ,
+  marginTop: "100px" ,
   marginLeft: "-100px"
 }}>
 
@@ -590,7 +548,8 @@ maxWidth: "1400px",
         boxShadow: "0 10px 30px rgba(34,197,94,0.1)",
         backdropFilter: "blur(6px)",
         position: "relative",
-        overflow: "hidden"
+        overflow: "hidden",
+		 marginTop: "12px"
       }}
     >
 

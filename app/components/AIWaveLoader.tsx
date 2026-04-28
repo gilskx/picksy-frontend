@@ -7,10 +7,10 @@ export default function AIWaveLoader() {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      margin: "30px 0"
+      margin: "100px 0"
     }}>
       <div className="wave-container">
-        {Array.from({ length: 20 }).map((_, i) => (
+        {Array.from({ length: 30 }).map((_, i) => (
           <span
             key={i}
             className="wave-bar"

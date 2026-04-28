@@ -53,10 +53,10 @@ intervalRef.current = setInterval(() => {
 
       if (p < 30) {
         setStage("🔍 Searching products...");
-        setActiveSources(["Amazon", "Walmart", "eBay"]);
+       // setActiveSources(["Amazon", "Walmart", "eBay", "Google"]);
       } else if (p < 60) {
         setStage("💰 Comparing prices...");
-        setActiveSources(["Amazon", "Walmart", "eBay"]);
+        //setActiveSources(["Amazon", "Walmart", "eBay ", "Google"]);
       } else if (p < 85) {
         setStage("⭐ Checking ratings...");
       } else {
@@ -348,14 +348,7 @@ boxShadow: "0 10px 30px rgba(59,130,246,0.25)"
     transform: "translate(-50%, -50%)"
   }}>
     <AIWaveLoader />
-  </div>
 
-  {/* 🔄 ORBITING ICONS */}
-  <div className="orbit amazon">a</div>
-  <div className="orbit walmart">w</div>
-  <div className="orbit ebay">e</div>
-
-</div>
 
     {/* 🔤 STAGE TEXT */}
     <div style={{

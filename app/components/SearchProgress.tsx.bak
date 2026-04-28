@@ -48,13 +48,7 @@ export default function SearchProgress({
           boxShadow: "0 0 30px rgba(59,130,246,0.6)"
         }}>
           🔍
-        </div>
 
-        <div className="orbit amazon">amazon</div>
-        <div className="orbit walmart">🟡</div>
-        <div className="orbit ebay">eBay</div>
-		<div className="orbit Google">Google</div>
-      </div>
 
       {/* STAGE */}
       <div style={{
@@ -71,7 +65,7 @@ export default function SearchProgress({
         justifyContent: "center",
         gap: "10px",
         marginBottom: "15px",
-        flexWrap: "wrap"
+        flexWrap: "wr   ap"
       }}>
         {activeSources?.map((s: string, i: number) => (
           <div key={i} style={{
