@@ -65,7 +65,7 @@ export default function SearchProgress({
         justifyContent: "center",
         gap: "10px",
         marginBottom: "15px",
-        flexWrap: "wr   ap"
+        flexWrap: "wrap"
       }}>
         {activeSources?.map((s: string, i: number) => (
           <div key={i} style={{

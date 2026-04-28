@@ -266,7 +266,7 @@ maxWidth: "1400px",
     </div>
   </div>
 
-  {/* RIGHT → BUTTON */}
+  {/* RIGHT → BUTTON  */}
   <a
     href={p.link}
     target="_blank"

@@ -340,6 +340,7 @@ boxShadow: "0 10px 30px rgba(59,130,246,0.25)"
   margin: "0 auto"
 }}>
 
+
   {/* 🌊 WAVE CENTER */}
   <div style={{
     position: "absolute",

@@ -275,7 +275,7 @@ maxWidth: "1400px",
   padding: "6px 12px",
   borderRadius: "25px",
   background: "rgba(59,130,246,0.1)",   // same as Ask AI
-  color: "#93c5fd",
+  color: "#facc15" ,
   border: "1px solid rgba(59,130,246,0.3)",
   textDecoration: "none",
   fontWeight: "500",
