@@ -18,7 +18,7 @@ export default function ChatWidget() {
     setLoading(true);
 
     try {
-      const res = await fetch("https://basket-pellet-constable.ngrok-free.dev/search", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/search`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
