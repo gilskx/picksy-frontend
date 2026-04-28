@@ -75,7 +75,7 @@ const [aiLoading, setAiLoading] = useState(false);
     setAiLoading(true);
     setAiAnswer("");
 
-    const res = await fetch("https://basket-pellet-constable.ngrok-free.dev/api/ask-product", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/ask-product", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

@@ -61,6 +61,28 @@
 		}, 2500);
 		return () => clearInterval(interval);
 	  }, []);
+	  
+	  // 🌍 FETCH USER CONTEXT (FAST - VERCEL HEADERS)
+useEffect(() => {
+  const fetchUserContext = async () => {
+    try {
+      const res = await fetch("/api/user-context");
+      const data = await res.json();
+
+      console.log("User Context:", data);
+
+      // Store globally
+      localStorage.setItem("user_ip", data.ip);
+      localStorage.setItem("user_country", data.country);
+      localStorage.setItem("user_city", data.city);
+
+    } catch (err) {
+      console.error("User context fetch failed", err);
+    }
+  };
+
+  fetchUserContext();
+}, []);
 
 	  const bestDeal = recommendation?.bestPick || null;
 
@@ -101,7 +123,13 @@
 		setAiActive(true);
 
 		try {
-		  const data = await searchProducts(query);
+		  const userContext = {
+		  ip: localStorage.getItem("user_ip"),
+		  country: localStorage.getItem("user_country"),
+		  city: localStorage.getItem("user_city")
+		};
+
+const data = await searchProducts(query, userContext);
 
 		  if (data.products) {
 			setProducts(data.products);

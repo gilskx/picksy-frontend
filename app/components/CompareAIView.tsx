@@ -12,7 +12,7 @@ export default function CompareAIView({ compareList, onBack }: any) {
     try {
       setLoading(true);
 
-      const res = await fetch("https://basket-pellet-constable.ngrok-free.dev/api/compare-ai", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/compare-ai', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ products: compareList })

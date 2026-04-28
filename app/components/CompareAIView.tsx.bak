@@ -12,7 +12,7 @@ export default function CompareAIView({ compareList, onBack }: any) {
     try {
       setLoading(true);
 
-      const res = await fetch("https://basket-pellet-constable.ngrok-free.dev/api/compare-ai", {
+      const res = await fetch("`${process.env.NEXT_PUBLIC_API_URL}/api/compare-ai", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ products: compareList })
@@ -63,7 +63,6 @@ export default function CompareAIView({ compareList, onBack }: any) {
         padding: "20px 4px",
         marginLeft: "-8px"
       }}>
-	  
 
         <button
           onClick={onBack}
@@ -81,44 +80,12 @@ export default function CompareAIView({ compareList, onBack }: any) {
           ← Back
         </button>
 
-
-
-{/* 🔥 FLOATING AI VERDICT */}
-{!loading && aiCompare?.verdict && (
-  <div style={{
-    position: "absolute",
-    top: "50px",
-    right: "20px",
-    zIndex: 20,
-
-    padding: "10px 16px",
-    borderRadius: "20px",
-
-    background: "rgba(34,197,94,0.08)",
-    border: "1px solid rgba(34,197,94,0.3)",
-
-    color: "#4ade80",
-    fontSize: "13px",
-    fontWeight: "600",
-
-    backdropFilter: "blur(8px)",
-
-    boxShadow: "0 0 20px rgba(34,197,94,0.3)",
-    animation: "verdictPulse 2s infinite"
-  }}>
-    🏁 {aiCompare.verdict}
-  </div>
-)}
-
         {loading && (
           <AIBalanceLoader
             leftImg={products[0]?.image}
             rightImg={products[1]?.image}
           />
         )}
-
-
-
 
         {!loading && aiCompare && (
 
@@ -330,7 +297,24 @@ export default function CompareAIView({ compareList, onBack }: any) {
                     ))}
                   </div>
                 )}
- 
+ <div style={{ fontWeight: "600", marginBottom: "10px" }}>
+                      👉 Final Verdict
+                    </div>
+                {aiCompare.verdict && (
+                  <div style={{
+                    width: "100%",
+                    maxWidth: "600px",
+                    padding: "14px",
+                    borderRadius: "25px",
+                    background: "linear-gradient(135deg, #22c55e, #4ade80)",
+                    color: "#022c22",
+                    fontWeight: "600",
+                    fontSize: "14px",
+                    boxShadow: "0 6px 20px rgba(34,197,94,0.4)"
+                  }}>
+                    🏁 {aiCompare.verdict}
+                  </div>
+                )}
 
               </div>
 

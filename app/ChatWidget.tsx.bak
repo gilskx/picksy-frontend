@@ -101,7 +101,7 @@ export default function ChatWidget() {
             }}
           >
             <span>nokku.ai</span>
-            <spans
+            <span
               style={{ cursor: "pointer" }}
               onClick={() => setOpen(false)}
             >
