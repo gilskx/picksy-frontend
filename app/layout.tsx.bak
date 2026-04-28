@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Nokku AI",
-  description: "AI-powered smart product recommendations and price comparison - alginexa llc product",
+  description: "AI-powered smart product recommendations and price comparison",
 
   openGraph: {
     title: "Nokku AI",
