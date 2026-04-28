@@ -1,5 +1,5 @@
 export const searchProducts = async (query: string, userContext?: any) => {
-  const res = await fetch("https://nokku-backend.onrender.com/search"", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/search`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

@@ -10,5 +10,6 @@ export const searchProducts = async (query: string, userContext?: any) => {
     })
   });
 
+
   return res.json();
 };
