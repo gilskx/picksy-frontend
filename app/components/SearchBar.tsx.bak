@@ -80,8 +80,8 @@ export default function SearchBar({
       transition: "all 0.3s ease"
     }}>
 
-      <div style={{
-        background: "rgba(255,255,255,0.06)",
+      <div className="nokku-search-box" style={{
+  background: "rgba(255,255,255,0.06)",
         border: "1px solid rgba(255,255,255,0.15)",
         backdropFilter: "blur(12px)",
         borderRadius: "40px",
@@ -135,15 +135,20 @@ export default function SearchBar({
           }}
           placeholder={placeholder}
           spellCheck={false}
-          style={{
-            flex: 1,
-            border: "none",
-            outline: "none",
-            padding: "6px 0",
-            fontSize: hasSearched ? "16px" : "18px",
-            background: "transparent",
-            color: "#e5e7eb",
-          }}
+         style={{
+  flex: 1,
+  border: "none",
+  outline: "none",
+  padding: "6px 0",
+  fontSize: hasSearched ? "16px" : "18px",
+  background: "transparent",
+
+  // 🔥 TYPED TEXT → BLUE
+  color: "#22c1ff",
+
+  // 🔥 CURSOR COLOR
+  caretColor: "#22c1ff"
+}}
         />
 
         {/* BUTTON */}

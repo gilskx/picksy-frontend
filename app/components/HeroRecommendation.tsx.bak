@@ -10,24 +10,18 @@ export default function HeroRecommendation({
   mode,
   setMode
 }: any) {
+
 if (!recommendation) {
-  return (
-    <div style={{
-      textAlign: "center",
-      padding: "40px",
-      color: "#94a3b8"
-    }}>
-      🤖 Finding best recommendation...
-    </div>
-  );
+  return null;   // 🔥 NOTHING on home screen
 }
+
 
 if (!recommendation?.bestPick) {
   return (
     <div style={{
       textAlign: "center",
-      padding: "40px",
-      color: "#f59e0b"
+      padding: "40px"
+      
     }}>
       ⚠️ No recommendation found
     </div>
@@ -102,7 +96,7 @@ const renderList = (list: string[]) => {
   return list.map((t, i) => (
     <div key={i} style={{
       fontSize: "13px",
-      color: "#94a3b8",
+      color: "#22c1ff",
       marginBottom: "6px"
     }}>
       ✔ {t}
@@ -128,24 +122,20 @@ const renderList = (list: string[]) => {
       <div style={{
         borderRadius: "24px",
         padding: "20px 30px",
-        background: `
-          radial-gradient(circle at 70% 50%, rgba(59,130,246,0.35), transparent 40%),
-          linear-gradient(135deg, #0f172a, #020617)
-        `,
-        boxShadow: "0 25px 80px rgba(0,0,0,0.7)",
-        border: "1px solid rgba(255,255,255,0.08)"
+        background: "#000000",
+        
       }}>
 
         {/* HEADER */}
         <div style={{
           textAlign: "center",
           marginBottom: "20px",
-          borderBottom: "1px solid rgba(255,255,255,0.06)",
-          paddingBottom: "20px"
+           paddingBottom: "20px"
         }}>
 
           <div style={{
-            color: "#38bdf8",
+           color: "#22c1ff",
+			opacity: 0.8,
             fontSize: "13px",
             marginBottom: "6px"
           }}>
@@ -193,23 +183,36 @@ maxWidth: "1400px",
 
   return (
     <>
+	
+	{/* 🔥 NOKKU AI LINE */}
+<div style={{
+  fontSize: "13px",
+  marginBottom: "6px",
+  color: "rgba(34, 193, 255, 0.75)",
+  letterSpacing: "0.3px",
+  fontWeight: "500"
+}}>
+  ✨ Nokku AI found the best match for you.
+</div>
+	
       {/* MAIN TITLE */}
       <div style={{
-        fontSize: "18px",
-        fontWeight: "700",
-         color: "#facc15",   // 🔥 NOKKU BRAND COLOR
-  maxWidth: "520px",
-        maxWidth: "520px",
-        lineHeight: "1.4"
-      }}>
-        {mainTitle}
-      </div>
+  fontSize: "30px",
+  fontWeight: "700",
+  lineHeight: "1.4",
+
+  background: "linear-gradient(135deg, #22c1ff, #6c63ff)",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent"
+}}>
+  {mainTitle}
+</div>
 
       {/* SUB ITEMS */}
       <div style={{
         marginTop: "6px",
         fontSize: "12px",
-        color: "#94a3b8",
+        color: "#22c1ff",
         maxWidth: "520px",
         lineHeight: "1.4"
       }}>
@@ -221,7 +224,7 @@ maxWidth: "1400px",
 
             <div style={{
               marginTop: "20px",
-              color: "#94a3b8",
+              color: "##22c1ff",
               fontSize: "14px",
               maxWidth: "400px"
             }}>
@@ -247,20 +250,20 @@ maxWidth: "1400px",
     gap: "12px"
   }}>
     <div style={{
-      fontSize: "17px",
+      fontSize: "20px",
       fontWeight: "800",
       letterSpacing: "-0.5px",
-      color: "#facc15",
-		textShadow: "0 0 10px rgba(250,204,21,0.6)"
+      
+		color: "#22c1ff"
     }}>
       ${p.price}
     </div>
 
     <div style={{
-      fontSize: "13px",
-      color: "#f59e0b",
-      display: "flex",
+      fontSize: "15px",
+       display: "flex",
       alignItems: "center",
+	  color: "#22c1ff",
       gap: "14px"
     }}>
       ⭐ {rating}
@@ -276,11 +279,12 @@ maxWidth: "1400px",
   padding: "6px 12px",
   borderRadius: "25px",
   background: "rgba(59,130,246,0.1)",   // same as Ask AI
-  color: "#facc15" ,
+  
   border: "1px solid rgba(59,130,246,0.3)",
   textDecoration: "none",
   fontWeight: "500",
   fontSize: "14px",
+  color: "#22c1ff",
   whiteSpace: "nowrap",
   transition: "all 0.25s ease",
   cursor: "pointer"
@@ -305,15 +309,14 @@ maxWidth: "1400px",
 <div style={{
   position: "relative",
 
-  // 🔥 KEY FIXES
-  maxWidth: "520px",        // ⬅️ limit width
+  maxWidth: "520px",
   width: "100%",
-  padding: "16px 18px",     // ⬅️ tighter padding
-	marginTop: "150px",
-  borderRadius: "16px",
-  overflow: "hidden",
 
-  
+  padding: "0",        // 🔥 KEY FIX (remove horizontal padding)
+
+  marginTop: "150px",
+  borderRadius: "16px",
+  overflow: "hidden"
 }}>
 
   {/* RADAR BACKGROUND */}
@@ -370,9 +373,11 @@ maxWidth: "1400px",
   <div style={{ position: "relative", zIndex: 2 }}>
 
     <div style={{
-      fontWeight: "600",
+      fontWeight: "510",
       marginBottom: "10px",
-      color: "#facc15"
+	  color: "#22c1ff",
+	  fontSize: "20px",
+     
     }}>
       🏆 Why this is best !!
 	  
@@ -385,9 +390,10 @@ maxWidth: "1400px",
     {renderList(recommendation?.why_best_product)}
 
     <div style={{
-      marginTop: "10px",
-      fontSize: "12px",
-      color: "#facc15"
+      marginTop: "18px",
+      fontSize: "20px",
+	  color: "#22c1ff"
+      
     }}>
       👤 Who should buy
     </div>
@@ -422,8 +428,7 @@ maxWidth: "1400px",
     {recommendation?.similarity_warning && (
       <div style={{
         marginTop: "6px",
-        fontSize: "13px",
-        color: "#f59e0b"
+        fontSize: "13px"
       }}>
         ⚖✔ {recommendation.similarity_warning}
       </div>
@@ -442,7 +447,6 @@ maxWidth: "1400px",
 <span style={{
   marginLeft: "10px",
   fontSize: "14px",
-  color: "#22c55e",
   fontWeight: "600"
 }}>
   
@@ -461,7 +465,7 @@ maxWidth: "1400px",
   alignItems: "center",
   justifyContent: "center",
   marginTop: "100px" ,
-  marginLeft: "-100px"
+marginLeft: "-60px"
 }}>
 
   {/* 🔵 OUTER RING */}
@@ -524,145 +528,149 @@ maxWidth: "1400px",
 
 {/* 🔥 CHEAPER OPTION */}
 
+{/* 🔥 CHEAPER OPTION */}
+
 {cheaper && (
 
-  <div style={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
+  <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
 
     <div
       style={{
         width: "100%",
-        maxWidth: "900px",          // keeps it compact on right
-        
-        padding: "18px",
-        position: "relative",
-        marginTop: "12px"
+        maxWidth: "1100px",     // 🔥 more breathing space
+        padding: "20px 10px",
+        marginTop: "20px"
       }}
     >
 
       {/* 🔥 MAIN GRID */}
       <div
-        className="nokku-cheaper-grid"
         style={{
           display: "grid",
-          gridTemplateColumns: "5fr 1.2fr 3fr",
-          gap: "28px",
+          gridTemplateColumns: "3fr 1fr 1.6fr"  // 🔥 balanced layout
+          gap: "40px",
           alignItems: "center"
         }}
       >
 
-        {/* LEFT SIDE */}
-        <div style={{ alignSelf: "flex-start" }}>
+        {/* 🔥 LEFT */}
+        <div>
 
+          {/* AI LINE */}
           <div style={{
-            fontSize: "12px",
-            color: "#38bdf8",
-            fontWeight: "600"
+            fontSize: "13px",
+            marginBottom: "8px",
+            color: "rgba(34,193,255,0.75)",
+            letterSpacing: "0.3px",
+            fontWeight: "500"
           }}>
-            🤖 Smart Alternative / Cheaper Option
+            💡 Nokku AI found a smarter, more affordable choice for you.
           </div>
 
+          {/* PRODUCT NAME */}
           <div style={{
-            marginTop: "10px",
-            fontSize: "14px",
+            fontSize: "15px",
             fontWeight: "600",
-            color: "#f8fafc",
-            lineHeight: "1.4",
-            maxWidth: "700px"
+            color: "#22c1ff",
+            marginBottom: "6px"
           }}>
             {cheaper.name?.split(",")[0]}
           </div>
 
+          {/* SAVE */}
           {saveAmount && (
             <div style={{
               fontSize: "24px",
               fontWeight: "700",
-              color: "#22c55e",
-              marginTop: "6px"
+              color: "#22c1ff",
+              marginBottom: "10px"
             }}>
               Save ${saveAmount}
             </div>
           )}
 
+          {/* PRICE STRIP */}
           <div style={{
-            marginTop: "10px",
-            display: "flex",
+            display: "inline-flex",
+            alignItems: "center",
             gap: "10px",
+            padding: "6px 12px",
+            borderRadius: "20px",
+            background: "rgba(59,130,246,0.1)",
+            border: "1px solid rgba(59,130,246,0.3)",
             fontSize: "14px",
-            color: "#94a3b8"
+            color: "#22c1ff"
           }}>
-            <span style={{ color: "#22c55e", fontWeight: "600" }}>
-              ${cheaper.price}
-            </span>
+            <span style={{ fontWeight: "600" }}>${cheaper.price}</span>
             <span>•</span>
-            <span style={{ color: "#fbbf24" }}>
-              ⭐ {Number(cheaper.rating || 3.5).toFixed(1)}
-            </span>
+            <span>⭐ {Number(cheaper.rating || 3.5).toFixed(1)}</span>
             <span>•</span>
-            <span style={{ textTransform: "capitalize" }}>
-              {cheaper.source}
-            </span>
+            <span>{cheaper.source}</span>
           </div>
 
-          <a
-            href={cheaper.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-block",
-              marginTop: "16px",
-              padding: "6px 13px",
-              borderRadius: "12px",
-              background: "#22c55e",
-              color: "#fff",
-              textDecoration: "none",
-              fontSize: "14px",
-              fontWeight: "600",
-              alignSelf: "flex-start"
-            }}
-          >
-            Buy on {cheaper.source} →
-          </a>
+          {/* BUTTON */}
+          <div>
+            <a
+              href={cheaper.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                marginTop: "14px",
+                padding: "6px 12px",
+                borderRadius: "25px",
+                background: "rgba(59,130,246,0.1)",
+                border: "1px solid rgba(59,130,246,0.3)",
+                color: "#22c1ff",
+                textDecoration: "none",
+                fontWeight: "500",
+                fontSize: "14px",
+                transition: "all 0.25s ease"
+              }}
+            >
+              Buy on {cheaper.source} →
+            </a>
+          </div>
 
         </div>
 
-        {/* IMAGE */}
+        {/* 🔥 MIDDLE (IMAGE) */}
         <div style={{
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center"
+          justifyContent: "center"
         }}>
           <img
             src={cheaper.image}
             alt="product"
             style={{
               width: "140px",
-              height: "140px",
-              objectFit: "contain",
-              borderRadius: "8px"
+              objectFit: "contain"
             }}
           />
         </div>
 
-        {/* RIGHT SIDE */}
-        <div style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center"
-        }}>
+        {/* 🔥 RIGHT */}
+        <div>
 
-          {recommendation?.who_should_buy_cheaper?.length > 0 && (
-            <div>
+          {recommendation?.why_cheaper_product?.length > 0 && (
+            <>
               <div style={{
-                fontSize: "13px",
+                fontSize: "14px",
                 fontWeight: "600",
-                color: "#a78bfa",
-                marginBottom: "6px"
+                color: "#22c1ff",
+                marginBottom: "8px"
               }}>
                 👤 Why Should Buy
               </div>
 
-              {renderList(recommendation?.why_cheaper_product)}
-            </div>
+              <div style={{ fontSize: "14px", color: "#22c1ff" }}>
+                {recommendation.why_cheaper_product.map((item: string, i: number) => (
+                  <div key={i} style={{ marginBottom: "6px" }}>
+                    ✓ {item}
+                  </div>
+                ))}
+              </div>
+            </>
           )}
 
         </div>
@@ -673,7 +681,6 @@ maxWidth: "1400px",
 
   </div>
 )}
-
 {/* 🔥 CHEAPER End */}
 
          <div style={{
@@ -704,7 +711,7 @@ maxWidth: "1400px",
   background: "rgba(255,255,255,0.04)",
   borderRadius: "14px",
   padding: "14px 16px",        // 🔥 tighter padding
-  border: "1px solid rgba(255,255,255,0.08)"
+  border: "1px solid rgba(255,255,255,0.06)"
 }}>
 
 <div style={{
@@ -792,7 +799,14 @@ maxWidth: "1400px",
     border: "none",
     marginBottom: "10px",
     background: "#0f172a",
-    color: "#fff"
+
+    // 🔥 TEXT = BLUE
+    color: "#22c1ff",
+
+    // 🔥 CURSOR
+    caretColor: "#22c1ff",
+
+    outline: "none"
   }}
 />
 
@@ -815,6 +829,14 @@ maxWidth: "1400px",
   </div>
   
 )}
+<style jsx>{`
+  input::placeholder {
+    color: rgba(34, 193, 255, 0.35);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+  }
+`}</style>
 	</motion.div>
   );
   

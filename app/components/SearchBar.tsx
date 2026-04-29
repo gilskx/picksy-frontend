@@ -135,15 +135,20 @@ export default function SearchBar({
           }}
           placeholder={placeholder}
           spellCheck={false}
-          style={{
-            flex: 1,
-            border: "none",
-            outline: "none",
-            padding: "6px 0",
-            fontSize: hasSearched ? "16px" : "18px",
-            background: "transparent",
-            color: "#e5e7eb",
-          }}
+         style={{
+  flex: 1,
+  border: "none",
+  outline: "none",
+  padding: "6px 0",
+  fontSize: hasSearched ? "16px" : "18px",
+  background: "transparent",
+
+  // 🔥 TYPED TEXT → BLUE
+  color: "#22c1ff",
+
+  // 🔥 CURSOR COLOR
+  caretColor: "#22c1ff"
+}}
         />
 
         {/* BUTTON */}
@@ -229,18 +234,27 @@ export default function SearchBar({
         </div>
       )}
 
-      <style jsx>{`
-        @keyframes twinkle {
-          0% { transform: scale(1); opacity: 0.7; }
-          50% { transform: scale(1.2); opacity: 1; }
-          100% { transform: scale(1); opacity: 0.7; }
-        }
-		@keyframes pulseGlow {
+     <style jsx>{`
+  @keyframes twinkle {
+    0% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.7; }
+  }
+
+  @keyframes pulseGlow {
     0% { box-shadow: 0 0 20px rgba(59,130,246,0.4); }
     50% { box-shadow: 0 0 60px rgba(59,130,246,0.8); }
     100% { box-shadow: 0 0 20px rgba(59,130,246,0.4); }
   }
-      `}</style>
+
+  /* 🔥 ADD THIS BLOCK HERE */
+  input::placeholder {
+    color: rgba(34, 193, 255, 0.4);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+  }
+`}</style>
 
     </div>
   );

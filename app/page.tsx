@@ -206,13 +206,8 @@ const data = await searchProducts(query, userContext);
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "stretch",
-    background: `
-      radial-gradient(circle at 20% 30%, rgba(0, 198, 255, 0.25), transparent 40%),
-      radial-gradient(circle at 80% 70%, rgba(124, 58, 237, 0.25), transparent 40%),
-      linear-gradient(135deg, #0f172a, #1e293b)
-    `,
-    backgroundBlendMode: "screen",
-    color: "#e2e8f0"
+    background: "#000000",   // ✅ FULL BLACK
+color: "#e5e7eb"         // base text (soft white)	
   }}>
 
     {/* HEADER BADGE */}
@@ -227,7 +222,7 @@ const data = await searchProducts(query, userContext);
       fontFamily: "'Comic Sans MS', 'Comic Neue', cursive",
       fontWeight: "700",
       fontSize: "18px",
-      backgroundImage: "linear-gradient(135deg, #facc15, #f59e0b)",
+      backgroundImage: "linear-gradient(135deg, #22c1ff, #6c63ff)",
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent"
     }}>
@@ -277,7 +272,7 @@ const data = await searchProducts(query, userContext);
 			{/* HERO */}
 			{!hasSearched && (
   <div className="nokku-hero" style={{
-    padding: "80px 20px 60px",
+    padding: "40px 20px 30px",
 				textAlign: "center",
 				//color: "#fff"
 				color: "inherit"
@@ -294,7 +289,7 @@ const data = await searchProducts(query, userContext);
 		fontSize: "26px",
 		fontWeight: "700",
 		letterSpacing: "-0.3px",
-		background: "linear-gradient(135deg, #38bdf8, #6366f1)",
+		background: "linear-gradient(135deg, #22c1ff, #6c63ff)",
 		WebkitBackgroundClip: "text",
 		WebkitTextFillColor: "transparent",
 		textShadow: "0 4px 20px rgba(0,0,0,0.5)"
@@ -305,18 +300,23 @@ const data = await searchProducts(query, userContext);
 	  {/* SUB HEADLINE */}
 	  <div style={{
   fontSize: "15px",
-  color: "#94a3b8",
   marginTop: "8px",
   display: "flex",
-  justifyContent: "center",   // ✅ FIX
+  justifyContent: "center",
   alignItems: "center",
   gap: "6px",
   textAlign: "center",
-  width: "100%"               // ✅ IMPORTANT
+  width: "100%",
+
+  // 🔥 SAME GRADIENT AS TITLE
+  background: "linear-gradient(135deg, #22c1ff, #6c63ff)",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent"
 }}>
   <span style={{ opacity: 0.8 }}>✨</span>
   Find your best deal, instantly.
 </div>
+
 <div style={{
       position: "sticky",
       top: "20px",
@@ -341,12 +341,16 @@ const data = await searchProducts(query, userContext);
     </div>
 	  {/* TRUST LINE */}
 	  <div style={{
-		marginTop: "8px",
-		fontSize: "12px",
-		color: "#64748b"
-	  }}>
-		Powered by AI • Real-time deals • Trusted sources
-	  </div>
+  marginTop: "8px",
+  fontSize: "12px",
+
+  // 🔥 FADED LOOK
+  color: "rgba(255,255,255,0.45)",
+
+  letterSpacing: "0.3px"
+}}>
+  Powered by AI • Real-time deals • Trusted sources
+</div>
 
 	</div>
 
@@ -462,8 +466,8 @@ const data = await searchProducts(query, userContext);
         minHeight: "300px",
         padding: "40px",
         borderRadius: "20px",
-        background: "linear-gradient(135deg, #0f172a, #1e293b)",
-        color: "#e2e8f0",
+        background: "#000000",
+        color: "#e5e7eb",
         boxShadow: "0 30px 80px rgba(0,0,0,0.6)",
         position: "relative"
       }}
