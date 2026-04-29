@@ -505,7 +505,8 @@ marginLeft: "0px"
   fontSize: "12px",
   color: "rgba(34, 193, 255, 0.75)",
   marginTop: "4px",
-  fontStyle: "italic"
+  fontStyle: "italic",
+  textAlign: "center" ,
 }}>
   👤 Best for: {recommendation?.who_should_buy_best?.[0]}
 </div>

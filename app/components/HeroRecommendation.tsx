@@ -314,7 +314,7 @@ maxWidth: "1400px",
   width: "320px",
   height: "320px",
   display: "flex",
-  marginTop: "40px",
+  
   alignItems: "center",
   justifyContent: "center",
   marginTop: "100px" ,

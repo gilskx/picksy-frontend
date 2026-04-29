@@ -221,8 +221,7 @@ border:
     : "1px solid rgba(255,255,255,0.1)",
 
       // 🔥 SAME BORDER FOR ALL
-      border: "1px solid rgba(255,255,255,0.1)",
-
+     
       transition: "all 0.25s ease"
     }}
     onMouseOver={(e) => {
@@ -263,9 +262,9 @@ border:
       outline: "none",
 
       // 🔥 FORCE REMOVE DEFAULT INPUT STYLES
-      appearance: "none",
-      WebkitAppearance: "none",
-      MozAppearance: "none",
+      appearance: "none" as any, 
+      WebkitAppearance: "none" as any,
+      MozAppearance: "none" as any,
 
       // 🔥 FORCE TEXT RENDERING (IMPORTANT)
       WebkitTextFillColor: "#e2e8f0"

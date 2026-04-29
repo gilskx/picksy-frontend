@@ -28,9 +28,49 @@ export default function ResultsSection({
 }: any) {
  
 // ✅ ALL HOOKS FIRST
+  const [progress, setProgress] = useState(0);
+  const [stage, setStage] = useState("🔍 Searching products...");
+  const [activeSources, setActiveSources] = useState<string[]>([]);
+  const intervalRef = useRef<any>(null);
+  
+  useEffect(() => {
 
-  
-  
+    if (!loading) {
+      setProgress(100);
+      clearInterval(intervalRef.current);
+      return;
+    }
+  setProgress(0);
+  setActiveSources([]);
+  setStage("🔍 Searching products...");
+console.log("loading:", loading);
+  let p = 0;
+
+
+intervalRef.current = setInterval(() => {
+      p += Math.random() * 10;
+
+      if (p < 30) {
+        setStage("🔍 Searching products...");
+       // setActiveSources(["Amazon", "Walmart", "eBay", "Google"]);
+      } else if (p < 60) {
+        setStage("💰 Comparing prices...");
+        //setActiveSources(["Amazon", "Walmart", "eBay ", "Google"]);
+      } else if (p < 85) {
+        setStage("⭐ Checking ratings...");
+      } else {
+        setStage("🤖 Finalizing best option...");
+      }
+
+      if (p >= 95) p = 95; // stop at 95 until backend finishes
+
+      setProgress(p);
+
+    }, 400);
+
+    return () => clearInterval(intervalRef.current);
+
+  }, [loading]);
 
 // ✅ ONLY AFTER ALL HOOKS
 //if (!hasSearched && !loading) return null;
@@ -181,8 +221,7 @@ border:
     : "1px solid rgba(255,255,255,0.1)",
 
       // 🔥 SAME BORDER FOR ALL
-      border: "1px solid rgba(255,255,255,0.1)",
-
+     
       transition: "all 0.25s ease"
     }}
     onMouseOver={(e) => {
@@ -223,7 +262,7 @@ border:
       outline: "none",
 
       // 🔥 FORCE REMOVE DEFAULT INPUT STYLES
-      appearance: "none",
+    //  appearance: "none",
       WebkitAppearance: "none",
       MozAppearance: "none",
 
