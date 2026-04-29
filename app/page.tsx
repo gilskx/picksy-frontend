@@ -303,7 +303,7 @@ color: "#e5e7eb"         // base text (soft white)
   WebkitTextFillColor: "transparent"
 }}>
   <span style={{ opacity: 0.8 }}>✨</span>
-  ✨nokku.ai Identifies the best product, surfaces cost-effective alternatives, and enables comparison across leading brands — instantly..
+  ✨nokku.ai finds the best match, cheaper alternatives, and compares real-time deals across multiple trusted sources — instantly.
 </div>
 
 <div style={{

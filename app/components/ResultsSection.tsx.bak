@@ -28,49 +28,9 @@ export default function ResultsSection({
 }: any) {
  
 // ✅ ALL HOOKS FIRST
-  const [progress, setProgress] = useState(0);
-  const [stage, setStage] = useState("🔍 Searching products...");
-  const [activeSources, setActiveSources] = useState<string[]>([]);
-  const intervalRef = useRef<any>(null);
+
   
-  useEffect(() => {
-
-    if (!loading) {
-      setProgress(100);
-      clearInterval(intervalRef.current);
-      return;
-    }
-  setProgress(0);
-  setActiveSources([]);
-  setStage("🔍 Searching products...");
-console.log("loading:", loading);
-  let p = 0;
-
-
-intervalRef.current = setInterval(() => {
-      p += Math.random() * 10;
-
-      if (p < 30) {
-        setStage("🔍 Searching products...");
-       // setActiveSources(["Amazon", "Walmart", "eBay", "Google"]);
-      } else if (p < 60) {
-        setStage("💰 Comparing prices...");
-        //setActiveSources(["Amazon", "Walmart", "eBay ", "Google"]);
-      } else if (p < 85) {
-        setStage("⭐ Checking ratings...");
-      } else {
-        setStage("🤖 Finalizing best option...");
-      }
-
-      if (p >= 95) p = 95; // stop at 95 until backend finishes
-
-      setProgress(p);
-
-    }, 400);
-
-    return () => clearInterval(intervalRef.current);
-
-  }, [loading]);
+  
 
 // ✅ ONLY AFTER ALL HOOKS
 //if (!hasSearched && !loading) return null;
@@ -259,7 +219,7 @@ border:
       borderRadius: "25px",
       border: "1px solid rgba(59,130,246,0.35)",
       background: "rgba(59,130,246,0.12)",
-      color: "rgba(226, 232, 240, 0.75)"
+      color: "rgba(226, 232, 240, 0.75)",
       outline: "none",
 
       // 🔥 FORCE REMOVE DEFAULT INPUT STYLES
