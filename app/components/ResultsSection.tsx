@@ -2,7 +2,6 @@
 import AIWaveLoader from "./AIWaveLoader";
 import ProductCard from "./ProductCard";
 import "./globals.css";
-import SearchProgress from "./SearchProgress"; // not using this instead using AIWaveLoader - need to be deleted later
 import { useState, useEffect, useRef } from "react";
 
 export default function ResultsSection({

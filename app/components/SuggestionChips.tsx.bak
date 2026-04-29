@@ -33,7 +33,7 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
         flexWrap: "wrap",
         justifyContent: "center",
         gap: "10px",
-        marginTop: "20px"
+        marginTop: "12px"
       }}
     >
 
@@ -71,8 +71,8 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
 
               // 🔥 HOVER → WHITE TEXT
               el.style.backgroundImage = "none";
-              el.style.WebkitBackgroundClip = "initial";
-              el.style.WebkitTextFillColor = "#ffffff";
+              (el.style as any).webkitBackgroundClip = "initial";
+			(el.style as any).webkitTextFillColor = "#ffffff";
               el.style.color = "#ffffff";
 
               el.style.border = "1px solid #ffffff";
@@ -83,8 +83,8 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
 
               // 🔥 RESTORE GRADIENT TEXT (FULL RESET)
               el.style.backgroundImage = "linear-gradient(135deg, #22c1ff, #6c63ff)";
-              el.style.WebkitBackgroundClip = "text";
-              el.style.WebkitTextFillColor = "transparent";
+              (el.style as any).webkitBackgroundClip = "text";
+(el.style as any).webkitTextFillColor = "transparent";
 
               el.style.color = "transparent"; // 🔥 CRITICAL FIX
               el.style.border = "1px solid rgba(255,255,255,0.12)";

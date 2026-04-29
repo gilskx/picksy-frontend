@@ -144,7 +144,7 @@ return (
     maxWidth: "1200px",
     margin: "20px auto",          // 🔥 center whole block
     padding: "24px",
-    borderRadius: "100px",
+    borderRadius: "12px",
     
  
   }}>
