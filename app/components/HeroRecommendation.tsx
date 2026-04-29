@@ -133,14 +133,16 @@ const renderList = (list: string[]) => {
            paddingBottom: "20px"
         }}>
 
-          <div style={{
-           color: "#22c1ff",
-			opacity: 0.8,
-            fontSize: "13px",
-            marginBottom: "6px"
-          }}>
-            ✨ Smart Buy
-          </div>
+          {/* 🔥 NOKKU AI LINE */}
+<div style={{
+  fontSize: "13px",
+  marginBottom: "6px",
+  color: "rgba(34, 193, 255, 0.75)",
+  letterSpacing: "0.3px",
+  fontWeight: "500"
+}}>
+  ✨ Nokku AI found the best match for you.
+</div>
 
           
           
@@ -184,16 +186,8 @@ maxWidth: "1400px",
   return (
     <>
 	
-	{/* 🔥 NOKKU AI LINE */}
-<div style={{
-  fontSize: "13px",
-  marginBottom: "6px",
-  color: "rgba(34, 193, 255, 0.75)",
-  letterSpacing: "0.3px",
-  fontWeight: "500"
-}}>
-  ✨ Nokku AI found the best match for you.
-</div>
+
+
 	
       {/* MAIN TITLE */}
       <div style={{
@@ -207,6 +201,13 @@ maxWidth: "1400px",
 }}>
   {mainTitle}
 </div>
+
+
+
+
+
+
+
 
       {/* SUB ITEMS */}
       <div style={{
@@ -222,15 +223,16 @@ maxWidth: "1400px",
   );
 })()}
 
-            <div style={{
-              marginTop: "20px",
-              color: "##22c1ff",
-              fontSize: "14px",
-              maxWidth: "400px"
-            }}>
-               
-            </div>
+
  
+
+
+		
+
+
+
+
+
 
  {/* LEFT → PRICE start*/}
   {/* 🔥 PRICE + RATING + CTA (SAME ROW) */}
@@ -303,7 +305,74 @@ maxWidth: "1400px",
   
    {/* LEFT → PRICE Rate and - Sold on Button End*/}
   
+  {/* PRODUCT IMAGE WITH CLEAN RING */}
+<div className="nokku-hero-product-image" style={{
+  position: "relative",
+  width: "320px",
+  height: "320px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  marginTop: "100px" ,
+marginLeft: "0px"
+}}>
+
+  {/* 🔵 OUTER RING */}
+  <motion.div
+    style={{
+      position: "absolute",
+      width: "440px",
+      height: "440px",
+      borderRadius: "50%",
+      border: "2px solid rgba(59,130,246,0.5)"
+    }}
+    animate={{ rotate: 360 }}
+    transition={{
+      duration: 12,
+      repeat: Infinity,
+      ease: "linear"
+    }}
+  />
+
+  {/* 🔵 INNER RING */}
+  <motion.div
+    style={{
+      position: "absolute",
+      width: "350px",
+      height: "350px",
+      borderRadius: "50%",
+      border: "1px dashed rgba(59,130,246,0.4)"
+    }}
+    animate={{ rotate: -360 }}
+    transition={{
+      duration: 10,
+      repeat: Infinity,
+      ease: "linear"
+    }}
+  />
+
+  {/* 🔥 PRODUCT IMAGE (UNCHANGED STYLE) */}
   
+  <motion.img
+    src={p.image}
+    animate={{
+      y: [0, -6, 0]
+    }}
+    transition={{
+      duration: 3,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+    style={{
+      width: "220px",
+      objectFit: "contain",
+      zIndex: 2,
+      filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.9))"
+    }}
+  />
+
+</div>
+{/* End Product Image */}
   
  {/* why this is  BEST Start*/}
 <div style={{
@@ -456,74 +525,6 @@ maxWidth: "1400px",
             </div>
 
             
-		{/* PRODUCT IMAGE WITH CLEAN RING */}
-<div className="nokku-hero-product-image" style={{
-  position: "relative",
-  width: "320px",
-  height: "320px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  marginTop: "100px" ,
-marginLeft: "0px"
-}}>
-
-  {/* 🔵 OUTER RING */}
-  <motion.div
-    style={{
-      position: "absolute",
-      width: "440px",
-      height: "440px",
-      borderRadius: "50%",
-      border: "2px solid rgba(59,130,246,0.5)"
-    }}
-    animate={{ rotate: 360 }}
-    transition={{
-      duration: 12,
-      repeat: Infinity,
-      ease: "linear"
-    }}
-  />
-
-  {/* 🔵 INNER RING */}
-  <motion.div
-    style={{
-      position: "absolute",
-      width: "350px",
-      height: "350px",
-      borderRadius: "50%",
-      border: "1px dashed rgba(59,130,246,0.4)"
-    }}
-    animate={{ rotate: -360 }}
-    transition={{
-      duration: 10,
-      repeat: Infinity,
-      ease: "linear"
-    }}
-  />
-
-  {/* 🔥 PRODUCT IMAGE (UNCHANGED STYLE) */}
-  
-  <motion.img
-    src={p.image}
-    animate={{
-      y: [0, -6, 0]
-    }}
-    transition={{
-      duration: 3,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }}
-    style={{
-      width: "220px",
-      objectFit: "contain",
-      zIndex: 2,
-      filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.9))"
-    }}
-  />
-
-</div>
-{/* End Product Image */}
 
 
 {/* 🔥 CHEAPER OPTION */}
