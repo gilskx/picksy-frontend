@@ -1,6 +1,6 @@
 	"use client";
 
-	import { useState, useEffect } from "react";
+	import { useState, useEffect, useRef } from "react";
 	import "./globals.css";
 	import ChatWidget from "./ChatWidget";
 	import HeroRecommendation from "./components/HeroRecommendation";
@@ -9,13 +9,12 @@
 	import SearchBar from "./components/SearchBar";
 	import ResultsSection from "./components/ResultsSection";
 	import SuggestionChips from "./components/SuggestionChips";
-	import { searchProducts } from "./services/searchService";
+	import { searchProducts, searchProductsStream } from "./services/searchService";
 	import CompareBar from "./components/CompareBar";
 	import CompareAIView from "./components/CompareAIView";
 	import Footer from "./components/Footer";
 	import { filterProducts } from "./utils/filterProducts";
-	import { searchProductsStream } from "./services/searchService";
-
+	
 	export default function Home() {
 
 	  const [query, setQuery] = useState("");
@@ -25,6 +24,8 @@
 	  const [aiActive, setAiActive] = useState(false);
 	const [aiCompare, setAiCompare] = useState<any>(null);
 	  const [recommendation, setRecommendation] = useState<any>(null);
+	  const [whoShouldBuyBest, setWhoShouldBuyBest] = useState<any[]>([]);
+const [whoShouldBuyCheaper, setWhoShouldBuyCheaper] = useState<any[]>([]);
 	  const [explanation, setExplanation] = useState("");
 	const [activeCard, setActiveCard] = useState<string | null>(null);
 	  const [minPrice, setMinPrice] = useState("");
@@ -42,8 +43,8 @@
 
 	  const [sortBy, setSortBy] = useState("best");
 	  const [showComparePage, setShowComparePage] = useState(false);
-
-
+const [eventSourceRef, setEventSourceRef] = useState<EventSource | null>(null);
+const finalizingIntervalRef = useRef<any>(null);
 
 	  // Placeholder rotation
 	  const placeholders = [
@@ -88,31 +89,40 @@ useEffect(() => {
 
 	  const bestDeal = recommendation?.bestPick || null;
 
+const handleCancelSearch = () => {
+
+  // 🔥 STOP STREAM
+  if (eventSourceRef) {
+    eventSourceRef.close();
+  }
+
+  // 🔥 STOP ANIMATION
+  if (finalizingIntervalRef.current) {
+    clearInterval(finalizingIntervalRef.current);
+  }
+
+  // 🔥 RESET UI
+  setLoading(false);
+  setLoadingMessage("");
+  setProducts([]);
+  setRecommendation(null);
+  setExplanation("");
+  setConfidence(0);
+  setCheaper(null);
+  setWhoShouldBuyBest([]);
+  setWhoShouldBuyCheaper([]);
+  setAiActive(false);
+    setHasSearched(false); 
+};
+
+
 	  // FILTER
 
 
+	  // LOADING TEXT
 	  
-			
 	  // SEARCH
 	  const search = async () => {
-		if (!query.trim()) return;
-
-		setHasSearched(true);
-		setLoading(true);
-		setProducts([]);
-		setRecommendation(null);
-		setExplanation("");
-		setAiActive(true);
-
-		try {
-		  const userContext = {
-		  ip: localStorage.getItem("user_ip"),
-		  country: localStorage.getItem("user_country"),
-		  city: localStorage.getItem("user_city")
-		};
-
-
-const search = async () => {
   if (!query.trim()) return;
 
   setHasSearched(true);
@@ -121,83 +131,113 @@ const search = async () => {
   setRecommendation(null);
   setExplanation("");
   setAiActive(true);
-
+  {loading && (
+  <div style={{
+    textAlign: "center",
+    marginTop: "10px",
+    fontSize: "14px",
+    color: "#9ca3af"
+  }}>
+    {loadingMessage}
+  </div>
+)}
+	setLoadingMessage("🔍 Searching in web...");   // ✅ ADD HERE
   let fallbackUsed = false;
 
-  searchProductsStream(
+  const es = searchProductsStream(
 
-    query,
+  query,
 
-    // ✅ LIVE STAGE
-    (stage) => {
+  // ✅ LIVE BACKEND STAGE
+  (stage) => {
+
+    // 🔥 INTERCEPT FINAL STAGE
+    if (stage.includes("Finalizing")) {
+
+      // 🔥 CLEAR ANY OLD INTERVAL
+      if (finalizingIntervalRef.current) {
+        clearInterval(finalizingIntervalRef.current);
+      }
+
+      const steps = [
+        "💰 Comparing prices...",
+        "⭐ Checking ratings...",
+        "🧠 Finding best value...",
+        "⚡ Finalizing results..."
+      ];
+
+      let i = 0;
+
+      finalizingIntervalRef.current = setInterval(() => {
+        setLoadingMessage(steps[i]);
+        i++;
+
+        if (i >= steps.length) {
+          clearInterval(finalizingIntervalRef.current);
+        }
+      }, 300);
+
+    } else {
       setLoadingMessage(stage);
-    },
-
-    // ✅ DONE
-    (data) => {
-      if (Array.isArray(data)) {
-        setProducts(data);
-      } else {
-        setProducts(data.products || []);
-        setRecommendation(data);
-        setExplanation(data.reason || data.explanation);
-        setConfidence(data.confidence || 0);
-        setCheaper(data.cheaperAlternative || null);
-      }
-
-      setLoading(false);
-      setAiActive(false);
-    },
-
-    // ❌ ERROR → fallback
-    async () => {
-      if (fallbackUsed) return;
-      fallbackUsed = true;
-
-      console.log("SSE failed → fallback");
-
-      const userContext = {
-        ip: localStorage.getItem("user_ip"),
-        country: localStorage.getItem("user_country"),
-        city: localStorage.getItem("user_city")
-      };
-
-      const data = await searchProducts(query, userContext);
-
-      if (data.products) {
-        setProducts(data.products);
-        setRecommendation(data);
-        setExplanation(data.reason || data.explanation);
-        setConfidence(data.confidence || 0);
-        setCheaper(data.cheaperAlternative || null);
-      } else if (Array.isArray(data)) {
-        setProducts(data);
-      }
-
-      setLoading(false);
-      setAiActive(false);
     }
-  );
+  },
+
+  // ✅ DONE
+  (data) => {
+
+    // 🔥 STOP INTERVAL
+    if (finalizingIntervalRef.current) {
+      clearInterval(finalizingIntervalRef.current);
+    }
+
+    setLoading(false);
+    setLoadingMessage("");
+
+    if (Array.isArray(data)) {
+      setProducts(data);
+    } else {
+      setProducts(data.products || []);
+      setRecommendation(data.recommendation);
+      setExplanation(data.reason || data.explanation);
+      setConfidence(data.confidence || 0);
+      setCheaper(data.cheaperAlternative || null);
+      setWhoShouldBuyBest(data.who_should_buy_best || []);
+      setWhoShouldBuyCheaper(data.who_should_buy_cheaper || []);
+    }
+
+    setAiActive(false);
+  },
+
+  // ❌ ERROR → fallback
+  async () => {
+
+    // 🔥 STOP INTERVAL
+    if (finalizingIntervalRef.current) {
+      clearInterval(finalizingIntervalRef.current);
+    }
+
+    if (fallbackUsed) return;
+    fallbackUsed = true;
+
+    const userContext = {
+      ip: localStorage.getItem("user_ip"),
+      country: localStorage.getItem("user_country"),
+      city: localStorage.getItem("user_city")
+    };
+
+    const data = await searchProducts(query, userContext);
+
+    setProducts(data.products || []);
+    setLoading(false);
+    setAiActive(false);
+  }
+);
+
+// 🔥 STORE EVENT SOURCE
+setEventSourceRef(es);
 };
-
-		  if (data.products) {
-			setProducts(data.products);
-			setRecommendation(data);
-			setExplanation(data.reason || data.explanation);
-			setConfidence(data.confidence || 0);
-			setCheaper(data.cheaperAlternative || null);
-		  } else if (Array.isArray(data)) {
-			setProducts(data);
-		  }
-
-		} catch (e) {
-		  console.error(e);
-		}
-
-		setLoading(false);
-		setAiActive(false);
-	  };
-
+	 
+// SEARCH end
 	  const recUrl = bestDeal?.url || bestDeal?.link;
 				const filteredProducts = filterProducts(products, {
 			  minPrice,
@@ -352,7 +392,7 @@ color: "#e5e7eb"         // base text (soft white)
   WebkitTextFillColor: "transparent"
 }}>
   <span style={{ opacity: 0.8 }}>✨</span>
-  ✨nokku.ai Identifies the best product, surfaces cost-effective alternatives, and enables comparison across leading brands — instantly..
+  ✨nokku.ai finds the best match, cheaper alternatives, and compares real-time deals across multiple trusted sources — instantly.
 </div>
 
 <div style={{
@@ -416,10 +456,47 @@ color: "#e5e7eb"         // base text (soft white)
 			 
 			  <div>
 			  
-			  {/* ✅ COMPARE PANEL (SAFE INSERT) */}
+			  
+			  
+			  {/* for Back Button*/}
+{loading && (
+  <div style={{
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "20px"
+  }}>
+    <button
+      onClick={handleCancelSearch}
+      style={{
+        padding: "8px 18px",
+        borderRadius: "20px",
+        border: "1px solid rgba(255,255,255,0.2)",
+        background: "rgba(2,6,23,0.6)",
+        color: "#93c5fd",
+        cursor: "pointer",
+        fontSize: "13px"
+      }}
+    >
+      ← Back
+    </button>
+  </div>
+)}
 
+<HeroRecommendation
+  recommendation={recommendation}
+  confidence={confidence}
+  cheaper={cheaper}
+  recUrl={recUrl}
+  aiActive={aiActive}
+  mode={mode}
+  setMode={setMode}
+  who_should_buy_best={whoShouldBuyBest}
+  who_should_buy_cheaper={whoShouldBuyCheaper}
+/>
+			 {/* for Back Button*/}
 
-				{/* SORT DROPDOWN */}
+				
 				
 
 				<HeroRecommendation
@@ -430,6 +507,8 @@ color: "#e5e7eb"         // base text (soft white)
 				  aiActive={aiActive}
 				  mode={mode}
 				  setMode={setMode}
+				    who_should_buy_best={whoShouldBuyBest}          // 🔥 ADD
+					who_should_buy_cheaper={whoShouldBuyCheaper}
 				/>
 				
 				
@@ -448,7 +527,7 @@ color: "#e5e7eb"         // base text (soft white)
   marginTop: "40px"
 }}>
     <ResultsSection
-      loading={loading}
+      loading={loading && products.length === 0}
       query={query}
       displayProducts={sortedProducts}
       recommendation={recommendation}

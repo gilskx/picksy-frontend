@@ -1,6 +1,6 @@
 "use client";
 import "./globals.css";
-export default function LoadingSection({ loading, loadingMessage }: any) {
+export default function LoadingSection({ loading, loadingMessage, onCancel }: any) {
 
 
   if (!loading) return null;
@@ -30,6 +30,32 @@ export default function LoadingSection({ loading, loadingMessage }: any) {
         }}>
           {loadingMessage}
         </div>
+		
+		<div style={{
+  marginTop: "10px",
+  fontSize: "14px",
+  color: "#555"
+}}>
+  {loadingMessage}
+</div>
+
+{/* 🔥 ADD BACK BUTTON HERE */}
+<button
+  onClick={onCancel}
+  style={{
+    marginTop: "12px",
+    padding: "8px 16px",
+    borderRadius: "20px",
+    border: "1px solid rgba(255,255,255,0.2)",
+    background: "rgba(2,6,23,0.6)",
+    color: "#93c5fd",
+    cursor: "pointer",
+    fontSize: "13px"
+  }}
+>
+  ← Back
+</button>
+		
       </div>
 
       {/* 🔥 SKELETON CARDS */}

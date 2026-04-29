@@ -1,6 +1,6 @@
 	"use client";
 
-	import { useState, useEffect } from "react";
+	import { useState, useEffect, useRef } from "react";
 	import "./globals.css";
 	import ChatWidget from "./ChatWidget";
 	import HeroRecommendation from "./components/HeroRecommendation";
@@ -9,11 +9,12 @@
 	import SearchBar from "./components/SearchBar";
 	import ResultsSection from "./components/ResultsSection";
 	import SuggestionChips from "./components/SuggestionChips";
-	import { searchProducts } from "./services/searchService";
+	import { searchProducts, searchProductsStream } from "./services/searchService";
 	import CompareBar from "./components/CompareBar";
 	import CompareAIView from "./components/CompareAIView";
 	import Footer from "./components/Footer";
 	import { filterProducts } from "./utils/filterProducts";
+	
 	export default function Home() {
 
 	  const [query, setQuery] = useState("");
@@ -23,6 +24,8 @@
 	  const [aiActive, setAiActive] = useState(false);
 	const [aiCompare, setAiCompare] = useState<any>(null);
 	  const [recommendation, setRecommendation] = useState<any>(null);
+	  const [whoShouldBuyBest, setWhoShouldBuyBest] = useState<any[]>([]);
+const [whoShouldBuyCheaper, setWhoShouldBuyCheaper] = useState<any[]>([]);
 	  const [explanation, setExplanation] = useState("");
 	const [activeCard, setActiveCard] = useState<string | null>(null);
 	  const [minPrice, setMinPrice] = useState("");
@@ -40,8 +43,8 @@
 
 	  const [sortBy, setSortBy] = useState("best");
 	  const [showComparePage, setShowComparePage] = useState(false);
-
-
+const [eventSourceRef, setEventSourceRef] = useState<EventSource | null>(null);
+const finalizingIntervalRef = useRef<any>(null);
 
 	  // Placeholder rotation
 	  const placeholders = [
@@ -86,69 +89,155 @@ useEffect(() => {
 
 	  const bestDeal = recommendation?.bestPick || null;
 
+const handleCancelSearch = () => {
+
+  // 🔥 STOP STREAM
+  if (eventSourceRef) {
+    eventSourceRef.close();
+  }
+
+  // 🔥 STOP ANIMATION
+  if (finalizingIntervalRef.current) {
+    clearInterval(finalizingIntervalRef.current);
+  }
+
+  // 🔥 RESET UI
+  setLoading(false);
+  setLoadingMessage("");
+  setProducts([]);
+  setRecommendation(null);
+  setExplanation("");
+  setConfidence(0);
+  setCheaper(null);
+  setWhoShouldBuyBest([]);
+  setWhoShouldBuyCheaper([]);
+  setAiActive(false);
+    setHasSearched(false); 
+};
+
+
 	  // FILTER
 
 
 	  // LOADING TEXT
-	  useEffect(() => {
-		if (!loading) return;
-
-		const messages = [
-		  "🔍 Searching across Amazon, Walmart, eBay...",
-		  "💰 Comparing prices...",
-		  "⭐ Checking ratings...",
-		  "🚀 Shortlisting...",
-		  "🤖 AI finalizing..."
-		];
-
-		let i = 0;
-
-		const interval = setInterval(() => {
-		  setLoadingMessage(messages[i % messages.length]);
-		  i++;
-		}, 1200);
-
-		return () => clearInterval(interval);
-	  }, [loading]);
-			
+	  
 	  // SEARCH
 	  const search = async () => {
-		if (!query.trim()) return;
+  if (!query.trim()) return;
 
-		setHasSearched(true);
-		setLoading(true);
-		setProducts([]);
-		setRecommendation(null);
-		setExplanation("");
-		setAiActive(true);
+  setHasSearched(true);
+  setLoading(true);
+  setProducts([]);
+  setRecommendation(null);
+  setExplanation("");
+  setAiActive(true);
+  {loading && (
+  <div style={{
+    textAlign: "center",
+    marginTop: "10px",
+    fontSize: "14px",
+    color: "#9ca3af"
+  }}>
+    {loadingMessage}
+  </div>
+)}
+	setLoadingMessage("🔍 Searching in web...");   // ✅ ADD HERE
+  let fallbackUsed = false;
 
-		try {
-		  const userContext = {
-		  ip: localStorage.getItem("user_ip"),
-		  country: localStorage.getItem("user_country"),
-		  city: localStorage.getItem("user_city")
-		};
+  const es = searchProductsStream(
 
-const data = await searchProducts(query, userContext);
+  query,
 
-		  if (data.products) {
-			setProducts(data.products);
-			setRecommendation(data);
-			setExplanation(data.reason || data.explanation);
-			setConfidence(data.confidence || 0);
-			setCheaper(data.cheaperAlternative || null);
-		  } else if (Array.isArray(data)) {
-			setProducts(data);
-		  }
+  // ✅ LIVE BACKEND STAGE
+  (stage) => {
 
-		} catch (e) {
-		  console.error(e);
-		}
+    // 🔥 INTERCEPT FINAL STAGE
+    if (stage.includes("Finalizing")) {
 
-		setLoading(false);
-		setAiActive(false);
-	  };
+      // 🔥 CLEAR ANY OLD INTERVAL
+      if (finalizingIntervalRef.current) {
+        clearInterval(finalizingIntervalRef.current);
+      }
 
+      const steps = [
+        "💰 Comparing prices...",
+        "⭐ Checking ratings...",
+        "🧠 Finding best value...",
+        "⚡ Finalizing results..."
+      ];
+
+      let i = 0;
+
+      finalizingIntervalRef.current = setInterval(() => {
+        setLoadingMessage(steps[i]);
+        i++;
+
+        if (i >= steps.length) {
+          clearInterval(finalizingIntervalRef.current);
+        }
+      }, 300);
+
+    } else {
+      setLoadingMessage(stage);
+    }
+  },
+
+  // ✅ DONE
+  (data) => {
+
+    // 🔥 STOP INTERVAL
+    if (finalizingIntervalRef.current) {
+      clearInterval(finalizingIntervalRef.current);
+    }
+
+    setLoading(false);
+    setLoadingMessage("");
+
+    if (Array.isArray(data)) {
+      setProducts(data);
+    } else {
+      setProducts(data.products || []);
+      setRecommendation(data.recommendation);
+      setExplanation(data.reason || data.explanation);
+      setConfidence(data.confidence || 0);
+      setCheaper(data.cheaperAlternative || null);
+      setWhoShouldBuyBest(data.who_should_buy_best || []);
+      setWhoShouldBuyCheaper(data.who_should_buy_cheaper || []);
+    }
+
+    setAiActive(false);
+  },
+
+  // ❌ ERROR → fallback
+  async () => {
+
+    // 🔥 STOP INTERVAL
+    if (finalizingIntervalRef.current) {
+      clearInterval(finalizingIntervalRef.current);
+    }
+
+    if (fallbackUsed) return;
+    fallbackUsed = true;
+
+    const userContext = {
+      ip: localStorage.getItem("user_ip"),
+      country: localStorage.getItem("user_country"),
+      city: localStorage.getItem("user_city")
+    };
+
+    const data = await searchProducts(query, userContext);
+
+    setProducts(data.products || []);
+    setLoading(false);
+    setAiActive(false);
+  }
+);
+
+// 🔥 STORE EVENT SOURCE
+setEventSourceRef(es);
+};
+	 
+// SEARCH end
 	  const recUrl = bestDeal?.url || bestDeal?.link;
 				const filteredProducts = filterProducts(products, {
 			  minPrice,
@@ -367,10 +456,66 @@ color: "#e5e7eb"         // base text (soft white)
 			 
 			  <div>
 			  
-			  {/* ✅ COMPARE PANEL (SAFE INSERT) */}
+			  
+			  
+			  {/* for Back Button*/}
+{loading && (
+  <div style={{
+    position: "fixed",
+    top: "20px",
+    left: "20px",
+    zIndex: 1000
+  }}>
+    <button
+      onClick={handleCancelSearch}
+      style={{
+        width: "42px",
+        height: "42px",
+        borderRadius: "50%",
+        border: "1px solid rgba(59,130,246,0.4)",
+        background: "rgba(2,6,23,0.7)",
+        backdropFilter: "blur(8px)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        cursor: "pointer",
+        transition: "all 0.25s ease",
+        boxShadow: "0 8px 25px rgba(59,130,246,0.25)"
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = "scale(1.1)";
+        e.currentTarget.style.boxShadow = "0 12px 35px rgba(59,130,246,0.5)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = "scale(1)";
+        e.currentTarget.style.boxShadow = "0 8px 25px rgba(59,130,246,0.25)";
+      }}
+    >
+      <span style={{
+        fontSize: "18px",
+        color: "#60a5fa",
+        fontWeight: "600"
+      }}>
+        ←
+      </span>
+    </button>
+  </div>
+)}
 
+<HeroRecommendation
+  recommendation={recommendation}
+  confidence={confidence}
+  cheaper={cheaper}
+  recUrl={recUrl}
+  aiActive={aiActive}
+  mode={mode}
+  setMode={setMode}
+  who_should_buy_best={whoShouldBuyBest}
+  who_should_buy_cheaper={whoShouldBuyCheaper}
+/>
+			 {/* for Back Button*/}
 
-				{/* SORT DROPDOWN */}
+				
 				
 
 				<HeroRecommendation
@@ -381,6 +526,8 @@ color: "#e5e7eb"         // base text (soft white)
 				  aiActive={aiActive}
 				  mode={mode}
 				  setMode={setMode}
+				    who_should_buy_best={whoShouldBuyBest}          // 🔥 ADD
+					who_should_buy_cheaper={whoShouldBuyCheaper}
 				/>
 				
 				
@@ -399,7 +546,7 @@ color: "#e5e7eb"         // base text (soft white)
   marginTop: "40px"
 }}>
     <ResultsSection
-      loading={loading}
+      loading={loading && products.length === 0}
       query={query}
       displayProducts={sortedProducts}
       recommendation={recommendation}

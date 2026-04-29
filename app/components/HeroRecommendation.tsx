@@ -8,7 +8,9 @@ export default function HeroRecommendation({
   recUrl,
   aiActive,
   mode,
-  setMode
+  setMode,
+  who_should_buy_best,          // 🔥 ADD
+  who_should_buy_cheaper        // 🔥 ADD
 }: any) {
 
 if (!recommendation) {
@@ -473,7 +475,7 @@ marginLeft: "0px"
 	  color: "#22c1ff"
       
     }}>
-      {renderList(recommendation?.who_should_buy_best)}
+      {renderList(who_should_buy_best)}
     </div>
     
 
@@ -508,7 +510,7 @@ marginLeft: "0px"
   fontStyle: "italic",
   textAlign: "center" ,
 }}>
-  👤 Best for: {recommendation?.who_should_buy_best?.[0]}
+  👤 Best for: {who_should_buy_cheaper?.[0]}
 </div>
 {/* AI LINE Cheaper End */}
 		  
