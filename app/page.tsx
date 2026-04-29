@@ -262,7 +262,7 @@ color: "#e5e7eb"         // base text (soft white)
 			{!hasSearched && (
   <div className="nokku-hero" style={{
     padding: "40px 20px 30px",
-				textAlign: "center",
+				textAlign: "left",
 				//color: "#fff"
 				color: "inherit"
 			  }}>
@@ -392,11 +392,12 @@ color: "#e5e7eb"         // base text (soft white)
 {/* 🔥 RESULTS */}
 {hasSearched && (
   <div style={{
-    width: "100%",
-    maxWidth: "1200px",
-    margin: "0 auto",
-    minHeight: "200px"
-  }}>
+  width: "100%",
+  maxWidth: "1200px",
+  margin: "0",              // ✅ LEFT ALIGN
+  padding: "0 16px",        // better mobile
+  marginTop: "40px"
+}}>
     <ResultsSection
       loading={loading}
       query={query}

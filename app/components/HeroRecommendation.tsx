@@ -19,7 +19,7 @@ if (!recommendation) {
 if (!recommendation?.bestPick) {
   return (
     <div style={{
-      textAlign: "center",
+      textAlign: "left",
       padding: "40px"
       
     }}>
@@ -152,7 +152,7 @@ const renderList = (list: string[]) => {
         {/* MAIN */}
         <div className="nokku-hero-rec-grid" style={{
   display: "grid",
-  gridTemplateColumns: "3fr 1.2fr",
+  gridTemplateColumns: "1fr",
 maxWidth: "1400px",
   gap: "40px",
   alignItems: "start",              // ✅ FIX
