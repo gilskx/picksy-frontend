@@ -283,7 +283,7 @@ color: "#e5e7eb"         // base text (soft white)
 		WebkitTextFillColor: "transparent",
 		textShadow: "0 4px 20px rgba(0,0,0,0.5)"
 	  }}>
-		Stop searching, Start choosing.
+		Search anything. Decide smarter.
 	  </div>
 
 	  {/* SUB HEADLINE */}
@@ -303,7 +303,7 @@ color: "#e5e7eb"         // base text (soft white)
   WebkitTextFillColor: "transparent"
 }}>
   <span style={{ opacity: 0.8 }}>✨</span>
-  ✨Nokku AI finds the best match, smarter alternatives, and compares real-time deals across multiple trusted sources — instantly.
+  ✨nokku.ai finds the best match, smarter alternatives, and compares real-time deals across multiple trusted sources — instantly.
 </div>
 
 <div style={{

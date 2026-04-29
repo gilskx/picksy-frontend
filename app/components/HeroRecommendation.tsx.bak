@@ -141,7 +141,7 @@ const renderList = (list: string[]) => {
   letterSpacing: "0.3px",
   fontWeight: "500"
 }}>
-  ✨ Nokku AI found the best match for you.
+  ✨ Nokku AI picked this based on best price, high ratings, and overall value.
 </div>
 
           
@@ -241,7 +241,7 @@ maxWidth: "1400px",
   alignItems: "center",
   justifyContent: "flex-start",
 	gap: "25px",
-  marginTop: "5px",
+  marginTop: "12px",
   flexWrap: "wrap"
 }}>
 
@@ -255,6 +255,7 @@ maxWidth: "1400px",
       fontSize: "20px",
       fontWeight: "800",
       letterSpacing: "-0.5px",
+	   marginTop: "10px",
       
 		color: "#22c1ff"
     }}>
@@ -266,7 +267,8 @@ maxWidth: "1400px",
        display: "flex",
       alignItems: "center",
 	  color: "#22c1ff",
-      gap: "14px"
+      gap: "14px",
+	   marginTop: "14px",
     }}>
       ⭐ {rating}
     </div>
@@ -279,6 +281,7 @@ maxWidth: "1400px",
     rel="noopener noreferrer"
     style={{
   padding: "6px 12px",
+  marginTop: "6px",
   borderRadius: "25px",
   background: "rgba(59,130,246,0.1)",   // same as Ask AI
   
@@ -298,7 +301,7 @@ maxWidth: "1400px",
       e.currentTarget.style.transform = "scale(1)";
     }}
   >
-    Sold on {sourceName} →
+    View Deal on {sourceName} →
   </a>
 
 </div>
@@ -311,6 +314,7 @@ maxWidth: "1400px",
   width: "320px",
   height: "320px",
   display: "flex",
+  marginTop: "40px",
   alignItems: "center",
   justifyContent: "center",
   marginTop: "100px" ,
@@ -383,7 +387,7 @@ marginLeft: "0px"
 
   padding: "0",        // 🔥 KEY FIX (remove horizontal padding)
 
-  marginTop: "30px",
+  marginTop: "150px",
   borderRadius: "16px",
   overflow: "hidden"
 }}>
@@ -451,15 +455,11 @@ marginLeft: "0px"
       🏆 Why this is best !!
 	  
     </div>
-
-
- 
-
   
     {renderList(recommendation?.why_best_product)}
 
     <div style={{
-      marginTop: "18px",
+      marginTop: "25px",
       fontSize: "20px",
 	  color: "#22c1ff"
       
@@ -467,49 +467,27 @@ marginLeft: "0px"
       👤 Who should buy
     </div>
 
-    {renderList(recommendation?.who_should_buy_best)}
+	<div style={{
+      marginTop: "8px",
+      fontSize: "20px",
+	  color: "#22c1ff"
+      
+    }}>
+      {renderList(recommendation?.who_should_buy_best)}
+    </div>
+    
 
   </div>
 
 </div>
-{/* why this is BEST */}
+
+
  
  
 
-{/* 🔥 PRICE + IMAGE ROW */}
-<div style={{
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  alignItems: "center",
-  gap: "40px",
-  marginTop: "20px"
-}}>
 
 
-
-  
-  <div>
-
-
-			
-   
-
-    {recommendation?.similarity_warning && (
-      <div style={{
-        marginTop: "6px",
-        fontSize: "13px"
-      }}>
-        ⚖✔ {recommendation.similarity_warning}
-      </div>
-    )}
-
-  </div>
-
-  
-{/* END RIGHT → IMAGE */}
-</div>
-
-{/* AI LINE */}
+{/* AI LINE Cheaper */}
 <div style={{
   fontSize: "20px",
   marginBottom: "8px",
@@ -519,9 +497,19 @@ marginLeft: "0px"
   textAlign: "center" ,  // ✅ ADD THIS
   marginTop: "80px"
 }}>
-  💡 Nokku AI found a smarter, more affordable choice for you.
+  💡  Nokku AI found a more affordable option that saves you ${saveAmount} with comparable value.
 </div>
-{/* AI LINE End */}
+
+{/* 👤 WHO SHOULD BUY */}
+<div style={{
+  fontSize: "12px",
+  color: "rgba(34, 193, 255, 0.75)",
+  marginTop: "4px",
+  fontStyle: "italic"
+}}>
+  👤 Best for: {recommendation?.who_should_buy_best?.[0]}
+</div>
+{/* AI LINE Cheaper End */}
 		  
 		  
 		  {/* PRODUCT NAME */}
@@ -539,6 +527,7 @@ marginLeft: "0px"
 		    {/* 🔥 Cheap (IMAGE) */}
         <div style={{
           display: "flex",
+		  marginTop: "25px",
           justifyContent: "space-between"
         }}>
           <img
@@ -556,7 +545,8 @@ marginLeft: "0px"
             <div style={{
               fontSize: "24px",
               fontWeight: "700",
-              color: "#22c1ff",
+			  marginTop: "15px",
+              color: "rgba(34,193,255,0.75)",
               marginBottom: "10px"
             }}>
               Save ${saveAmount}
@@ -573,7 +563,7 @@ marginLeft: "0px"
   alignItems: "center",
   justifyContent: "flex-start",   // 🔥 pushes button to right
   gap: "16px",
-  marginTop: "10px"
+  marginTop: "8px"
 }}>
 
   {/* PRICE BLOCK */}
@@ -627,7 +617,7 @@ marginLeft: "0px"
       transition: "all 0.25s ease"
     }}
   >
-    Buy on {cheaper.source} →
+    View Deal on {cheaper.source} →
   </a>
 
 </div>
@@ -644,6 +634,7 @@ marginLeft: "0px"
                 fontSize: "14px",
                 fontWeight: "600",
                 color: "#22c1ff",
+				marginTop: "35px",
                 marginBottom: "8px"
               }}>
                 👤 Why Should Buy
@@ -656,6 +647,7 @@ marginLeft: "0px"
                   </div>
                 ))}
               </div>
+			  
             </>
           )}
 
@@ -674,71 +666,10 @@ marginLeft: "0px"
 
 
 
-{/* 🔥 CHEAPER OPTION */}
-
-{cheaper && (
-
- 
-
-    <div
-      style={{
-        width: "100%",
-        maxWidth: "1100px",     // 🔥 more breathing space
-        padding: "20px 10px",
-        marginTop: "20px"
-      }}
-    >
-
-      {/* 🔥 MAIN GRID */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "3.5fr 1fr 2fr"	,   // 🔥 balanced layout
-          gap: "40px",
-          alignItems: "center"
-        }}
-      >
-
-        {/* 🔥 LEFT */}
-        <div>
-
-  
-
-          
-
-          
-        
-
-        </div>
 
 
 
-
-
-
-       
-
-      </div>
-
-   
-
-  </div>
-)}
-
-
-
-{/* 🔥 CHEAPER End */}
-
-
-
-         <div style={{
-  display: "flex",
-  justifyContent: "flex-end",   // 🔥 KEY CHANGE
-  alignItems: "flex-start"      // 🔥 align top (looks premium)
-}}>
-
-
-</div>   {/* inner column (right content) */}
+         
 </div>   {/* RIGHT column */}
  
 </div>   {/* MAIN grid */}
@@ -752,33 +683,7 @@ marginLeft: "0px"
   marginTop: "25px"
 }}>
 
-  {/* LEFT - WHY */}
-<div style={{
-  display: "inline-block",     // 🔥 KEY: stops full-width stretch
-  maxWidth: "600px",           // 🔥 limits size
-  background: "rgba(255,255,255,0.04)",
-  borderRadius: "14px",
-  padding: "14px 16px",        // 🔥 tighter padding
-  border: "1px solid rgba(255,255,255,0.06)"
-}}>
-
-<div style={{
-  display: "grid",
-  gridTemplateColumns: "minmax(500px, 1.5fr) minmax(320px, 1.5fr)",
-  gap: "20px"
-}}>
-
- 
-
   
-
-</div>
-
-
-
-
-
-  </div>
 
 
   
@@ -786,105 +691,9 @@ marginLeft: "0px"
    
     
 
-<div style={{
-  display: "flex",
-  justifyContent: "center",
-  gap: "10px",
-  marginTop: "20px",
-  marginBottom: "10px"
-}}>
 
-  
-
-
-
-</div>
 </div>   {/* close MAIN CONTAINER */}
  
-	
-	{showAIChat && (
-  <div
-    onClick={() => setShowAIChat(false)}   // ✅ close on outside click
-    style={{
-      position: "fixed",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      background: "rgba(0,0,0,0.7)",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      zIndex: 9999   // 🔥 FIXED
-    }}
-  >
-    <div
-      onClick={(e) => e.stopPropagation()}   // ✅ prevent close inside
-      style={{
-        width: "420px",
-        background: "#020617",
-        borderRadius: "16px",
-        padding: "20px",
-        border: "1px solid rgba(255,255,255,0.1)"
-      }}
-    >
-      <div style={{
-        fontWeight: "600",
-        marginBottom: "10px",
-        color: "#fff"
-      }}>
-        🤖 Ask about this product
-      </div>
-
-      <input
-  value={aiQuestion}
-  onChange={(e) => setAiQuestion(e.target.value)}
-  placeholder="Ask about this product..."
-  style={{
-    width: "100%",
-    padding: "10px",
-    borderRadius: "10px",
-    border: "none",
-    marginBottom: "10px",
-    background: "#0f172a",
-
-    // 🔥 TEXT = BLUE
-    color: "#22c1ff",
-
-    // 🔥 CURSOR
-    caretColor: "#22c1ff",
-
-    outline: "none"
-  }}
-/>
-
-      <button
-  onClick={() => setShowAIChat(false)}
-  style={{
-    marginTop: "10px",
-    padding: "8px 14px",
-    borderRadius: "8px",
-    background: "#1e293b",
-    color: "#fff",
-    border: "none",
-    cursor: "pointer"
-  }}
->
-  Close
-</button>
-        
-    </div>
-  </div>
-  
-)}
-<style jsx>{`
-  input::placeholder {
-    color: rgba(34, 193, 255, 0.35);
-    font-family: 'Outfit', sans-serif;
-    font-weight: 300;
-    letter-spacing: 0.3px;
-  }
-`}</style>
 	</motion.div>
   );
   

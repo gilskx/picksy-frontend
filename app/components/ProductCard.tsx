@@ -50,6 +50,14 @@ const toggleCompare = (item: any) => {
     setShowComparePage(true);
   }
 };
+
+  const fullName = p.name || "";
+
+  // Split by comma
+  const parts = fullName.split(",");
+
+  const mainTitle = parts[0];                 // First name
+  
 	return (
 	  <div
 		className="nokku-product-card"
@@ -141,63 +149,72 @@ boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
         marginTop: "10px",
         height: "42px",
         overflow: "hidden",
-        color: "#f8fafc",
+        color: "rgba(34, 193, 255, 0.75)",
 		
         fontWeight: "500"
       }}>
-        {p.name}
+        {mainTitle}
       </div>
-
-      {/* PRICE */}
-      <div style={{
-        fontWeight: "700",
-        marginTop: "6px",
-        
-        color: "#ffffff",
-		fontSize: "17px"
-      }}>
-        {p.price && p.price > 0 ? `$${p.price}` : <div style={{
-  fontSize: "12px",
-  color: "#9ca3af",   // soft grey
-  marginTop: "4px"
+{/* PRICE + RATING ROW */}
+<div style={{
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginTop: "6px"
 }}>
-  Price unavailable
-</div>}
-		{(!p.price || p.price <= 0) && (
-  <a
-  href={(p.url || p.link)?.startsWith("http")
-    ? (p.url || p.link)
-    : `https://${p.url || p.link}`}
-  target="_blank"
-  rel="noopener noreferrer"
-  style={{
-    color: "#2563eb",
-    textDecoration: "underline",
-    fontSize: "13px",
-    display: "inline-block",
-    marginTop: "6px"
-  }}
->
-  Check Actual Price →
-</a>
-)}
-      </div>
 
-      {/* RATING */}
+  {/* PRICE */}
+  <div style={{
+    fontWeight: "700",
+    color: "rgba(34, 193, 255, 0.75)",
+    fontSize: "17px"
+  }}>
+    {p.price && p.price > 0 ? `$${p.price}` : (
       <div style={{
-        fontSize: "13px",
-        marginTop: "4px",
-        color: "#f59e0b"
+        fontSize: "12px",
+        color: "rgba(34, 193, 255, 0.75)",
+        marginTop: "4px"
       }}>
-        ⭐ {p.rating ? p.rating.toFixed(1) : "N/A"}
+        Price unavailable
       </div>
+    )}
 
+    {(!p.price || p.price <= 0) && (
+      <a
+        href={(p.url || p.link)?.startsWith("http")
+          ? (p.url || p.link)
+          : `https://${p.url || p.link}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          color: "#2563eb",
+          textDecoration: "underline",
+          fontSize: "12px",
+          display: "block",
+          marginTop: "4px"
+        }}
+      >
+        Check Price →
+      </a>
+    )}
+  </div>
+
+  {/* RATING */}
+  <div style={{
+    fontSize: "13px",
+    color: "#f59e0b",
+    whiteSpace: "nowrap"
+  }}>
+    ⭐ {p.rating ? p.rating.toFixed(1) : "N/A"}
+  </div>
+
+</div>
       {/* 🧠 AI INSIGHT */}
       <div style={{
         marginTop: "8px",
         fontSize: "12px",
-        color: "#2c7be5",
-        background: "#eef4ff",
+        color: "rgba(34, 193, 255, 0.75)",
+		background: "transparent",
         padding: "6px 10px",
         borderRadius: "8px",
         fontWeight: "500"
@@ -205,112 +222,101 @@ boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
         🧠 {aiInsight}
       </div>
 
-      {/* WHY THIS PRODUCT */}
-      <div
-        onClick={() => setShowWhy(!showWhy)}
-        style={{
-          fontSize: "12px",
-          color: "#2c7be5",
-          cursor: "pointer",
-          marginTop: "6px",
-          fontWeight: "500"
-        }}
-      >
-        {showWhy ? "Hide details ▲" : "Why this product? ▼"}
-      </div>
-
-      {showWhy && (
-        <div style={{
-          marginTop: "6px",
-          fontSize: "12px",
-          color: "#555",
-          lineHeight: "1.4",
-          background: "#f9fafc",
-          padding: "8px",
-          borderRadius: "8px"
-        }}>
-          ✔ Price optimized compared to similar items  
-          ✔ Strong user ratings and reviews  
-          ✔ High availability across platforms  
-          ✔ Balanced quality and cost
-        </div>
-      )}
+      
 
       {/* SOURCE */}
       <div style={{
         fontSize: "12px",
-        color: "#6b7280",
-        marginBottom: "10px",
-        marginTop: "6px"
+         marginBottom: "10px",
+        marginTop: "6px",
+		fontWeight: "500",
+		color: "rgba(34, 193, 255, 0.75)",
       }}>
-        {p.source?.toUpperCase()}
+	    
+       Sold on  {p.source}
       </div>
 
       {/* VIEW DEAL */}
-      {(p.url || p.link) && (
-        <a
-          href={(p.url || p.link).startsWith("http")
-            ? (p.url || p.link)
-            : `https://${p.url || p.link}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: "block",
-            background: "linear-gradient(135deg, #2c7be5, #00c6ff)",
-            textAlign: "center",
-            borderRadius: "25px",
-            padding: "10px",
-            fontSize: "13px",
-            textDecoration: "none",
-            color: "#fff",
-            fontWeight: "600",
-            marginTop: "10px",
-            boxShadow: "0 6px 15px rgba(44,123,229,0.3)"
-          }}
-        >
-          View Deal →
-        </a>
-      )}
-{isSelected && (
-  <div style={{
-    fontSize: "12px",
-    fontWeight: "500",
-    color: "#374151",
-    marginTop: "6px",
-    textAlign: "center",
-    background: "#f0fdf4",
-    padding: "6px",
-    borderRadius: "8px"
-  }}>
-    ✓ {p.name}
-  </div>
+{(p.url || p.link) && (
+  <a
+    href={(p.url || p.link).startsWith("http")
+      ? (p.url || p.link)
+      : `https://${p.url || p.link}`}
+    target="_blank"
+    rel="noopener noreferrer"
+
+    // ✅ MOVE EVENTS HERE (outside content)
+    onMouseOver={(e) => {
+      e.currentTarget.style.transform = "scale(1.04)";
+      e.currentTarget.style.boxShadow = "0 12px 30px rgba(34,193,255,0.4)";
+    }}
+    onMouseOut={(e) => {
+      e.currentTarget.style.transform = "scale(1)";
+      e.currentTarget.style.boxShadow = "0 8px 25px rgba(34,193,255,0.25)";
+    }}
+
+    style={{
+      display: "block",
+      textAlign: "center",
+      borderRadius: "25px",
+      padding: "10px",
+      fontSize: "13px",
+      textDecoration: "none",
+
+      background: "rgba(34, 193, 255, 0.12)",
+      border: "1px solid rgba(34, 193, 255, 0.35)",
+      color: "#22d3ee",
+
+      fontWeight: "600",
+      marginTop: "10px",
+
+      boxShadow: "0 8px 25px rgba(34,193,255,0.25)",
+      backdropFilter: "blur(6px)",
+
+      transition: "all 0.25s ease"
+    }}
+  >
+    View Deal →
+  </a>
 )}
-      {/* ✅ COMPARE BUTTON */}
-      <button
+	  
+	  
+	  
+
+
+
+{/* ✅ COMPARE BUTTON */}
+<button
   onClick={() => toggleCompare(p)}
+
+  onMouseOver={(e) => {
+    e.currentTarget.style.transform = "scale(1.04)";
+    e.currentTarget.style.boxShadow = "0 12px 30px rgba(34,193,255,0.4)";
+  }}
+  onMouseOut={(e) => {
+    e.currentTarget.style.transform = "scale(1)";
+    e.currentTarget.style.boxShadow = "0 8px 25px rgba(34,193,255,0.25)";
+  }}
+
   style={{
     width: "100%",
     marginTop: "10px",
     padding: "10px",
     borderRadius: "25px",
-    border: isSelected
-      ? "2px solid #22c55e"
-      : "2px solid #3b82f6",
-    background: isSelected
-      ? "linear-gradient(135deg, #dcfce7, #bbf7d0)"
-      : "linear-gradient(135deg, #eff6ff, #dbeafe)",
-    color: isSelected
-      ? "#166534"
-      : "#1d4ed8",
+    fontSize: "13px",
+
+    // ✅ SAME AS VIEW DEAL
+    background: "rgba(34, 193, 255, 0.12)",
+    border: "1px solid rgba(34, 193, 255, 0.35)",
+    color: isSelected ? "#22c55e" : "#22d3ee",
+
     fontWeight: "600",
     cursor: "pointer",
-    transition: "all 0.2s ease"
-  }}
-  onMouseOver={(e) => {
-    e.currentTarget.style.transform = "scale(1.03)";
-  }}
-  onMouseOut={(e) => {
-    e.currentTarget.style.transform = "scale(1)";
+
+    boxShadow: "0 8px 25px rgba(34,193,255,0.25)",
+    backdropFilter: "blur(6px)",
+
+    transition: "all 0.25s ease"
   }}
 >
   {isSelected ? "✓ Added" : "Compare"}

@@ -2,7 +2,6 @@
 import AIWaveLoader from "./AIWaveLoader";
 import ProductCard from "./ProductCard";
 import "./globals.css";
-import SearchProgress from "./SearchProgress"; // not using this instead using AIWaveLoader - need to be deleted later
 import { useState, useEffect, useRef } from "react";
 
 export default function ResultsSection({
@@ -168,9 +167,9 @@ return (
             <div style={{
               fontSize: "14px",
               fontWeight: "500",
-              color: "#6b7280"
+              color: "rgba(34,193,255,0.75)",
             }}>
-              Results for "{query}" - {displayProducts.length} products picked
+              More options recommended by nokku.ai for you "{query}" - {displayProducts.length} Products and enables comparison across leading brands — instantly
             </div>
 
           </div>
@@ -188,7 +187,8 @@ return (
     marginBottom: "20px"
   }}>
 
-    {/* 🔲 BUTTON BOX */}
+    
+	{/* 🔲 BUTTON BOX */}
     <div style={{
       display: "flex",
       gap: "10px",
@@ -200,127 +200,148 @@ boxShadow: "0 10px 30px rgba(59,130,246,0.25)"
      
     }}>
       {["all", "best", "cheap"].map((m) => (
-        <div
-          key={m}
-          onClick={() => setMode(m)}
-          style={{
-            padding: "8px 16px",
-            borderRadius: "20px",
-            cursor: "pointer",
-            fontSize: "13px",
-            fontWeight: "600",
-            background:
-              mode === m
-                ? (m === "cheap"
-                    ? "linear-gradient(135deg, #22c55e, #16a34a)"
-                    : "linear-gradient(135deg, #6366f1, #3b82f6)")
-                : "rgba(255,255,255,0.05)",
-            color:
-              mode === m
-                ? "#fff"
-                : m === "cheap"
-                  ? "#22c55e"
-                  : "#94a3b8",
-            border:
-              m === "cheap"
-                ? "1px solid rgba(34,197,94,0.4)"
-                : "1px solid rgba(255,255,255,0.1)"
-          }}
-        >
-          {m === "all" ? "All" : m === "best" ? "Best" : "Save 💰"}
-        </div>
-      ))}
+  <div
+    key={m}
+    onClick={() => setMode(m)}
+    style={{
+      padding: "8px 16px",
+      borderRadius: "20px",
+      cursor: "pointer",
+      fontSize: "13px",
+      fontWeight: "600",
+
+      // 🔥 SAME BACKGROUND FOR ALL (ACTIVE vs INACTIVE)
+     background: "rgba(255,255,255,0.05)",
+
+color: "#22c1ff",
+
+border:
+  mode === m
+    ? "1px solid rgba(59,130,246,0.8)"   // 🔥 active highlight
+    : "1px solid rgba(255,255,255,0.1)",
+
+      // 🔥 SAME BORDER FOR ALL
+      border: "1px solid rgba(255,255,255,0.1)",
+
+      transition: "all 0.25s ease"
+    }}
+    onMouseOver={(e) => {
+      e.currentTarget.style.transform = "scale(1.05)";
+    }}
+    onMouseOut={(e) => {
+      e.currentTarget.style.transform = "scale(1)";
+    }}
+  >
+    {m === "all" ? "All" : m === "best" ? "Best" : "Save 💰"}
+  </div>
+))}
     </div>
 
     {/* 🔲 FILTER BOX */}
-    <div style={{
-      display: "flex",
-      gap: "10px",
-      flexWrap: "wrap",
-      alignItems: "center",
-      justifyContent: "center",
-      padding: "10px",
-      borderRadius: "12px",
-	background: "rgba(59,130,246,0.12)",   // soft blue fill
-	border: "1px solid rgba(59,130,246,0.35)", // blue border
-	boxShadow: "0 10px 30px rgba(59,130,246,0.25)"
-    }}>
+    
+	<div style={{
+  display: "flex",
+  gap: "10px",
+  flexWrap: "wrap",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: "10px",
+  borderRadius: "12px",
+  background: "rgba(59,130,246,0.12)",
+  border: "1px solid rgba(59,130,246,0.35)",
+  boxShadow: "0 10px 30px rgba(59,130,246,0.25)"
+}}>
 
-      {/* SEARCH */}
-      <input
-	  placeholder="Search for product"
-		className="filter-input"
-        value={searchInResults}
-        onChange={(e) => setSearchInResults(e.target.value)}
-        style={{
-          padding: "8px 14px",
-          borderRadius: "25px",
-          border: "1px solid rgba(255,255,255,0.2)",
-          background: "rgba(255,255,255,0.05)",
-          color: "#fff",
-          minWidth: "180px"
-        }}
-      />
+  {/* 🔥 COMMON STYLE */}
+  {(() => {
+    const commonStyle = {
+      padding: "8px 14px",
+      borderRadius: "25px",
+      border: "1px solid rgba(59,130,246,0.35)",
+      background: "rgba(59,130,246,0.12)",
+      color: "rgba(226, 232, 240, 0.75)"
+      outline: "none",
 
-      {/* MIN */}
-      <input
-        placeholder="Min Price"
-		className="filter-input"
-        value={minPrice}
-        onChange={(e) => setMinPrice(e.target.value)}
-        style={{
-          padding: "8px 14px",
-          borderRadius: "25px",
-          border: "1px solid rgba(255,255,255,0.2)",
-          background: "rgba(255,255,255,0.05)",   // match other inputs
-         color: "#e2e8f0",
-          width: "120px"
-        }}
-      />
+      // 🔥 FORCE REMOVE DEFAULT INPUT STYLES
+      appearance: "none",
+      WebkitAppearance: "none",
+      MozAppearance: "none",
 
-      {/* MAX */}
-      <input
-        placeholder="Max Price"
-		className="filter-input"
-        value={maxPrice}
-        onChange={(e) => setMaxPrice(e.target.value)}
-        style={{
-          padding: "8px 14px",
-          borderRadius: "25px",
-          border: "1px solid rgba(255,255,255,0.2)",
-          background: "rgba(255,255,255,0.05)",   // match other inputs
-         color: "#e2e8f0",
-          width: "120px"
-        }}
-      />
+      // 🔥 FORCE TEXT RENDERING (IMPORTANT)
+      WebkitTextFillColor: "#e2e8f0"
+    };
 
-      {/* SORT */}
-      <select
-  value={sortBy}
-  onChange={(e) => setSortBy(e.target.value)}
-  style={{
-    padding: "8px 16px",
-    borderRadius: "25px",
-    border: "1px solid rgba(59,130,246,0.4)",
+    return (
+      <>
+        {/* SEARCH */}
+        <input
+          placeholder="Search for product"
+          value={searchInResults}
+          onChange={(e) => setSearchInResults(e.target.value)}
+          style={{
+            ...commonStyle,
+            minWidth: "180px"
+          }}
+        />
 
-    background: "rgba(59,130,246,0.12)",   // 🔵 blue theme
-    color: "#e2e8f0",
+        {/* MIN */}
+        <input
+          placeholder="Min Price"
+          value={minPrice}
+          onChange={(e) => setMinPrice(e.target.value)}
+          style={{
+            ...commonStyle,
+            width: "120px"
+          }}
+        />
 
-    cursor: "pointer",
-    appearance: "none",
-    WebkitAppearance: "none",
-    MozAppearance: "none",
+        {/* MAX */}
+        <input
+          placeholder="Max Price"
+          value={maxPrice}
+          onChange={(e) => setMaxPrice(e.target.value)}
+          style={{
+            ...commonStyle,
+            width: "120px"
+          }}
+        />
 
-    minWidth: "160px"
-  }}
->
-        <option value="best">Best Match</option>
-        <option value="priceLow">Price: Low to High</option>
-        <option value="priceHigh">Price: High to Low</option>
-        <option value="rating">Top Rated</option>
-      </select>
+        {/* SORT */}
+        <select
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value)}
+          style={{
+            ...commonStyle,
+            cursor: "pointer",
+            minWidth: "160px"
+          }}
+        >
+          <option value="best">Best Match</option>
+          <option value="priceLow">Price: Low to High</option>
+          <option value="priceHigh">Price: High to Low</option>
+          <option value="rating">Top Rated</option>
+        </select>
+      </>
+    );
+  })()}
 
-    </div>
+</div>
+
+{/* 🔥 FORCE OVERRIDE GLOBAL CSS */}
+<style jsx>{`
+  input,
+  select {
+    background: rgba(59,130,246,0.12) !important;
+    color: #e2e8f0 !important;
+    border: 1px solid rgba(59,130,246,0.35) !important;
+  }
+
+  input::placeholder {
+    color: rgba(226, 232, 240, 0.6) !important;
+  }
+`}</style>
+	
+	  {/* Filter Box Ebs */}
 
   </div>
 )}
