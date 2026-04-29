@@ -146,11 +146,7 @@ return (
     padding: "24px",
     borderRadius: "12px",
     
-    background: "rgba(255,255,255,0.03)",   // 🔥 subtle glass
-    border: "1px solid rgba(255,255,255,0.08)",
-    boxShadow: "0 20px 50px rgba(0,0,0,0.4)",
-    
-    backdropFilter: "blur(12px)"
+ 
   }}>
 
       {/* HEADER */}

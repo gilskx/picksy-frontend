@@ -67,7 +67,7 @@ export default function SearchProgress({
         marginBottom: "15px",
         flexWrap: "wrap"
       }}>
-        {activeSources?.map((s: string, i: number) => (
+        {activeSources?.map((s: string, i: number) => ( 
           <div key={i} style={{
             padding: "6px 12px",
             borderRadius: "20px",

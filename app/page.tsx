@@ -235,24 +235,13 @@ color: "#e5e7eb"         // base text (soft white)
 
 {hasSearched && !loading && (
   <div style={{
-    position: "fixed",              // 🔥 change from sticky → fixed
-    top: "70px",                    // below your nokku badge
-    left: "50%",
-    transform: "translateX(-50%)",
-    zIndex: 2000,
-
     width: "100%",
-    maxWidth: "700px",
-    padding: "0 16px"
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "20px",
+    marginBottom: "10px"
   }}>
-    <div style={{
-      background: "transparent",    // ✅ remove dark bar
-      borderRadius: "40px",
-      padding: "6px 10px",
-
-      // optional subtle elevation (recommended)
-      boxShadow: "0 10px 30px rgba(0,0,0,0.4)"
-    }}>
+    <div style={{ width: "100%", maxWidth: "700px" }}>
       <SearchBar
         query={query}
         setQuery={setQuery}

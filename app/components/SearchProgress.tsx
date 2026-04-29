@@ -49,7 +49,7 @@ export default function SearchProgress({
         }}>
           🔍
 
-
+			</div>
       {/* STAGE */}
       <div style={{
         color: "#cbd5f5",

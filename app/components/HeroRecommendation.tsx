@@ -150,7 +150,7 @@ const renderList = (list: string[]) => {
         {/* MAIN */}
         <div className="nokku-hero-rec-grid" style={{
   display: "grid",
-  gridTemplateColumns: "2.5fr 1fr",
+  gridTemplateColumns: "3fr 1.2fr",
 maxWidth: "1400px",
   gap: "40px",
   alignItems: "start",              // ✅ FIX
@@ -213,7 +213,7 @@ maxWidth: "1400px",
         marginTop: "6px",
         fontSize: "12px",
         color: "#22c1ff",
-        maxWidth: "520px",
+        maxWidth: "100%",
         lineHeight: "1.4"
       }}>
         {subItems.join(" • ")}
@@ -309,7 +309,7 @@ maxWidth: "1400px",
 <div style={{
   position: "relative",
 
-  maxWidth: "520px",
+  maxWidth: "100%",
   width: "100%",
 
   padding: "0",        // 🔥 KEY FIX (remove horizontal padding)
@@ -465,7 +465,7 @@ maxWidth: "1400px",
   alignItems: "center",
   justifyContent: "center",
   marginTop: "100px" ,
-marginLeft: "-60px"
+marginLeft: "0px"
 }}>
 
   {/* 🔵 OUTER RING */}
@@ -547,7 +547,7 @@ marginLeft: "-60px"
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "2.2fr 1fr 2fr",   // 🔥 balanced layout
+          gridTemplateColumns: "3.5fr 1fr 2fr"	,   // 🔥 balanced layout
           gap: "40px",
           alignItems: "center"
         }}

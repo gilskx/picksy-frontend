@@ -61,201 +61,189 @@ export default function SearchBar({
       return;
     }
   }, [query]);
-
+if (hasSearched && !query) return null; 
   return (
   <div className="nokku-search-wrapper" style={{
-      marginTop: hasSearched ? "0px" : "20px",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      width: "100%",
+  marginTop: hasSearched ? "0px" : "20px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  width: "100%",
 
-      position: hasSearched ? "sticky" : "relative",
-      top: hasSearched ? "0px" : "auto",
-      zIndex: hasSearched ? 1000 : "auto",
+  // 🔥 FIXED STICKY LOGIC
+  position: hasSearched && query ? "sticky" : "relative",
+  top: hasSearched && query ? "0px" : "auto",
+  zIndex: hasSearched ? 1000 : "auto",
 
-      background: "transparent",
-      padding: hasSearched ? "6px" : "10px",
-      boxShadow: hasSearched ? "0 4px 12px rgba(0,0,0,0.1)" : "none",
-      transition: "all 0.3s ease"
-    }}>
-
-      <div className="nokku-search-box" style={{
-  background: "rgba(255,255,255,0.06)",
-        border: "1px solid rgba(255,255,255,0.15)",
-        backdropFilter: "blur(12px)",
-        borderRadius: "40px",
-        maxWidth: hasSearched ? "600px" : "700px",
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        padding: hasSearched ? "4px" : "6px",
-        boxShadow: focused
-          ? "0 0 0 2px rgba(59,130,246,0.5), 0 10px 40px rgba(59,130,246,0.35)"
-          : "0 10px 40px rgba(59,130,246,0.25)",
-        transition: "all 0.3s ease"
-      }}>
-
-        {/* ICON */}
-        <span
-          style={{
-            marginLeft: "8px",
-            marginRight: "6px",
-            fontSize: "18px",
-            fontWeight: "600",
-            animation: isTyping ? "twinkle 1.2s ease-in-out infinite" : "none",
-            textShadow: isTyping
-              ? "0 0 12px rgba(255,215,0,1)"
-              : "0 0 6px rgba(255,215,0,0.6)"
-          }}
-        >
-          ✨
-        </span>
-
-        {/* INPUT */}
-        <input
-          ref={inputRef}
-          value={query}
-          onFocus={() => {
-            setIsTyping(true);
-            setShowSuggestions(true);
-            setFocused(true);
-          }}
-          onBlur={() => {
-            setTimeout(() => setShowSuggestions(false), 200);
-            setIsTyping(false);
-            setFocused(false);
-          }}
-          onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && !e.repeat) {
-              setShowSuggestions(false);
-              search();
-            }
-          }}
-          placeholder={placeholder}
-          spellCheck={false}
-         style={{
-  flex: 1,
-  border: "none",
-  outline: "none",
-  padding: "6px 0",
-  fontSize: hasSearched ? "16px" : "18px",
   background: "transparent",
 
-  // 🔥 TYPED TEXT → BLUE
-  color: "#22c1ff",
+  // 🔥 REMOVE EMPTY SPACE WHEN NO QUERY
+  padding: hasSearched && query ? "6px" : "0px",
 
-  // 🔥 CURSOR COLOR
-  caretColor: "#22c1ff"
-}}
-        />
+  boxShadow: hasSearched && query
+    ? "0 4px 12px rgba(0,0,0,0.1)"
+    : "none",
 
-        {/* BUTTON */}
-        <button
-  onClick={() => {
-    setShowSuggestions(false);
-    search();
-  }}
-  style={{
-    background: "linear-gradient(135deg, #3b82f6, #6366f1)",
-    color: "#fff",
-    borderRadius: "50%",
-    width: "44px",            // ✅ bigger for mobile
-    height: "44px",           // ✅ Apple touch size
-    fontSize: "16px",
-    border: "none",
-    cursor: "pointer",
+  transition: "all 0.3s ease"
+}}>
 
+  <div className="nokku-search-box" style={{
+    background: "rgba(255,255,255,0.06)",
+    border: "1px solid rgba(255,255,255,0.15)",
+    backdropFilter: "blur(12px)",
+    borderRadius: "40px",
+    maxWidth: hasSearched ? "600px" : "700px",
+    width: "100%",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    padding: hasSearched ? "4px" : "6px",
+    boxShadow: focused
+      ? "0 0 0 2px rgba(59,130,246,0.5), 0 10px 40px rgba(59,130,246,0.35)"
+      : "0 10px 40px rgba(59,130,246,0.25)",
+    transition: "all 0.3s ease"
+  }}>
 
-    marginLeft: "6px",
+    {/* ICON */}
+    <span
+      style={{
+        marginLeft: "8px",
+        marginRight: "6px",
+        fontSize: "18px",
+        fontWeight: "600",
+        animation: isTyping ? "twinkle 1.2s ease-in-out infinite" : "none",
+        textShadow: isTyping
+          ? "0 0 12px rgba(255,215,0,1)"
+          : "0 0 6px rgba(255,215,0,0.6)"
+      }}
+    >
+      ✨
+    </span>
 
-    boxShadow: "0 6px 20px rgba(59,130,246,0.5)",
-    transition: "all 0.2s ease",
+    {/* INPUT */}
+    <input
+      ref={inputRef}
+      value={query}
+      onFocus={() => {
+        setIsTyping(true);
+        setShowSuggestions(true);
+        setFocused(true);
+      }}
+      onBlur={() => {
+        setTimeout(() => setShowSuggestions(false), 200);
+        setIsTyping(false);
+        setFocused(false);
+      }}
+      onChange={(e) => setQuery(e.target.value)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" && !e.repeat) {
+          setShowSuggestions(false);
+          search();
+        }
+      }}
+      placeholder={placeholder}
+      spellCheck={false}
+      style={{
+        flex: 1,
+        border: "none",
+        outline: "none",
+        padding: "6px 0",
+        fontSize: hasSearched ? "16px" : "18px",
+        background: "transparent",
+        color: "#22c1ff",
+        caretColor: "#22c1ff"
+      }}
+    />
 
-    position: "relative",     // ✅ IMPORTANT (fix click issues)
-    zIndex: 5,                // ✅ prevents overlay block
-    WebkitTapHighlightColor: "transparent"
-  }}
+    {/* BUTTON */}
+    <button
+      onClick={() => {
+        setShowSuggestions(false);
+        search();
+      }}
+      style={{
+        background: "linear-gradient(135deg, #3b82f6, #6366f1)",
+        color: "#fff",
+        borderRadius: "50%",
+        width: "44px",
+        height: "44px",
+        fontSize: "16px",
+        border: "none",
+        cursor: "pointer",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        marginLeft: "6px",
+        boxShadow: "0 6px 20px rgba(59,130,246,0.5)",
+        transition: "all 0.2s ease",
+        position: "relative",
+        zIndex: 5,
+        WebkitTapHighlightColor: "transparent"
+      }}
+      onMouseOver={(e) => {
+        e.currentTarget.style.transform = "scale(1.1)";
+      }}
+      onMouseOut={(e) => {
+        e.currentTarget.style.transform = "scale(1)";
+      }}
+      onTouchStart={(e) => {
+        e.currentTarget.style.transform = "scale(0.95)";
+      }}
+      onTouchEnd={(e) => {
+        e.currentTarget.style.transform = "scale(1)";
+      }}
+    >
+      🔍
+    </button>
 
-  // ✅ Desktop hover
-  onMouseOver={(e) => {
-    e.currentTarget.style.transform = "scale(1.1)";
-  }}
-  onMouseOut={(e) => {
-    e.currentTarget.style.transform = "scale(1)";
-  }}
+  </div>
 
-  // ✅ Mobile touch feedback (VERY IMPORTANT)
-  onTouchStart={(e) => {
-    e.currentTarget.style.transform = "scale(0.95)";
-  }}
-  onTouchEnd={(e) => {
-    e.currentTarget.style.transform = "scale(1)";
-  }}
->
-  🔍
-</button>
-
-      </div>
-
-      {/* AUTOCOMPLETE */}
-      {showSuggestions && query.length >= 2 && suggestions.length > 0 && (
-        <div style={{
-          width: "100%",
-          maxWidth: hasSearched ? "600px" : "700px",
-          background: "#fff",
-          borderRadius: "10px",
-          boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
-          marginTop: "6px",
-          overflow: "hidden"
-        }}>
-          {suggestions.filter(s => s && s.trim()).map((s, i) => (
-            <div
-              key={i}
-              onClick={() => {
-                setQuery(s);
-                setShowSuggestions(false);
-                search();
-              }}
-              style={{
-                padding: "10px",
-                cursor: "pointer",
-                borderBottom: "1px solid #eee",
-                color: "#111827"
-              }}
-            >
-              {s}
-            </div>
-          ))}
+  {/* AUTOCOMPLETE */}
+  {showSuggestions && query.length >= 2 && suggestions.length > 0 && (
+    <div style={{
+      width: "100%",
+      maxWidth: hasSearched ? "600px" : "700px",
+      background: "#fff",
+      borderRadius: "10px",
+      boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+      marginTop: "6px",
+      overflow: "hidden"
+    }}>
+      {suggestions.filter(s => s && s.trim()).map((s, i) => (
+        <div
+          key={i}
+          onClick={() => {
+            setQuery(s);
+            setShowSuggestions(false);
+            search();
+          }}
+          style={{
+            padding: "10px",
+            cursor: "pointer",
+            borderBottom: "1px solid #eee",
+            color: "#111827"
+          }}
+        >
+          {s}
         </div>
-      )}
-
-     <style jsx>{`
-  @keyframes twinkle {
-    0% { transform: scale(1); opacity: 0.7; }
-    50% { transform: scale(1.2); opacity: 1; }
-    100% { transform: scale(1); opacity: 0.7; }
-  }
-
-  @keyframes pulseGlow {
-    0% { box-shadow: 0 0 20px rgba(59,130,246,0.4); }
-    50% { box-shadow: 0 0 60px rgba(59,130,246,0.8); }
-    100% { box-shadow: 0 0 20px rgba(59,130,246,0.4); }
-  }
-
-  /* 🔥 ADD THIS BLOCK HERE */
-  input::placeholder {
-    color: rgba(34, 193, 255, 0.4);
-    font-family: 'Outfit', sans-serif;
-    font-weight: 300;
-    letter-spacing: 0.3px;
-  }
-`}</style>
-
+      ))}
     </div>
+  )}
+
+  <style jsx>{`
+    @keyframes twinkle {
+      0% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.7; }
+    }
+
+    input::placeholder {
+      color: rgba(34, 193, 255, 0.4);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.3px;
+    }
+  `}</style>
+
+</div>
   );
 }
