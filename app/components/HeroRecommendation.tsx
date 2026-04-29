@@ -509,136 +509,37 @@ marginLeft: "0px"
 {/* END RIGHT → IMAGE */}
 </div>
 
-
-
-
-			  
-<span style={{
-  marginLeft: "10px",
-  fontSize: "14px",
-  fontWeight: "600"
+{/* AI LINE */}
+<div style={{
+  fontSize: "20px",
+  marginBottom: "8px",
+  color: "rgba(34,193,255,0.75)",
+  letterSpacing: "0.3px",
+  fontWeight: "500",
+  textAlign: "center" ,  // ✅ ADD THIS
+  marginTop: "80px"
 }}>
-  
-</span>
-              
-			  
-            </div>
-
-            
-
-
-{/* 🔥 CHEAPER OPTION */}
-
-{/* 🔥 CHEAPER OPTION */}
-
-{cheaper && (
-
-  <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-
-    <div
-      style={{
-        width: "100%",
-        maxWidth: "1100px",     // 🔥 more breathing space
-        padding: "20px 10px",
-        marginTop: "20px"
-      }}
-    >
-
-      {/* 🔥 MAIN GRID */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "3.5fr 1fr 2fr"	,   // 🔥 balanced layout
-          gap: "40px",
-          alignItems: "center"
-        }}
-      >
-
-        {/* 🔥 LEFT */}
-        <div>
-
-          {/* AI LINE */}
+  💡 Nokku AI found a smarter, more affordable choice for you.
+</div>
+{/* AI LINE End */}
+		  
+		  
+		  {/* PRODUCT NAME */}
           <div style={{
-            fontSize: "13px",
-            marginBottom: "8px",
-            color: "rgba(34,193,255,0.75)",
-            letterSpacing: "0.3px",
-            fontWeight: "500"
-          }}>
-            💡 Nokku AI found a smarter, more affordable choice for you.
-          </div>
-
-          {/* PRODUCT NAME */}
-          <div style={{
-            fontSize: "15px",
+            fontSize: "22px",
             fontWeight: "600",
             color: "#22c1ff",
+			marginTop: "30px",
             marginBottom: "6px"
           }}>
             {cheaper.name?.split(",")[0]}
           </div>
-
-          {/* SAVE */}
-          {saveAmount && (
-            <div style={{
-              fontSize: "24px",
-              fontWeight: "700",
-              color: "#22c1ff",
-              marginBottom: "10px"
-            }}>
-              Save ${saveAmount}
-            </div>
-          )}
-
-          {/* PRICE STRIP */}
-          <div style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "10px",
-            padding: "6px 12px",
-            borderRadius: "20px",
-            background: "rgba(59,130,246,0.1)",
-            border: "1px solid rgba(59,130,246,0.3)",
-            fontSize: "14px",
-            color: "#22c1ff"
-          }}>
-            <span style={{ fontWeight: "600" }}>${cheaper.price}</span>
-            <span>•</span>
-            <span>⭐ {Number(cheaper.rating || 3.5).toFixed(1)}</span>
-            <span>•</span>
-            <span>{cheaper.source}</span>
-          </div>
-
-          {/* BUTTON */}
-          <div>
-            <a
-              href={cheaper.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-block",
-                marginTop: "14px",
-                padding: "6px 12px",
-                borderRadius: "25px",
-                background: "rgba(59,130,246,0.1)",
-                border: "1px solid rgba(59,130,246,0.3)",
-                color: "#22c1ff",
-                textDecoration: "none",
-                fontWeight: "500",
-                fontSize: "14px",
-                transition: "all 0.25s ease"
-              }}
-            >
-              Buy on {cheaper.source} →
-            </a>
-          </div>
-
-        </div>
-
-        {/* 🔥 MIDDLE (IMAGE) */}
+		  {/* PRODUCT End */}
+		  
+		    {/* 🔥 Cheap (IMAGE) */}
         <div style={{
           display: "flex",
-          justifyContent: "center"
+          justifyContent: "space-between"
         }}>
           <img
             src={cheaper.image}
@@ -649,8 +550,92 @@ marginLeft: "0px"
             }}
           />
         </div>
+		  
+		  {/* SAVE */}
+          {saveAmount && (
+            <div style={{
+              fontSize: "24px",
+              fontWeight: "700",
+              color: "#22c1ff",
+              marginBottom: "10px"
+            }}>
+              Save ${saveAmount}
+            </div>
+          )}
+		  
+		  {/* SAVE Amount End*/}
+		  
+		 
+		 
+{/* 🔥 ROW: PRICE + BUTTON */}
+<div style={{
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-start",   // 🔥 pushes button to right
+  gap: "16px",
+  marginTop: "10px"
+}}>
 
-        {/* 🔥 RIGHT */}
+  {/* PRICE BLOCK */}
+  <div style={{
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "10px",
+    padding: "6px 12px",
+    borderRadius: "20px",
+    background: "rgba(59,130,246,0.1)",
+    border: "1px solid rgba(59,130,246,0.3)",
+    fontSize: "px"
+  }}>
+
+    <div style={{ color: "#22c1ff", fontWeight: "600" }}>
+      ${cheaper.price}
+    </div>
+
+    <div style={{ color: "#22c1ff" }}>•</div>
+
+    <div style={{ color: "#22c1ff" }}>
+      ⭐ {Number(cheaper.rating || 3.5).toFixed(1)}
+    </div>
+
+    <div style={{ color: "#22c1ff" }}>•</div>
+
+    <div style={{ textTransform: "capitalize", color: "#22c1ff" }}>
+      {cheaper.source}
+    </div>
+
+  </div>
+
+
+
+
+  {/* 🔥 BUTTON */}
+  <a
+    href={cheaper.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      padding: "6px 14px",
+      borderRadius: "25px",
+      background: "rgba(59,130,246,0.1)",
+      border: "1px solid rgba(59,130,246,0.3)",
+      color: "#22c1ff",
+      textDecoration: "none",
+      fontWeight: "500",
+      fontSize: "14px",
+      whiteSpace: "nowrap",   // 🔥 prevents breaking
+      transition: "all 0.25s ease"
+    }}
+  >
+    Buy on {cheaper.source} →
+  </a>
+
+</div>
+		
+
+      
+
+ {/* 🔥 RIGHT */}
         <div>
 
           {recommendation?.why_cheaper_product?.length > 0 && (
@@ -676,13 +661,75 @@ marginLeft: "0px"
 
         </div>
 
+
+
+{/*  Below End of Main Tab*/}		
+		  
+		  
+		  
+</div>
+
+	        
+        
+
+
+
+{/* 🔥 CHEAPER OPTION */}
+
+{cheaper && (
+
+ 
+
+    <div
+      style={{
+        width: "100%",
+        maxWidth: "1100px",     // 🔥 more breathing space
+        padding: "20px 10px",
+        marginTop: "20px"
+      }}
+    >
+
+      {/* 🔥 MAIN GRID */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "3.5fr 1fr 2fr"	,   // 🔥 balanced layout
+          gap: "40px",
+          alignItems: "center"
+        }}
+      >
+
+        {/* 🔥 LEFT */}
+        <div>
+
+  
+
+          
+
+          
+        
+
+        </div>
+
+
+
+
+
+
+       
+
       </div>
 
-    </div>
+   
 
   </div>
 )}
+
+
+
 {/* 🔥 CHEAPER End */}
+
+
 
          <div style={{
   display: "flex",
