@@ -114,19 +114,24 @@ const renderList = (list: string[]) => {
 	
     style={{
   width: "100%",
-  maxWidth: "1200px",   // ✅ ADD
+  maxWidth: "100vw",
   margin: "0 auto",
-  padding: "0 20px",
-  marginTop: "80px",
-  display: "block"      // ❌ remove flex
+  padding: "0 16px",
+  marginTop: "40px",
+  display: "block",
+  boxSizing: "border-box",
+  overflowX: "hidden"
 }}>
 
       <div style={{
-        borderRadius: "24px",
-        padding: "20px 30px",
-        background: "#000000",
-        
-      }}>
+  width: "100%",
+  maxWidth: "100%",
+  boxSizing: "border-box",
+  overflowX: "hidden",
+  borderRadius: "24px",
+  padding: "20px 12px",
+  background: "#000000",
+}}>
 
         {/* HEADER */}
         <div style={{
@@ -155,10 +160,12 @@ const renderList = (list: string[]) => {
         <div className="nokku-hero-rec-grid" style={{
   display: "grid",
   gridTemplateColumns: "1fr",
-maxWidth: "1400px",
-  gap: "40px",
-  alignItems: "start",              // ✅ FIX
-  width: "100%"                     // ✅ ADD
+  maxWidth: "100%",
+  gap: "28px",
+  alignItems: "start",
+  width: "100%",
+  boxSizing: "border-box",
+  overflowX: "hidden"
 }}>
 
           {/* LEFT */}
@@ -196,7 +203,10 @@ maxWidth: "1400px",
   fontSize: "30px",
   fontWeight: "700",
   lineHeight: "1.4",
-
+  textAlign: "left",
+  wordBreak: "break-word",
+  overflowWrap: "break-word",
+  maxWidth: "100%",
   background: "linear-gradient(135deg, #22c1ff, #6c63ff)",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent"
@@ -241,8 +251,10 @@ maxWidth: "1400px",
 <div style={{
   display: "flex",
   alignItems: "center",
-  justifyContent: "flex-start",
-	gap: "25px",
+  justifyContent: "center",
+gap: "16px",
+width: "100%",
+boxSizing: "border-box",
   marginTop: "12px",
   flexWrap: "wrap"
 }}>
@@ -316,19 +328,18 @@ maxWidth: "1400px",
   width: "320px",
   height: "320px",
   display: "flex",
-  
   alignItems: "center",
   justifyContent: "center",
-  marginTop: "100px" ,
-marginLeft: "0px"
+  marginTop: "100px",
+  marginLeft: "0px"
 }}>
 
   {/* 🔵 OUTER RING */}
   <motion.div
     style={{
       position: "absolute",
-      width: "440px",
-      height: "440px",
+      width: "min(420px, 90vw)",
+height: "min(420px, 90vw)",
       borderRadius: "50%",
       border: "2px solid rgba(59,130,246,0.5)"
     }}
@@ -344,8 +355,8 @@ marginLeft: "0px"
   <motion.div
     style={{
       position: "absolute",
-      width: "350px",
-      height: "350px",
+      width: "min(330px, 76vw)",
+height: "min(330px, 76vw)",
       borderRadius: "50%",
       border: "1px dashed rgba(59,130,246,0.4)"
     }}
@@ -370,7 +381,7 @@ marginLeft: "0px"
       ease: "easeInOut"
     }}
     style={{
-      width: "220px",
+      width: "min(220px, 58vw)",
       objectFit: "contain",
       zIndex: 2,
       filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.9))"

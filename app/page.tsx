@@ -518,17 +518,7 @@ color: "#e5e7eb"         // base text (soft white)
 				
 				
 
-				<HeroRecommendation
-				recommendation={recommendation}
-				confidence={confidence}
-				  cheaper={cheaper}
-				  recUrl={recUrl}
-				  aiActive={aiActive}
-				  mode={mode}
-				  setMode={setMode}
-				    who_should_buy_best={whoShouldBuyBest}          // 🔥 ADD
-					who_should_buy_cheaper={whoShouldBuyCheaper}
-				/>
+				
 				
 				
 	 
