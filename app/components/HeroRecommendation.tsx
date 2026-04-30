@@ -186,51 +186,53 @@ const renderList = (list: string[]) => {
 {(() => {
   const fullName = p.name || "";
 
-  // Split by comma
-  const parts = fullName.split(",");
+  let mainTitle = fullName;
+  let subItems: string[] = [];
 
-  const mainTitle = parts[0];                 // First name
-  const subItems = parts.slice(1, 4);         // Next 3 items
+  // 🔥 PRIORITY 1 → split by " | "
+  if (fullName.includes("|")) {
+    const parts = fullName.split("|").map(s => s.trim());
+    mainTitle = parts[0];        // only first part
+    subItems = parts.slice(1, 4);
+  }
+
+  // 🔥 PRIORITY 2 → fallback to comma
+  else if (fullName.includes(",")) {
+    const parts = fullName.split(",").map(s => s.trim());
+    mainTitle = parts[0];
+    subItems = parts.slice(1, 4);
+  }
 
   return (
     <>
-	
-
-
-	
       {/* MAIN TITLE */}
       <div style={{
-  fontSize: "30px",
-  fontWeight: "700",
-  lineHeight: "1.4",
-  textAlign: "left",
-  wordBreak: "break-word",
-  overflowWrap: "break-word",
-  maxWidth: "100%",
-  background: "linear-gradient(135deg, #22c1ff, #6c63ff)",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent"
-}}>
-  {mainTitle}
-</div>
-
-
-
-
-
-
-
+        fontSize: "30px",
+        fontWeight: "700",
+        lineHeight: "1.4",
+        textAlign: "left",
+        wordBreak: "break-word",
+        overflowWrap: "break-word",
+        maxWidth: "100%",
+        background: "linear-gradient(135deg, #22c1ff, #6c63ff)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent"
+      }}>
+        {mainTitle}
+      </div>
 
       {/* SUB ITEMS */}
-      <div style={{
-        marginTop: "6px",
-        fontSize: "12px",
-        color: "#22c1ff",
-        maxWidth: "100%",
-        lineHeight: "1.4"
-      }}>
-        {subItems.join(" • ")}
-      </div>
+      {subItems.length > 0 && (
+        <div style={{
+          marginTop: "6px",
+          fontSize: "12px",
+          color: "#22c1ff",
+          maxWidth: "100%",
+          lineHeight: "1.4"
+        }}>
+          {subItems.join(" • ")}
+        </div>
+      )}
     </>
   );
 })()}
@@ -250,8 +252,8 @@ const renderList = (list: string[]) => {
   {/* 🔥 PRICE + RATING + CTA (SAME ROW) */}
 <div style={{
   display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+ 
+    justifyContent: "flex-start",
 gap: "16px",
 width: "100%",
 boxSizing: "border-box",
@@ -527,15 +529,29 @@ height: "min(330px, 76vw)",
 		  
 		  
 		  {/* PRODUCT NAME */}
-          <div style={{
-            fontSize: "22px",
-            fontWeight: "600",
-            color: "#22c1ff",
-			marginTop: "30px",
-            marginBottom: "6px"
-          }}>
-            {cheaper.name?.split(",")[0]}
-          </div>
+         {/* PRODUCT NAME */}
+<div style={{
+  fontSize: "22px",
+  fontWeight: "600",
+  color: "#22c1ff",
+  marginTop: "30px",
+  marginBottom: "6px"
+}}>
+  {(() => {
+    const name = cheaper.name || "";
+
+    if (name.includes("|")) {
+      return name.split("|")[0].trim();
+    }
+
+    if (name.includes(",")) {
+      return name.split(",")[0].trim();
+    }
+
+    return name;
+  })()}
+</div>
+{/* PRODUCT End */}
 		  {/* PRODUCT End */}
 		  
 		    {/* 🔥 Cheap (IMAGE) */}
