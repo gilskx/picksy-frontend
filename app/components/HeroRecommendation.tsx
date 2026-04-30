@@ -189,16 +189,16 @@ const renderList = (list: string[]) => {
   let mainTitle = fullName;
   let subItems: string[] = [];
 
-  // 🔥 PRIORITY 1 → split by " | "
+  // 🔥 PRIORITY 1 → split by "|"
   if (fullName.includes("|")) {
-    const parts = fullName.split("|").map(s => s.trim());
-    mainTitle = parts[0];        // only first part
+    const parts = fullName.split("|").map((s: string) => s.trim());
+    mainTitle = parts[0];
     subItems = parts.slice(1, 4);
   }
 
   // 🔥 PRIORITY 2 → fallback to comma
   else if (fullName.includes(",")) {
-    const parts = fullName.split(",").map(s => s.trim());
+    const parts = fullName.split(",").map((s: string) => s.trim());
     mainTitle = parts[0];
     subItems = parts.slice(1, 4);
   }
@@ -252,11 +252,9 @@ const renderList = (list: string[]) => {
   {/* 🔥 PRICE + RATING + CTA (SAME ROW) */}
 <div style={{
   display: "flex",
- 
-    justifyContent: "flex-start",
-gap: "16px",
-width: "100%",
-boxSizing: "border-box",
+  alignItems: "center",
+  justifyContent: "flex-start",
+	gap: "25px",
   marginTop: "12px",
   flexWrap: "wrap"
 }}>
@@ -541,11 +539,11 @@ height: "min(330px, 76vw)",
     const name = cheaper.name || "";
 
     if (name.includes("|")) {
-      return name.split("|")[0].trim();
+      return name.split("|").map((s: string) => s.trim())[0];
     }
 
     if (name.includes(",")) {
-      return name.split(",")[0].trim();
+      return name.split(",").map((s: string) => s.trim())[0];
     }
 
     return name;
