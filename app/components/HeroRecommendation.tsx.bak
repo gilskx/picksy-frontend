@@ -330,10 +330,10 @@ const renderList = (list: string[]) => {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  margin: "70px auto 0 auto",
+  margin: "72px auto 0 auto",
+  transform: "translateY(14px)",
   boxSizing: "border-box",
-  overflow: "visible",
-  transform: "translateY(10px)"
+  overflow: "visible"
 }}>
 
   {/* 🔵 OUTER RING */}
@@ -385,7 +385,7 @@ const renderList = (list: string[]) => {
       repeat: Infinity,
       ease: "easeInOut"
     }}
-  style={{
+ style={{
   width: "64%",
   maxWidth: "230px",
   height: "auto",
@@ -534,7 +534,7 @@ const renderList = (list: string[]) => {
 {/* AI LINE Cheaper End */}
 		  
 		  
-		  {/* PRODUCT NAME */}
+	
          {/* PRODUCT NAME */}
 <div style={{
   fontSize: "22px",
@@ -561,36 +561,61 @@ const renderList = (list: string[]) => {
 		  {/* PRODUCT End */}
 		  
 		    {/* 🔥 Cheap (IMAGE) */}
-        <div style={{
-          display: "flex",
-		  marginTop: "25px",
-          justifyContent: "space-between"
-        }}>
-          <img
-            src={cheaper.image}
-            alt="product"
-            style={{
-              width: "140px",
-              objectFit: "contain"
-            }}
-          />
-        </div>
-		  
-		  {/* SAVE */}
-          {saveAmount && (
-            <div style={{
-              fontSize: "24px",
-              fontWeight: "700",
-			  marginTop: "15px",
-              color: "rgba(34,193,255,0.75)",
-              marginBottom: "10px"
-            }}>
-              Save ${saveAmount}
-            </div>
-          )}
-		  
-		  {/* SAVE Amount End*/}
-		  
+<div style={{
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  marginTop: "25px",
+  boxSizing: "border-box"
+}}>
+  <img
+    src={cheaper.image}
+    alt="product"
+    style={{
+      width: "min(150px, 45vw)",
+      height: "auto",
+      objectFit: "contain",
+      display: "block"
+    }}
+  />
+</div>
+{/* 🔥 Cheap (IMAGE) End */}
+{/* SAVE an Sold on*/}
+		  {saveAmount && (
+  <div style={{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: "12px",
+    marginTop: "15px",
+    marginBottom: "10px",
+    flexWrap: "wrap"
+  }}>
+    
+    {/* SAVE */}
+    <div style={{
+      fontSize: "22px",
+      fontWeight: "700",
+      color: "rgba(34,193,255,0.75)"
+    }}>
+      Save ${saveAmount}
+    </div>
+
+    {/* SOLD ON */}
+    <div style={{
+      fontSize: "16px",
+      color: "#22c1ff",
+      opacity: 0.9
+	   alignItems: "center",
+    justifyContent: "space-between",
+    }}>
+      Sold on {cheaper.source}
+    </div>
+
+  </div>
+)}
+	{/* SAVE an Sold on end*/}	  
 		 
 		 
 {/* 🔥 ROW: PRICE + BUTTON */}
@@ -603,37 +628,29 @@ const renderList = (list: string[]) => {
 }}>
 
   {/* PRICE BLOCK */}
-  <div style={{
-    display: "inline-flex",
-    alignItems: "center",
-    gap: "10px",
-    padding: "6px 12px",
-    borderRadius: "20px",
-    background: "rgba(59,130,246,0.1)",
-    border: "1px solid rgba(59,130,246,0.3)",
-    fontSize: "px"
-  }}>
-
-    <div style={{ color: "#22c1ff", fontWeight: "600" }}>
-      ${cheaper.price}
-    </div>
-
-    <div style={{ color: "#22c1ff" }}>•</div>
-
-    <div style={{ color: "#22c1ff" }}>
-      ⭐ {Number(cheaper.rating || 3.5).toFixed(1)}
-    </div>
-
-    <div style={{ color: "#22c1ff" }}>•</div>
-
-    <div style={{ textTransform: "capitalize", color: "#22c1ff" }}>
-      {cheaper.source}
-    </div>
-
+<div style={{
+  display: "inline-flex",
+  alignItems: "center",
+  gap: "10px",
+  padding: "6px 12px",
+  borderRadius: "20px",
+  background: "rgba(59,130,246,0.1)",
+  fontSize: "px"
+}}>
+  <div style={{ color: "#22c1ff", fontWeight: "600" }}>
+    ${cheaper.price}
   </div>
 
+  <div style={{ color: "#22c1ff" }}>•</div>
 
+  <div style={{ color: "#22c1ff" }}>
+    ⭐ {Number(cheaper.rating || 3.5).toFixed(1)}
+  </div>
 
+  <div style={{ color: "#22c1ff" }}>•</div>
+
+ 
+</div>
 
   {/* 🔥 BUTTON */}
   <a
