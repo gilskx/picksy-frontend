@@ -14,6 +14,7 @@
 	import CompareAIView from "./components/CompareAIView";
 	import Footer from "./components/Footer";
 	import { filterProducts } from "./utils/filterProducts";
+	import Script from "next/script";
 	
 	export default function Home() {
 
@@ -314,6 +315,25 @@ setEventSourceRef(es);
 	  return (
 	  <>
 		
+		return (
+<>
+  {/* 🔥 GOOGLE ANALYTICS */}
+
+  <Script
+    src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"
+    strategy="afterInteractive"
+  />
+
+  <Script id="ga-script">
+    {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXX');
+    `}
+  </Script>
+
+  
   <div className="nokku-page" style={{
   fontFamily: "Arial",
     minHeight: "100vh",
@@ -472,7 +492,7 @@ color: "#e5e7eb"         // base text (soft white)
 	  flexDirection: "column",
 	  justifyContent: "flex-start",
 		alignItems: "stretch",
-	  padding: "20px"
+	  padding: "12px 0"
 	}}>
 	  <div style={{ width: "100%" }}>   {/* ✅ ADD THIS WRAPPER */}
 
