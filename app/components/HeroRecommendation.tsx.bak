@@ -330,9 +330,10 @@ const renderList = (list: string[]) => {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  margin: "48px auto 0 auto",
+  margin: "70px auto 0 auto",
   boxSizing: "border-box",
-  overflow: "visible"
+  overflow: "visible",
+  transform: "translateY(10px)"
 }}>
 
   {/* 🔵 OUTER RING */}
@@ -384,12 +385,15 @@ const renderList = (list: string[]) => {
       repeat: Infinity,
       ease: "easeInOut"
     }}
-    style={{
-      width: "min(220px, 58vw)",
-      objectFit: "contain",
-      zIndex: 2,
-      filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.9))"
-    }}
+  style={{
+  width: "64%",
+  maxWidth: "230px",
+  height: "auto",
+  objectFit: "contain",
+  zIndex: 2,
+  display: "block",
+  filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.9))"
+}}
   />
 
 </div>

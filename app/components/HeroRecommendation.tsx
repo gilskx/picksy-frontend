@@ -330,7 +330,8 @@ const renderList = (list: string[]) => {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  margin: "48px auto 0 auto",
+  margin: "70px auto 0 auto",
+  transform: "translateY(10px)",   // 🔥 KEY FIX
   boxSizing: "border-box",
   overflow: "visible"
 }}>

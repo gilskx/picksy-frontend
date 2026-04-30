@@ -315,12 +315,11 @@ setEventSourceRef(es);
 	  return (
 	  <>
 		
-		return (
-<>
-  {/* 🔥 GOOGLE ANALYTICS */}
+		
+		{/* 🔥 GOOGLE ANALYTICS */}
 
   <Script
-    src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"
+    src="https://www.googletagmanager.com/gtag/js?id=G-W1HC6LPE11"
     strategy="afterInteractive"
   />
 
@@ -332,8 +331,8 @@ setEventSourceRef(es);
       gtag('config', 'G-W1HC6LPE11');
     `}
   </Script>
-
-  
+{/* 🔥 GOOGLE ANALYTICS  End*/}
+		
   <div className="nokku-page" style={{
   fontFamily: "Arial",
     minHeight: "100vh",
