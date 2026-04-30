@@ -141,7 +141,33 @@ const handleCancelSearch = () => {
     {loadingMessage}
   </div>
 )}
-	setLoadingMessage("🔍 Searching in web...");   // ✅ ADD HERE
+	// 🔥 SMART LOADING FLOW (10 seconds)
+const steps = [
+  `🔍 Searching for "${query}" across sources...`,
+  "🌐 Scanning trusted marketplaces...",
+  "💰 Comparing prices in real-time...",
+  "⭐ Analyzing ratings & user feedback...",
+  "🧠 Finding the best match for you...",
+  "💡 Discovering smarter & cheaper alternatives...",
+  "⚡ Finalizing your best & smarter options..."
+];
+
+let stepIndex = 0;
+
+// 🔥 clear previous if exists
+if (finalizingIntervalRef.current) {
+  clearInterval(finalizingIntervalRef.current);
+}
+
+finalizingIntervalRef.current = setInterval(() => {
+  setLoadingMessage(steps[stepIndex]);
+  stepIndex++;
+
+  if (stepIndex >= steps.length) {
+    clearInterval(finalizingIntervalRef.current);
+  }
+}, 2000); // 🔥 2 seconds per message
+
   let fallbackUsed = false;
 
   const es = searchProductsStream(
@@ -446,7 +472,7 @@ color: "#e5e7eb"         // base text (soft white)
 	  flexDirection: "column",
 	  justifyContent: "flex-start",
 		alignItems: "stretch",
-	  padding: "20px"
+	  padding: "12px 0"
 	}}>
 	  <div style={{ width: "100%" }}>   {/* ✅ ADD THIS WRAPPER */}
 

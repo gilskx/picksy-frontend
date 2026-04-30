@@ -325,24 +325,27 @@ const renderList = (list: string[]) => {
   {/* PRODUCT IMAGE WITH CLEAN RING */}
 <div className="nokku-hero-product-image" style={{
   position: "relative",
-  width: "320px",
-  height: "320px",
+  width: "min(360px, 86vw)",
+  height: "min(360px, 86vw)",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  marginTop: "100px",
-  marginLeft: "0px"
+  margin: "48px auto 0 auto",
+  boxSizing: "border-box",
+  overflow: "visible"
 }}>
 
   {/* 🔵 OUTER RING */}
   <motion.div
     style={{
-      position: "absolute",
-      width: "min(420px, 90vw)",
-height: "min(420px, 90vw)",
-      borderRadius: "50%",
-      border: "2px solid rgba(59,130,246,0.5)"
-    }}
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+  borderRadius: "50%",
+  border: "2px solid rgba(59,130,246,0.5)",
+  boxSizing: "border-box"
+}}
     animate={{ rotate: 360 }}
     transition={{
       duration: 12,
@@ -354,12 +357,13 @@ height: "min(420px, 90vw)",
   {/* 🔵 INNER RING */}
   <motion.div
     style={{
-      position: "absolute",
-      width: "min(330px, 76vw)",
-height: "min(330px, 76vw)",
-      borderRadius: "50%",
-      border: "1px dashed rgba(59,130,246,0.4)"
-    }}
+  position: "absolute",
+  width: "78%",
+  height: "78%",
+  borderRadius: "50%",
+  border: "1px dashed rgba(59,130,246,0.4)",
+  boxSizing: "border-box"
+}}
     animate={{ rotate: -360 }}
     transition={{
       duration: 10,
@@ -380,12 +384,15 @@ height: "min(330px, 76vw)",
       repeat: Infinity,
       ease: "easeInOut"
     }}
-    style={{
-      width: "min(220px, 58vw)",
-      objectFit: "contain",
-      zIndex: 2,
-      filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.9))"
-    }}
+  style={{
+  width: "64%",
+  maxWidth: "230px",
+  height: "auto",
+  objectFit: "contain",
+  zIndex: 2,
+  display: "block",
+  filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.9))"
+}}
   />
 
 </div>
