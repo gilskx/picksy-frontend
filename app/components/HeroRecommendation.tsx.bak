@@ -527,15 +527,29 @@ height: "min(330px, 76vw)",
 		  
 		  
 		  {/* PRODUCT NAME */}
-          <div style={{
-            fontSize: "22px",
-            fontWeight: "600",
-            color: "#22c1ff",
-			marginTop: "30px",
-            marginBottom: "6px"
-          }}>
-            {cheaper.name?.split(",")[0]}
-          </div>
+         {/* PRODUCT NAME */}
+<div style={{
+  fontSize: "22px",
+  fontWeight: "600",
+  color: "#22c1ff",
+  marginTop: "30px",
+  marginBottom: "6px"
+}}>
+  {(() => {
+    const name = cheaper.name || "";
+
+    if (name.includes("|")) {
+      return name.split("|").map((s: string) => s.trim())[0];
+    }
+
+    if (name.includes(",")) {
+      return name.split(",").map((s: string) => s.trim())[0];
+    }
+
+    return name;
+  })()}
+</div>
+{/* PRODUCT End */}
 		  {/* PRODUCT End */}
 		  
 		    {/* 🔥 Cheap (IMAGE) */}
