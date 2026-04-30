@@ -306,7 +306,8 @@ const renderList = (list: string[]) => {
   color: "#22c1ff",
   whiteSpace: "nowrap",
   transition: "all 0.25s ease",
-  cursor: "pointer"
+  cursor: "pointer",
+  animation: "pulseGlow 2s infinite"
 }}
     onMouseOver={(e) => {
       e.currentTarget.style.transform = "scale(1.05)";
@@ -323,30 +324,34 @@ const renderList = (list: string[]) => {
    {/* LEFT → PRICE Rate and - Sold on Button End*/}
   
   {/* PRODUCT IMAGE WITH CLEAN RING */}
+  
+  {/* PRODUCT IMAGE WITH CLEAN RING */}
 <div className="nokku-hero-product-image" style={{
   position: "relative",
-  width: "min(360px, 86vw)",
-  height: "min(360px, 86vw)",
+  width: "min(380px, 88vw)",
+  height: "min(380px, 88vw)",
+  margin: "48px auto 0 auto",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  margin: "72px auto 0 auto",
-  transform: "translateY(14px)",
-  boxSizing: "border-box",
-  overflow: "visible"
+  boxSizing: "border-box"
 }}>
 
-  {/* 🔵 OUTER RING */}
+  {/* OUTER RING */}
   <motion.div
     style={{
-  position: "absolute",
-  inset: 0,
-  width: "100%",
-  height: "100%",
-  borderRadius: "50%",
-  border: "2px solid rgba(59,130,246,0.5)",
-  boxSizing: "border-box"
-}}
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      x: "-50%",
+      y: "-50%",
+      width: "92%",
+      height: "92%",
+      borderRadius: "50%",
+      border: "2px solid rgba(59,130,246,0.55)",
+      boxSizing: "border-box",
+      transformOrigin: "center center"
+    }}
     animate={{ rotate: 360 }}
     transition={{
       duration: 12,
@@ -355,16 +360,21 @@ const renderList = (list: string[]) => {
     }}
   />
 
-  {/* 🔵 INNER RING */}
+  {/* INNER RING */}
   <motion.div
     style={{
-  position: "absolute",
-  width: "78%",
-  height: "78%",
-  borderRadius: "50%",
-  border: "1px dashed rgba(59,130,246,0.4)",
-  boxSizing: "border-box"
-}}
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      x: "-50%",
+      y: "-50%",
+      width: "76%",
+      height: "76%",
+      borderRadius: "50%",
+      border: "1px dashed rgba(59,130,246,0.45)",
+      boxSizing: "border-box",
+      transformOrigin: "center center"
+    }}
     animate={{ rotate: -360 }}
     transition={{
       duration: 10,
@@ -373,8 +383,7 @@ const renderList = (list: string[]) => {
     }}
   />
 
-  {/* 🔥 PRODUCT IMAGE (UNCHANGED STYLE) */}
-  
+  {/* PRODUCT IMAGE */}
   <motion.img
     src={p.image}
     animate={{
@@ -385,18 +394,21 @@ const renderList = (list: string[]) => {
       repeat: Infinity,
       ease: "easeInOut"
     }}
- style={{
-  width: "64%",
-  maxWidth: "230px",
-  height: "auto",
-  objectFit: "contain",
-  zIndex: 2,
-  display: "block",
-  filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.9))"
-}}
+    style={{
+      width: "62%",
+      maxWidth: "250px",
+      height: "auto",
+      objectFit: "contain",
+      zIndex: 2,
+      display: "block",
+      filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.9))"
+    }}
   />
 
 </div>
+{/* End Product Image */}
+
+
 {/* End Product Image */}
   
  {/* why this is  BEST Start*/}
@@ -647,7 +659,7 @@ const renderList = (list: string[]) => {
     ⭐ {Number(cheaper.rating || 3.5).toFixed(1)}
   </div>
 
-  <div style={{ color: "#22c1ff" }}>•</div>
+
 
  
 </div>
@@ -667,7 +679,8 @@ const renderList = (list: string[]) => {
       fontWeight: "500",
       fontSize: "14px",
       whiteSpace: "nowrap",   // 🔥 prevents breaking
-      transition: "all 0.25s ease"
+      transition: "all 0.25s ease",
+	  animation: "pulseGlow 2s infinite"
     }}
   >
     View Deal on {cheaper.source} →

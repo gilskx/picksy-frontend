@@ -231,6 +231,7 @@ boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
         marginTop: "6px",
 		fontWeight: "500",
 		color: "rgba(34, 193, 255, 0.75)",
+		
       }}>
 	    
        Sold on  {p.source}
@@ -273,7 +274,8 @@ boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
       boxShadow: "0 8px 25px rgba(34,193,255,0.25)",
       backdropFilter: "blur(6px)",
 
-      transition: "all 0.25s ease"
+      transition: "all 0.25s ease",
+	   animation: "pulseGlow 2s infinite"
     }}
   >
     View Deal →
@@ -316,10 +318,11 @@ boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
     boxShadow: "0 8px 25px rgba(34,193,255,0.25)",
     backdropFilter: "blur(6px)",
 
-    transition: "all 0.25s ease"
+    transition: "all 0.25s ease",
+	 animation: "pulseGlow 2s infinite"
   }}
 >
-  {isSelected ? "✓ Added" : "Compare"}
+  {isSelected ? "✓ Added" : "View AI Comparison”"}
 </button>
 
     </div>
