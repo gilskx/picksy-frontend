@@ -61,7 +61,10 @@ export default function SearchBar({
       return;
     }
   }, [query]);
-if (hasSearched && !query) return null; 
+  
+  
+
+
   return (
   <div className="nokku-search-wrapper" style={{
   marginTop: hasSearched ? "0px" : "20px",

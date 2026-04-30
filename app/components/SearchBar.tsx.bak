@@ -219,7 +219,7 @@ if (hasSearched && !query) return null;
           style={{
             padding: "10px",
             cursor: "pointer",
-           // borderBottom: "1px solid #eee",
+            borderBottom: "1px solid #eee",
             color: "#111827"
           }}
         >
