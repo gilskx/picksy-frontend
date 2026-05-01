@@ -364,7 +364,7 @@ border:
   gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
     gap: "24px"
   }}>
-    {filteredProducts.slice(0, 50).map((p: any, i: number) => (
+    {filteredProducts.slice(0, 24).map((p: any, i: number) => (
       <ProductCard
         key={i}
         p={p}
