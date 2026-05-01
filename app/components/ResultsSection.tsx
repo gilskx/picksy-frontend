@@ -322,13 +322,13 @@ border:
 
  
 
-    {/* OPTIONAL: QUERY */}
+    {/* OPTIONAL: QUERY "{query}" - removed */}
     <div style={{
       marginTop: "6px",
       fontSize: "12px",
       color: "#475569"
     }}>
-      "{query}"
+      
     </div>
 
   </div>
@@ -364,7 +364,7 @@ border:
   gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
     gap: "24px"
   }}>
-    {filteredProducts.slice(0, 12).map((p: any, i: number) => (
+    {filteredProducts.slice(0, 50).map((p: any, i: number) => (
       <ProductCard
         key={i}
         p={p}
