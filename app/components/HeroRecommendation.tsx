@@ -148,7 +148,7 @@ const renderList = (list: string[]) => {
   letterSpacing: "0.3px",
   fontWeight: "500"
 }}>
-  ✨ Nokku AI picked this based on best price, high ratings, and overall value.
+  ✨ nokku.ai picked this based on best price, high ratings, and overall value.
 </div>
 
           
@@ -530,8 +530,8 @@ const renderList = (list: string[]) => {
   textAlign: "center" ,  // ✅ ADD THIS
   marginTop: "80px"
 }}>
-  💡  Nokku AI found a more affordable option that saves you ${saveAmount} with comparable value.
-</div>
+  💡 nokku.ai found a Budget pick — save ${saveAmount}
+  </div>
 
 {/* 👤 WHO SHOULD BUY */}
 <div style={{

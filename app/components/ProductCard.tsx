@@ -278,7 +278,7 @@ boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
 	   animation: "pulseGlow 2s infinite"
     }}
   >
-    View Deal →
+    Sold on {p.source} →
   </a>
 )}
 	  
