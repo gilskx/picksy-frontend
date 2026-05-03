@@ -117,7 +117,7 @@ const renderList = (list: string[]) => {
   maxWidth: "100vw",
   margin: "0 auto",
   padding: "0 16px",
-  marginTop: "40px",
+  marginTop: "70px", //5/3 Changes
   display: "block",
   boxSizing: "border-box",
   overflowX: "hidden"
@@ -207,11 +207,11 @@ const renderList = (list: string[]) => {
     <>
       {/* MAIN TITLE */}
       <div style={{
-        fontSize: "30px",
+        fontSize: "24px", //5/3 Changes
         fontWeight: "700",
-        lineHeight: "1.4",
+        lineHeight: "1.25", //5/3 Changes
         textAlign: "left",
-        wordBreak: "break-word",
+        wordBreak: "break-word",gap: "25px",
         overflowWrap: "break-word",
         maxWidth: "100%",
         background: "linear-gradient(135deg, #22c1ff, #6c63ff)",
@@ -254,7 +254,7 @@ const renderList = (list: string[]) => {
   display: "flex",
   alignItems: "center",
   justifyContent: "flex-start",
-	gap: "25px",
+	gap: "12px", // 5/3
   marginTop: "12px",
   flexWrap: "wrap"
 }}>
@@ -327,8 +327,8 @@ const renderList = (list: string[]) => {
   {/* PRODUCT IMAGE WITH CLEAN RING */}
 <div className="nokku-hero-product-image" style={{
   position: "relative",
-  width: "min(380px, 88vw)",
-  height: "min(380px, 88vw)",
+  width: "min(300px, 78vw)", // 5/3
+height: "min(300px, 78vw)",
   margin: "48px auto 0 auto",
   display: "flex",
   alignItems: "center",
@@ -429,7 +429,7 @@ const renderList = (list: string[]) => {
 
   padding: "0",        // 🔥 KEY FIX (remove horizontal padding)
 
-  marginTop: "150px",
+  marginTop: "50px", //5/3
   borderRadius: "16px",
   overflow: "hidden"
 }}>
@@ -471,7 +471,7 @@ const renderList = (list: string[]) => {
         position: "absolute",
         width: "2px",
         height: "140%",
-        background: "linear-gradient(to bottom, transparent, #38bdf8, transparent)",
+        background: "linear-gradient(to bottom, transparent, rgba(56,189,248,0.25), transparent)", //5/3
         transformOrigin: "center"
       }}
       animate={{ rotate: 360 }}
@@ -501,7 +501,7 @@ const renderList = (list: string[]) => {
     {renderList(recommendation?.why_best_product)}
 
     <div style={{
-      marginTop: "25px",
+      marginTop: "16px", //5/3
       fontSize: "20px",
 	  color: "#22c1ff"
       
@@ -537,7 +537,7 @@ const renderList = (list: string[]) => {
   letterSpacing: "0.3px",
   fontWeight: "500",
   textAlign: "center" ,  // ✅ ADD THIS
-  marginTop: "80px"
+  marginTop: "36px" // 5/3
 }}>
   💡 nokku.ai found a Budget pick — save ${saveAmount}
   </div>
