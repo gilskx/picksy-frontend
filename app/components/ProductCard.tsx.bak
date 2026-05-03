@@ -278,7 +278,7 @@ boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
 	   animation: "pulseGlow 2s infinite"
     }}
   >
-    Sold On {p.source} →
+    Sold on {p.source} →
   </a>
 )}
 	  

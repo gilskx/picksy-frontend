@@ -116,32 +116,64 @@ boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
         </div>
       )}
 
-      {/* IMAGE */}
-      <div style={{
-        height: "170px",
-        background: "#f9fafc",
-        borderRadius: "12px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
-
-      }}>
-        <img src={p.image}
+     {/* IMAGE - CLICKABLE SAME AS SOLD ON BUTTON */}
+{(p.url || p.link) ? (
+  <a
+    href={(p.url || p.link).startsWith("http")
+      ? (p.url || p.link)
+      : `https://${p.url || p.link}`}
+    target="_blank"
+    rel="noopener noreferrer"
     style={{
-    maxHeight: "100%",
-    maxWidth: "100%",
-	height: "160px",
-    objectFit: "contain",
-    transition: "transform 0.3s ease"   // 🔥 add this
-  }}
-  onMouseOver={(e) => {
-    e.currentTarget.style.transform = "scale(1.05)";  // 🔥 zoom in
-  }}
-  onMouseOut={(e) => {
-    e.currentTarget.style.transform = "scale(1)";     // 🔥 zoom out
-  }}
-/>
-      </div>
+      height: "170px",
+      background: "#f9fafc",
+      borderRadius: "12px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      textDecoration: "none",
+      cursor: "pointer",
+      overflow: "hidden"
+    }}
+  >
+    <img
+      src={p.image}
+      style={{
+        maxHeight: "100%",
+        maxWidth: "100%",
+        height: "160px",
+        objectFit: "contain",
+        transition: "transform 0.3s ease"
+      }}
+      onMouseOver={(e) => {
+        e.currentTarget.style.transform = "scale(1.05)";
+      }}
+      onMouseOut={(e) => {
+        e.currentTarget.style.transform = "scale(1)";
+      }}
+    />
+  </a>
+) : (
+  <div style={{
+    height: "170px",
+    background: "#f9fafc",
+    borderRadius: "12px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden"
+  }}>
+    <img
+      src={p.image}
+      style={{
+        maxHeight: "100%",
+        maxWidth: "100%",
+        height: "160px",
+        objectFit: "contain"
+      }}
+    />
+  </div>
+)}
 
       {/* TITLE */}
       <div style={{

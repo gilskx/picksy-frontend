@@ -324,7 +324,6 @@ const renderList = (list: string[]) => {
    {/* LEFT → PRICE Rate and - Sold on Button End*/}
   
   {/* PRODUCT IMAGE WITH CLEAN RING */}
-  
   {/* PRODUCT IMAGE WITH CLEAN RING */}
 <div className="nokku-hero-product-image" style={{
   position: "relative",
@@ -383,34 +382,44 @@ const renderList = (list: string[]) => {
     }}
   />
 
-  {/* PRODUCT IMAGE */}
-  <motion.img
-    src={p.image}
-    animate={{
-      y: [0, -6, 0]
-    }}
-    transition={{
-      duration: 3,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }}
+  {/* PRODUCT IMAGE - CLICKABLE SAME AS VIEW DEAL */}
+  <a
+    href={p.link}
+    target="_blank"
+    rel="noopener noreferrer"
     style={{
+      zIndex: 2,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
       width: "62%",
       maxWidth: "250px",
-      height: "auto",
-      objectFit: "contain",
-      zIndex: 2,
-      display: "block",
-      filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.9))"
+      cursor: "pointer"
     }}
-  />
+  >
+    <motion.img
+      src={p.image}
+      animate={{
+        y: [0, -6, 0]
+      }}
+      transition={{
+        duration: 3,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+      style={{
+        width: "100%",
+        height: "auto",
+        objectFit: "contain",
+        display: "block",
+        filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.9))"
+      }}
+    />
+  </a>
 
 </div>
 {/* End Product Image */}
 
-
-{/* End Product Image */}
-  
  {/* why this is  BEST Start*/}
 <div style={{
   position: "relative",
@@ -573,6 +582,7 @@ const renderList = (list: string[]) => {
 		  {/* PRODUCT End */}
 		  
 		    {/* 🔥 Cheap (IMAGE) */}
+			{/* 🔥 Cheap (IMAGE - CLICKABLE) */}
 <div style={{
   width: "100%",
   display: "flex",
@@ -581,17 +591,34 @@ const renderList = (list: string[]) => {
   marginTop: "25px",
   boxSizing: "border-box"
 }}>
-  <img
-    src={cheaper.image}
-    alt="product"
+  <a
+    href={cheaper.link}
+    target="_blank"
+    rel="noopener noreferrer"
     style={{
-      width: "min(150px, 45vw)",
-      height: "auto",
-      objectFit: "contain",
-      display: "block"
+      display: "block",
+      cursor: "pointer"
     }}
-  />
+  >
+    <img
+      src={cheaper.image}
+      alt="product"
+      style={{
+        width: "min(150px, 45vw)",
+        height: "auto",
+        objectFit: "contain",
+        display: "block"
+      }}
+      onMouseOver={(e) => {
+        e.currentTarget.style.transform = "scale(1.05)";
+      }}
+      onMouseOut={(e) => {
+        e.currentTarget.style.transform = "scale(1)";
+      }}
+    />
+  </a>
 </div>
+{/* 🔥 Cheap (IMAGE - CLICKABLE) End */}
 {/* 🔥 Cheap (IMAGE) End */}
 
 	{/* SAVE an Sold*/}	  
