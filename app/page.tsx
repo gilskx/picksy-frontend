@@ -383,8 +383,8 @@ color: "#e5e7eb"         // base text (soft white)
     width: "100%",
     display: "flex",
     justifyContent: "center",
-    marginTop: "20px",
-    marginBottom: "10px"
+    marginTop: "8px",
+    marginBottom: "0px"
   }}>
     <div style={{ width: "100%", maxWidth: "700px" }}>
       <SearchBar

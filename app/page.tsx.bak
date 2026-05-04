@@ -73,7 +73,7 @@ const finalizingIntervalRef = useRef<any>(null);
 		const interval = setInterval(() => {
 		  i = (i + 1) % placeholders.length;
 		  setDynamicPlaceholder(placeholders[i]);
-		}, 25000);
+		}, 250);
 		return () => clearInterval(interval);
 	  }, []);
 	  

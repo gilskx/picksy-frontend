@@ -190,18 +190,26 @@ const renderList = (list: string[]) => {
   let subItems: string[] = [];
 
   // 🔥 PRIORITY 1 → split by "|"
-  if (fullName.includes("|")) {
-    const parts = fullName.split("|").map((s: string) => s.trim());
-    mainTitle = parts[0];
-    subItems = parts.slice(1, 4);
-  }
+  // 🔥 PRIORITY 0 → split by " - " (source / suffix cleanup)
+if (fullName.includes(" - ")) {
+  const parts = fullName.split(" - ").map((s: string) => s.trim());
+  mainTitle = parts[0];
+  subItems = parts.slice(1, 4);
+}
 
-  // 🔥 PRIORITY 2 → fallback to comma
-  else if (fullName.includes(",")) {
-    const parts = fullName.split(",").map((s: string) => s.trim());
-    mainTitle = parts[0];
-    subItems = parts.slice(1, 4);
-  }
+// 🔥 PRIORITY 1 → split by "|"
+else if (fullName.includes("|")) {
+  const parts = fullName.split("|").map((s: string) => s.trim());
+  mainTitle = parts[0];
+  subItems = parts.slice(1, 4);
+}
+
+// 🔥 PRIORITY 2 → fallback to comma
+else if (fullName.includes(",")) {
+  const parts = fullName.split(",").map((s: string) => s.trim());
+  mainTitle = parts[0];
+  subItems = parts.slice(1, 4);
+}
 
   return (
     <>
@@ -583,14 +591,17 @@ height: "min(300px, 78vw)",
   {(() => {
     const name = cheaper.name || "";
 
-    if (name.includes("|")) {
-      return name.split("|").map((s: string) => s.trim())[0];
-    }
+   if (name.includes(" - ")) {
+  return name.split(" - ").map((s: string) => s.trim())[0];
+}
 
-    if (name.includes(",")) {
-      return name.split(",").map((s: string) => s.trim())[0];
-    }
+if (name.includes("|")) {
+  return name.split("|").map((s: string) => s.trim())[0];
+}
 
+if (name.includes(",")) {
+  return name.split(",").map((s: string) => s.trim())[0];
+}
     return name;
   })()}
 </div>

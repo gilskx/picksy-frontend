@@ -122,16 +122,16 @@ return (
     display: "flex",
      justifyContent: "center", 
     alignItems: "center",
-    gap: "70px",
-    marginBottom: "20px"
+    gap: "24px",
+	marginBottom: "12px"
   }}>
 
     
 	{/* 🔲 BUTTON BOX */}
     <div style={{
       display: "flex",
-      gap: "10px",
-      padding: "10px",
+      gap: "6px",
+      padding: "6px",
       borderRadius: "12px",
 background: "rgba(59,130,246,0.12)",   // soft blue fill
 border: "1px solid rgba(59,130,246,0.35)", // blue border
@@ -143,8 +143,8 @@ boxShadow: "0 10px 30px rgba(59,130,246,0.25)"
     key={m}
     onClick={() => setMode(m)}
     style={{
-      padding: "8px 16px",
-      borderRadius: "20px",
+      padding: "5px 12px",
+      borderRadius: "12px",
       cursor: "pointer",
       fontSize: "13px",
       fontWeight: "600",
@@ -193,8 +193,10 @@ border:
   {/* 🔥 COMMON STYLE */}
   {(() => {
     const commonStyle = {
-      padding: "8px 14px",
-      borderRadius: "25px",
+      padding: "5px 12px",
+		borderRadius: "20px",
+		height: "32px",
+		fontSize: "12px",
       border: "1px solid rgba(59,130,246,0.35)",
       background: "rgba(59,130,246,0.12)",
       color: "rgba(226, 232, 240, 0.75)",
@@ -211,6 +213,10 @@ border:
 
     return (
       <>
+	  
+	  
+	  
+
         {/* SEARCH */}
         <input
           placeholder="Search for product"
