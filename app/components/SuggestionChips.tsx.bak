@@ -7,10 +7,8 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
       title: "🛒 Groceries",
       items: [
         "Milk delivery near me",
-        "Rice 5kg deals",
-        "Fresh vegetables nearby",
-        "Cooking oil offers",
-        "Daily grocery essentials"
+        "Rice deals",
+        "Fresh vegetables nearby"
       ]
     },
     {
@@ -18,36 +16,30 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
       items: [
         "Fever relief tablets",
         "Cold & flu relief",
-        "Pain relief options",
-        "Cough syrup",
-        "Allergy relief medicine",
-        "Daily vitamins",
-        "First aid essentials"
+        "Pain relief options"
       ]
     },
     {
       title: "📱 Electronics",
       items: [
-		"Search anything",
-
+        "iPhone deals",
+        "Laptops under $1000",
+        "Headphone deals"
       ]
     },
     {
       title: "🏠 Home appliances",
       items: [
         "Washing machine deals",
-        "Kitchen appliance offers",
         "Refrigerator deals",
-        "Air conditioner offers",
-        "Home appliance deals"
+        "Kitchen appliances"
       ]
     },
     {
       title: "👶 Baby",
       items: [
         "Baby diaper deals",
-        "Baby care essentials",
-        "Baby feeding products"
+        "Baby care essentials"
       ]
     },
     {
@@ -55,9 +47,7 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
       items: [
         "Protein powder deals",
         "Fitness tracker deals",
-        "Health supplements",
-        "Gym essentials",
-        "Wellness products"
+        "Health supplements"
       ]
     }
   ];
@@ -65,32 +55,53 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
   return (
     <div style={{ marginTop: "16px" }}>
 
-      {categories.map((cat, idx) => (
-        <div key={idx} style={{ marginBottom: "14px" }}>
+      {categories.map((cat, idx) => {
 
-          {/* 🔥 CATEGORY TITLE */}
-          <div style={{
-            fontSize: "13px",
-            color: "#aaa",
-            marginBottom: "6px",
-            textAlign: "center",
-            letterSpacing: "0.5px"
-          }}>
-            {cat.title}
-          </div>
+        const emoji = cat.title.split(" ")[0];
+        const text = cat.title.split(" ").slice(1).join(" ");
 
-          {/* 🔥 CHIPS */}
-          <div
-            style={{
+        return (
+          <div key={idx} style={{ marginBottom: "14px" }}>
+
+            {/* 🔥 CATEGORY TITLE */}
+            <div style={{
+              fontSize: "15px",
+              marginBottom: "6px",
+              textAlign: "center",
+              letterSpacing: "0.5px",
+              fontWeight: "600",
               display: "flex",
-              flexWrap: "wrap",
               justifyContent: "center",
-              gap: "10px"
-            }}
-          >
-            {cat.items.map((s: string, i: number) => {
+              alignItems: "center",
+              gap: "6px"
+            }}>
 
-              return (
+              {/* ✅ Emoji stays normal */}
+              <span>{emoji}</span>
+
+              {/* ✅ Gradient text only */}
+              <span
+                style={{
+                  backgroundImage: "linear-gradient(135deg, #22c1ff, #6c63ff)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent"
+                }}
+              >
+                {text}
+              </span>
+
+            </div>
+
+            {/* 🔥 CHIPS */}
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                gap: "10px"
+              }}
+            >
+              {cat.items.map((s: string, i: number) => (
                 <div
                   key={i}
                   onClick={() => {
@@ -138,11 +149,12 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
                 >
                   {s}
                 </div>
-              );
-            })}
+              ))}
+            </div>
+
           </div>
-        </div>
-      ))}
+        );
+      })}
 
     </div>
   );

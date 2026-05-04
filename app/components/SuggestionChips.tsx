@@ -2,85 +2,120 @@
 
 export default function SuggestionChips({ setQuery, query, search }: any) {
 
- const categories = [
-  {
-    title: "🛒 Groceries",
-    items: [
-      "Milk delivery near me",
-      "Rice deals",
-      "Fresh vegetables nearby"
-    ]
-  },
-  {
-    title: "💊 Medicine",
-    items: [
-      "Fever relief tablets",
-      "Cold & flu relief",
-      "Pain relief options"
-    ]
-  },
-  {
-    title: "📱 Electronics",
-    items: [
-      "iPhone deals",
-      "Laptops under $1000",
-      "Headphone deals"
-    ]
-  },
-  {
-    title: "🏠 Home appliances",
-    items: [
-      "Washing machine deals",
-      "Refrigerator deals",
-      "Kitchen appliances"
-    ]
-  },
-  {
-    title: "👶 Baby",
-    items: [
-      "Baby diaper deals",
-      "Baby care essentials"
-    ]
-  },
-  {
-    title: "💪 Health",
-    items: [
-      "Protein powder deals",
-      "Fitness tracker deals",
-      "Health supplements"
-    ]
-  }
-];
+  const categories = [
+    {
+      title: "🛒 Groceries",
+      items: [
+        "Milk delivery near me",
+        "Rice deals",
+        "Fresh vegetables nearby"
+      ]
+    },
+    {
+      title: "💊 Medicine",
+      items: [
+        "Fever relief tablets",
+        "Cold & flu relief",
+        "Pain relief options"
+      ]
+    },
+    {
+      title: "📱 Electronics",
+      items: [
+        "iPhone deals",
+        "Laptops under $1000",
+        "Headphone deals"
+      ]
+    },
+    {
+      title: "🏠 Home appliances",
+      items: [
+        "Washing machine deals",
+        "Refrigerator deals",
+        "Kitchen appliances"
+      ]
+    },
+    {
+      title: "👶 Baby",
+      items: [
+        "Baby diaper deals",
+        "Baby care essentials"
+      ]
+    },
+    {
+      title: "💪 Health",
+      items: [
+        "Protein powder deals",
+        "Fitness tracker deals",
+        "Health supplements"
+      ]
+    }
+  ];
 
   return (
     <div style={{ marginTop: "16px" }}>
 
-      {categories.map((cat, idx) => (
-        <div key={idx} style={{ marginBottom: "14px" }}>
+      {categories.map((cat, idx) => {
 
-          {/* 🔥 CATEGORY TITLE */}
-          <div style={{
-            fontSize: "13px",
-            color: "#aaa",
-            marginBottom: "6px",
-            textAlign: "center",
-            letterSpacing: "0.5px"
-          }}>
-            {cat.title}
-          </div>
+        const emoji = cat.title.split(" ")[0];
+        const text = cat.title.split(" ").slice(1).join(" ");
 
-          {/* 🔥 CHIPS */}
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "center",
-              gap: "10px"
-            }}
-          >
-            {cat.items.map((s: string, i: number) => {
+        return (
+          <div key={idx} style={{ marginBottom: "14px" }}>
 
-              return (
+            {/* 🔥 CATEGORY TITLE (ENHANCED) */}
+            <div
+              style={{
+                fontSize: "15px",
+                marginBottom: "6px",
+                textAlign: "center",
+                letterSpacing: "0.6px",
+                fontWeight: "600",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "6px",
+                transition: "all 0.2s ease",
+
+                // ✨ subtle glow
+                textShadow: "0 0 8px rgba(34,193,255,0.25)"
+              }}
+
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-1px)";
+              }}
+
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
+            >
+
+              {/* ✅ Emoji stays natural */}
+              <span>{emoji}</span>
+
+              {/* ✅ Slightly richer gradient */}
+              <span
+                style={{
+                  backgroundImage: "linear-gradient(135deg, #38bdf8, #818cf8)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent"
+                }}
+              >
+                {text}
+              </span>
+
+            </div>
+
+            {/* 🔥 CHIPS */}
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                gap: "10px"
+              }}
+            >
+              {cat.items.map((s: string, i: number) => (
                 <div
                   key={i}
                   onClick={() => {
@@ -128,11 +163,12 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
                 >
                   {s}
                 </div>
-              );
-            })}
+              ))}
+            </div>
+
           </div>
-        </div>
-      ))}
+        );
+      })}
 
     </div>
   );
