@@ -63,26 +63,40 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
         return (
           <div key={idx} style={{ marginBottom: "14px" }}>
 
-            {/* 🔥 CATEGORY TITLE */}
-            <div style={{
-              fontSize: "15px",
-              marginBottom: "6px",
-              textAlign: "center",
-              letterSpacing: "0.5px",
-              fontWeight: "600",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: "6px"
-            }}>
+            {/* 🔥 CATEGORY TITLE (ENHANCED) */}
+            <div
+              style={{
+                fontSize: "13px",
+                marginBottom: "6px",
+                textAlign: "center",
+                letterSpacing: "0.6px",
+                fontWeight: "600",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "6px",
+                transition: "all 0.2s ease",
 
-              {/* ✅ Emoji stays normal */}
+                // ✨ subtle glow
+                textShadow: "0 0 8px rgba(34,193,255,0.25)"
+              }}
+
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-1px)";
+              }}
+
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+              }}
+            >
+
+              {/* ✅ Emoji stays natural */}
               <span>{emoji}</span>
 
-              {/* ✅ Gradient text only */}
+              {/* ✅ Slightly richer gradient */}
               <span
                 style={{
-                  backgroundImage: "linear-gradient(135deg, #22c1ff, #6c63ff)",
+                  backgroundImage: "linear-gradient(135deg, #38bdf8, #818cf8)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent"
                 }}
