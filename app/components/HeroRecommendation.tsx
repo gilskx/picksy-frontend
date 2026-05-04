@@ -117,7 +117,7 @@ const renderList = (list: string[]) => {
   maxWidth: "100vw",
   margin: "0 auto",
   padding: "0 16px",
-  marginTop: "70px", //5/3 Changes
+  marginTop: "1px", //5/3 Changes
   display: "block",
   boxSizing: "border-box",
   overflowX: "hidden"
@@ -136,14 +136,14 @@ const renderList = (list: string[]) => {
         {/* HEADER */}
         <div style={{
           textAlign: "center",
-          marginBottom: "20px",
-           paddingBottom: "20px"
+          marginBottom: "10px",
+           paddingBottom: "0px"
         }}>
 
           {/* 🔥 NOKKU AI LINE */}
 <div style={{
   fontSize: "13px",
-  marginBottom: "6px",
+  marginBottom: "15px",
   color: "rgba(34, 193, 255, 0.75)",
   letterSpacing: "0.3px",
   fontWeight: "500"
@@ -530,17 +530,33 @@ height: "min(300px, 78vw)",
 
 
 {/* AI LINE Cheaper */}
+{/* AI LINE Cheaper - HIGHLIGHTED */}
 <div style={{
-  fontSize: "20px",
-  marginBottom: "8px",
-  color: "rgba(34,193,255,0.75)",
-  letterSpacing: "0.3px",
-  fontWeight: "500",
-  textAlign: "center" ,  // ✅ ADD THIS
-  marginTop: "36px" // 5/3
+  marginTop: "24px",
+  marginBottom: "10px",
+  padding: "10px 14px",
+  borderRadius: "14px",
+
+  // 🔥 subtle glow background
+  background: "linear-gradient(135deg, rgba(34,193,255,0.08), rgba(108,99,255,0.08))",
+
+  // 🔥 border glow
+  border: "1px solid rgba(34,193,255,0.25)",
+
+  textAlign: "center",
+  fontWeight: "600",
+  fontSize: "15px",
+
+  // 🔥 gradient text (same as title)
+  backgroundImage: "linear-gradient(135deg, #22c1ff, #6c63ff)",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
+
+  // 🔥 soft glow
+  boxShadow: "0 8px 25px rgba(34,193,255,0.15)"
 }}>
-  💡 nokku.ai found a Budget pick — save ${saveAmount}
-  </div>
+  💡 nokku.ai found a Budget pick ${saveAmount} with a smarter option
+</div>
 
 {/* 👤 WHO SHOULD BUY */}
 <div style={{
