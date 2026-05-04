@@ -14,11 +14,8 @@ export default function SearchBar({
 }: any) {
 
   const defaultPlaceholders = [
-    "cheap iphone",
-    "laptop under 1000",
-    "best headphones",
-    "fitness tracker",
-    "gaming laptop"
+		"Search anything",
+
   ];
 
   const [focused, setFocused] = useState(false);

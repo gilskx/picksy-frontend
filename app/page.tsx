@@ -49,11 +49,22 @@ const finalizingIntervalRef = useRef<any>(null);
 
 	  // Placeholder rotation
 	  const placeholders = [
-		"cheap iphone",
-		"laptop under 1000",
-		"best headphones",
-		"fitness tracker",
-		"gaming laptop"
+		"S",
+		"Se",
+		"Sea",
+		"Sear",
+		"Searc",
+		"Search ",
+		"Search a",
+		"Search an",
+		"Search any",
+		"Search anyt",
+		"Search anyth",
+		"Search anythi",
+		"Search anythin",
+		"Search anything",
+		"Search anything.",
+		"Search anything..",
 	  ];
 	  const [dynamicPlaceholder, setDynamicPlaceholder] = useState(placeholders[0]);
 
@@ -62,7 +73,7 @@ const finalizingIntervalRef = useRef<any>(null);
 		const interval = setInterval(() => {
 		  i = (i + 1) % placeholders.length;
 		  setDynamicPlaceholder(placeholders[i]);
-		}, 2500);
+		}, 250);
 		return () => clearInterval(interval);
 	  }, []);
 	  

@@ -14,11 +14,9 @@ export default function SearchBar({
 }: any) {
 
   const defaultPlaceholders = [
-    "cheap iphone",
-    "laptop under 1000",
-    "best headphones",
-    "fitness tracker",
-    "gaming laptop"
+		"Search anything..",
+		"Search anything...",
+		"Search anything...."
   ];
 
   const [focused, setFocused] = useState(false);
@@ -61,7 +59,10 @@ export default function SearchBar({
       return;
     }
   }, [query]);
-if (hasSearched && !query) return null; 
+  
+  
+
+
   return (
   <div className="nokku-search-wrapper" style={{
   marginTop: hasSearched ? "0px" : "20px",
