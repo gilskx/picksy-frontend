@@ -46,7 +46,7 @@ const [whoShouldBuyCheaper, setWhoShouldBuyCheaper] = useState<any[]>([]);
 	  const [showComparePage, setShowComparePage] = useState(false);
 const [eventSourceRef, setEventSourceRef] = useState<EventSource | null>(null);
 const finalizingIntervalRef = useRef<any>(null);
-
+const [showLocationPopup, setShowLocationPopup] = useState(false);
 	  // Placeholder rotation
 	  const placeholders = [
 		"S",
@@ -67,7 +67,25 @@ const finalizingIntervalRef = useRef<any>(null);
 		"Search anything..",
 	  ];
 	  const [dynamicPlaceholder, setDynamicPlaceholder] = useState(placeholders[0]);
+const requestUserLocation = () => {
+  if (!navigator.geolocation) return;
 
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      localStorage.setItem("user_latitude", String(position.coords.latitude));
+      localStorage.setItem("user_longitude", String(position.coords.longitude));
+      setShowLocationPopup(false);
+    },
+    () => {
+      setShowLocationPopup(false);
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 600000
+    }
+  );
+};
 	  useEffect(() => {
 		let i = 0;
 		const interval = setInterval(() => {
@@ -78,6 +96,7 @@ const finalizingIntervalRef = useRef<any>(null);
 	  }, []);
 	  
 	  // 🌍 FETCH USER CONTEXT (FAST - VERCEL HEADERS)
+// 🌍 FETCH USER CONTEXT + BROWSER LOCATION
 useEffect(() => {
   const fetchUserContext = async () => {
     try {
@@ -86,17 +105,47 @@ useEffect(() => {
 
       console.log("User Context:", data);
 
-      // Store globally
-      localStorage.setItem("user_ip", data.ip);
-      localStorage.setItem("user_country", data.country);
-      localStorage.setItem("user_city", data.city);
+      localStorage.setItem("user_ip", data.ip || "");
+      localStorage.setItem("user_country", data.country || "");
+	  if (data.country === "US") {
+		setShowLocationPopup(true);
+}
+      localStorage.setItem("user_city", data.city || "");
 
     } catch (err) {
       console.error("User context fetch failed", err);
     }
   };
 
+  const fetchBrowserLocation = () => {
+    if (!navigator.geolocation) {
+      console.log("Browser geolocation not supported");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        localStorage.setItem("user_latitude", String(position.coords.latitude));
+        localStorage.setItem("user_longitude", String(position.coords.longitude));
+
+        console.log("Browser Location:", {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        });
+      },
+      (error) => {
+        console.log("User denied location or location unavailable", error);
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 600000
+      }
+    );
+  };
+
   fetchUserContext();
+  fetchBrowserLocation();
 }, []);
 
 	  const bestDeal = recommendation?.bestPick || null;
@@ -198,10 +247,20 @@ finalizingIntervalRef.current = setInterval(() => {
       }
 
       const steps = [
+		"🔍 Searching across stores...",
+		"🔍 Scanning marketplaces...",
+		"🌐 Aggregating data...",
+		"🤖 Applying AI intelligence...",
         "💰 Comparing prices...",
         "⭐ Checking ratings...",
+		"🏆 Picking top deals...",
         "🧠 Finding best value...",
-        "⚡ Finalizing results..."
+		"📊 Analyzing trends...",
+		"📦 Checking availability...",
+		"🔗 Matching trusted sources...",
+		"📊 Running smart analysis...",
+        "⚡ Finalizing Results...",
+		"🚀 Preparing your results..."
       ];
 
       let i = 0;
@@ -213,7 +272,7 @@ finalizingIntervalRef.current = setInterval(() => {
         if (i >= steps.length) {
           clearInterval(finalizingIntervalRef.current);
         }
-      }, 300);
+      }, 390);
 
     } else {
       setLoadingMessage(stage);
@@ -257,11 +316,13 @@ finalizingIntervalRef.current = setInterval(() => {
     if (fallbackUsed) return;
     fallbackUsed = true;
 
-    const userContext = {
-      ip: localStorage.getItem("user_ip"),
-      country: localStorage.getItem("user_country"),
-      city: localStorage.getItem("user_city")
-    };
+   const userContext = {
+  ip: localStorage.getItem("user_ip"),
+  country: localStorage.getItem("user_country"),
+  city: localStorage.getItem("user_city"),
+  latitude: localStorage.getItem("user_latitude"),
+  longitude: localStorage.getItem("user_longitude")
+};
 
     const data = await searchProducts(query, userContext);
 
@@ -383,8 +444,8 @@ color: "#e5e7eb"         // base text (soft white)
     width: "100%",
     display: "flex",
     justifyContent: "center",
-    marginTop: "20px",
-    marginBottom: "10px"
+    marginTop: "8px",
+    marginBottom: "0px"
   }}>
     <div style={{ width: "100%", maxWidth: "700px" }}>
       <SearchBar
@@ -700,6 +761,72 @@ color: "#e5e7eb"         // base text (soft white)
         </>
       )}
 
+    </div>
+  </div>
+)}
+{showLocationPopup && (
+  <div style={{
+    position: "fixed",
+    bottom: "20px",
+    left: "16px",
+    right: "16px",
+    zIndex: 9999,
+    background: "#020617",
+    border: "1px solid rgba(34,193,255,0.35)",
+    borderRadius: "18px",
+    padding: "16px",
+    boxShadow: "0 12px 40px rgba(34,193,255,0.25)",
+    color: "#e5e7eb"
+  }}>
+    <div style={{
+      fontSize: "15px",
+      fontWeight: "700",
+      color: "#22c1ff"
+    }}>
+      Use your location?
+    </div>
+
+    <div style={{
+      fontSize: "13px",
+      marginTop: "6px",
+      color: "#94a3b8"
+    }}>
+      nokku.ai can show nearby stores and better delivery options.
+    </div>
+
+    <div style={{
+      display: "flex",
+      gap: "10px",
+      marginTop: "14px"
+    }}>
+      <button
+        onClick={requestUserLocation}
+        style={{
+          flex: 1,
+          padding: "10px",
+          borderRadius: "20px",
+          border: "none",
+          background: "linear-gradient(135deg, #22c1ff, #6c63ff)",
+          color: "#fff",
+          fontWeight: "700"
+        }}
+      >
+        Allow
+      </button>
+
+      <button
+        onClick={() => setShowLocationPopup(false)}
+        style={{
+          flex: 1,
+          padding: "10px",
+          borderRadius: "20px",
+          border: "1px solid rgba(255,255,255,0.15)",
+          background: "transparent",
+          color: "#94a3b8"
+        }}
+      >
+        Not now
+      </button>
     </div>
   </div>
 )}

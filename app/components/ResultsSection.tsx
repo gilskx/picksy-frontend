@@ -214,9 +214,6 @@ border:
     return (
       <>
 	  
-	  
-	  
-
         {/* SEARCH */}
         <input
           placeholder="Search for product"

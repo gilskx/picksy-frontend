@@ -193,50 +193,31 @@ border:
   {/* 🔥 COMMON STYLE */}
   {(() => {
     const commonStyle = {
-  padding: "5px 12px",
-  borderRadius: "20px",
-  border: "1px solid rgba(59,130,246,0.35)",
-  background: "rgba(59,130,246,0.12)",
-  color: "rgba(226, 232, 240, 0.75)",
-  outline: "none",
-  appearance: "none" as any,
-  WebkitAppearance: "none" as any,
-  MozAppearance: "none" as any,
-  WebkitTextFillColor: "#e2e8f0"
-};
+      padding: "5px 12px",
+		borderRadius: "20px",
+		height: "32px",
+		fontSize: "12px",
+      border: "1px solid rgba(59,130,246,0.35)",
+      background: "rgba(59,130,246,0.12)",
+      color: "rgba(226, 232, 240, 0.75)",
+      outline: "none",
 
-const placeholders = [
-  "S","Se","Sea","Sear","Searc","Search ",
-  "Search a","Search an","Search any","Search anyt",
-  "Search anyth","Search anythi","Search anythin",
-  "Search anything","Search anything.","Search anything.."
-];
+      // 🔥 FORCE REMOVE DEFAULT INPUT STYLES
+      appearance: "none" as any, 
+      WebkitAppearance: "none" as any,
+      MozAppearance: "none" as any,
 
-useEffect(() => {
-  if (searchInResults) return; // stop when typing
-
-  let i = 0;
-
-  const interval = setInterval(() => {
-    i = (i + 1) % placeholders.length;
-    setDynamicPlaceholder(placeholders[i]);
-  }, 120);
-
-  return () => clearInterval(interval);
-}, [searchInResults]);
+      // 🔥 FORCE TEXT RENDERING (IMPORTANT)
+      WebkitTextFillColor: "#e2e8f0"
+    };
 
     return (
       <>
-	  
-	  
-	  
-	  
-	  
-	  
-	  
+	  	  
+
         {/* SEARCH */}
         <input
-          placeholder={dynamicPlaceholder}
+          placeholder="Search for product"
           value={searchInResults}
           onChange={(e) => setSearchInResults(e.target.value)}
           style={{
@@ -244,16 +225,6 @@ useEffect(() => {
             minWidth: "180px"
           }}
         />
-
-
-
-
-
-
-
-
-
-
 
         {/* MIN */}
         <input
