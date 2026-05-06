@@ -421,7 +421,7 @@ color: "#e5e7eb"         // base text (soft white)
   position: "fixed",
   top: "15px",
       left: "20px",
-      zIndex: 1000,
+      zIndex: 9999,
       background: "#000000",
       padding: "6px 14px",
       borderRadius: "20px",
@@ -559,6 +559,7 @@ color: "#e5e7eb"         // base text (soft white)
 		  {/* MAIN */}
 	<div style={{
 	  minHeight: "calc(100vh - 120px)",
+	  paddingTop: hasSearched || loading ? "55px" : "0px",
 	  display: "flex",
 	  flexDirection: "column",
 	  justifyContent: "flex-start",
@@ -579,7 +580,7 @@ color: "#e5e7eb"         // base text (soft white)
 {loading && (
   <div style={{
     position: "fixed",
-    top: "20px",
+    top: "68px",
     left: "20px",
     zIndex: 1000
   }}>
