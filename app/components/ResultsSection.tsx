@@ -80,11 +80,9 @@ return (
   <div className="nokku-results-section" style={{
     width: "100%",
     maxWidth: "1200px",
-    margin: "20px auto",          // 🔥 center whole block
-    padding: "24px",
+    margin: "6px auto 20px",
+    padding: "8px 0 24px",
     borderRadius: "12px",
-    
- 
   }}>
 
       {/* HEADER */}

@@ -424,7 +424,7 @@ linear-gradient(
 color: "#0f172a"    //    color
   }}>
 
-    {/* HEADER BADGE */}
+    {/* HEADER BADGE 	
     <div className="nokku-floating-logo" style={{
   position: "fixed",
   top: "15px",
@@ -495,8 +495,8 @@ boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
 
 </span>
 
-</span> */ }
-    </div>
+</span> 
+    </div>*/ }
 
     {/* ✅ FIXED SEARCH BAR */}
     
@@ -508,9 +508,10 @@ boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
     display: "flex",
     justifyContent: "center",
     marginTop: "18px",
-    marginBottom: "1px",
+    marginBottom: "14px",
     position: "relative",
-    zIndex: 900
+    zIndex: 1200,
+    padding: "0 16px"
   }}>
     <div style={{ width: "100%", maxWidth: "620px" }}>
 	<div style={{
@@ -627,14 +628,13 @@ letterSpacing: "-1.5px",
 </div>
 
 <div style={{
-      position: "sticky",
-      top: "20px",
-      zIndex: 1000,
-      width: "100%",
-      display: "flex",
-      justifyContent: "center"
-	  
-    }}>
+  position: "relative",
+  top: "auto",
+  zIndex: 1000,
+  width: "100%",
+  display: "flex",
+  justifyContent: "center"
+}}>
       <div style={{ width: "100%", maxWidth: "700px" }}>
         <SearchBar
            query={query}
@@ -763,12 +763,12 @@ fontWeight: "500",
 {/* 🔥 RESULTS */}
 {hasSearched && (
   <div style={{
-  width: "100%",
-  maxWidth: "1200px",
-  margin: "0",              // ✅ LEFT ALIGN
-  padding: "0 16px",        // better mobile
-  marginTop: "40px"
-}}>
+    width: "100%",
+    maxWidth: "1200px",
+    margin: "0",
+    padding: "0 16px",
+    marginTop: "8px"
+  }}>
     <ResultsSection
       loading={loading && products.length === 0}
       query={query}

@@ -68,39 +68,51 @@ export default function SearchBar({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  width: "100%",
 
-  // 🔥 FIXED STICKY LOGIC
-  
- position: hasSearched && query ? "sticky" : "relative",
-top: hasSearched && query ? "82px" : "auto",
-zIndex: hasSearched ? 900 : "auto",
+  width: "calc(100% - 32px)",
+  maxWidth: hasSearched ? "640px" : "720px",
+  marginInline: "auto",
+
+  position: "relative",
+  top: "auto",
+  zIndex: hasSearched ? 900 : "auto",
 
   background: "transparent",
-
-  // 🔥 REMOVE EMPTY SPACE WHEN NO QUERY
   padding: "0px",
-
- boxShadow: "none",
+  boxShadow: "none",
 
   transition: "all 0.3s ease"
 }}>
 
   <div className="nokku-search-box" style={{
-    background: "rgba(255,255,255,0.46)",
-	border: "1px solid rgba(59,130,246,0.08)",
-    backdropFilter: "blur(12px)",
-    borderRadius: "40px",
-    maxWidth: hasSearched ? "600px" : "700px",
-    width: "100%",
-    display: "flex",
-    alignItems: "center",
-	padding: hasSearched ? "1px 4px" : "1px 5px",
-    boxShadow: focused
-      ? "0 0 0 2px rgba(59,130,246,0.5), 0 10px 40px rgba(59,130,246,0.35)"
-      : "0 10px 40px rgba(59,130,246,0.25)",
-    transition: "all 0.3s ease"
-  }}>
+  background: "rgba(255,255,255,0.88)",
+border: "1px solid rgba(255,255,255,0.75)",
+backdropFilter: "blur(22px)",
+
+  borderRadius: "999px",
+
+  maxWidth: hasSearched ? "600px" : "700px",
+  width: "100%",
+
+  display: "flex",
+  alignItems: "center",
+
+  padding: hasSearched ? "1px 4px" : "3px 6px",
+
+  boxShadow: focused
+  ? `
+    0 0 0 3px rgba(59,130,246,0.18),
+    0 22px 55px rgba(59,130,246,0.28),
+    0 10px 24px rgba(15,23,42,0.10)
+  `
+  : `
+    0 22px 55px rgba(59,130,246,0.22),
+    0 10px 24px rgba(15,23,42,0.08)
+  `,
+
+transform: focused ? "translateY(-4px)" : "translateY(-2px)",
+  transition: "all 0.25s ease"
+}}>
 
     {/* ICON */}
     <span
@@ -240,7 +252,7 @@ zIndex: hasSearched ? 900 : "auto",
   {showSuggestions && query.length >= 2 && suggestions.length > 0 && (
     <div style={{
       width: "100%",
-      maxWidth: hasSearched ? "600px" : "700px",
+      maxWidth: "100%",
       background: "#fff",
       borderRadius: "10px",
       boxShadow: `

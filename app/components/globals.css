@@ -73,7 +73,7 @@ input:-webkit-autofill {
   }
 
   .nokku-page {
-    padding: 16px !important;
+    padding: 0 !important;
   }
 
   .nokku-hero {
@@ -108,19 +108,25 @@ input:-webkit-autofill {
   }
 }
 
-
 @media (max-width: 768px) {
   .nokku-search-wrapper {
-    width: 100% !important;
-    padding: 4px !important;
-    margin-top: 10px !important;
+    width: calc(100% - 32px) !important;
+    max-width: 640px !important;
+    padding: 0 !important;
+    margin: 10px auto 0 !important;
   }
 
   .nokku-search-box {
-    max-width: 100% !important;
     width: 100% !important;
-    border-radius: 28px !important;
-    padding: 4px 6px !important;
+    max-width: 100% !important;
+    border-radius: 999px !important;
+    padding: 1px 4px !important;
+
+    background: rgba(255,255,255,0.9) !important;
+    border: 1px solid rgba(255,255,255,0.75) !important;
+    box-shadow:
+      0 22px 55px rgba(59,130,246,0.28),
+      0 12px 28px rgba(15,23,42,0.10) !important;
   }
 
   .nokku-search-box input {
