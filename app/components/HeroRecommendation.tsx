@@ -515,7 +515,7 @@ height: "min(300px, 78vw)",
     {renderList(recommendation?.why_best_product)}
 
     <div style={{
-      marginTop: "16px", //5/3
+      marginTop: "12px", //5/3
       fontSize: "20px",
 	  color: "#0f172a"
       

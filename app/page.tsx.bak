@@ -442,8 +442,8 @@ boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent"
     }}>
-	// Logo moved to search bar
-	{/*
+	
+	{/* // Logo moved to search bar
       <span style={{
   display: "flex",
   alignItems: "center",
@@ -507,12 +507,25 @@ boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
     width: "100%",
     display: "flex",
     justifyContent: "center",
-    marginTop: "82px",
-    marginBottom: "8px",
+    marginTop: "18px",
+    marginBottom: "1px",
     position: "relative",
     zIndex: 900
   }}>
     <div style={{ width: "100%", maxWidth: "620px" }}>
+	<div style={{
+  textAlign: "center",
+  marginBottom: "3px",
+  fontSize: "22px",
+  lineHeight: "28px",
+  fontWeight: "800",
+  letterSpacing: "-0.6px",
+  background: "linear-gradient(135deg, #22c1ff, #6c63ff)",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent"
+}}>
+  Search anything, Decide smarter.
+</div>
       <SearchBar
         query={query}
         setQuery={setQuery}
