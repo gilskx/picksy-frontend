@@ -767,70 +767,177 @@ color: "#e5e7eb"         // base text (soft white)
   </div>
 )}
 {showLocationPopup && (
-  <div style={{
-    position: "fixed",
-    bottom: "20px",
-    left: "16px",
-    right: "16px",
-    zIndex: 9999,
-    background: "#020617",
-    border: "1px solid rgba(34,193,255,0.35)",
-    borderRadius: "18px",
-    padding: "16px",
-    boxShadow: "0 12px 40px rgba(34,193,255,0.25)",
-    color: "#e5e7eb"
-  }}>
-    <div style={{
-      fontSize: "15px",
-      fontWeight: "700",
-      color: "#22c1ff"
-    }}>
-      Use your location?
-    </div>
+  <>
+  
+    {/* 🔥 BACKDROP OVERLAY */}
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "rgba(0,0,0,0.72)",
+        backdropFilter: "blur(6px)",
+        zIndex: 9998
+      }}
+    />
 
-    <div style={{
-      fontSize: "13px",
-      marginTop: "6px",
-      color: "#94a3b8"
-    }}>
-      nokku.ai can show nearby stores and better delivery options.
-    </div>
+    {/* 🔥 CENTER MODAL */}
+    <div
+      style={{
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
 
-    <div style={{
-      display: "flex",
-      gap: "10px",
-      marginTop: "14px"
-    }}>
-      <button
-        onClick={requestUserLocation}
+        width: "92%",
+        maxWidth: "520px",
+
+        zIndex: 9999,
+
+        background: "#020617",
+
+        border: "1px solid rgba(34,193,255,0.25)",
+
+        borderRadius: "28px",
+
+        padding: "30px 26px",
+
+        boxShadow: `
+          0 25px 80px rgba(0,0,0,0.65),
+          0 0 35px rgba(34,193,255,0.12)
+        `
+      }}
+    >
+
+      {/* 🔥 ICON */}
+      <div
         style={{
-          flex: 1,
-          padding: "10px",
-          borderRadius: "20px",
-          border: "none",
-          background: "linear-gradient(135deg, #22c1ff, #6c63ff)",
-          color: "#fff",
-          fontWeight: "700"
+          width: "68px",
+          height: "68px",
+          borderRadius: "50%",
+
+          margin: "0 auto 18px",
+
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+
+          background:
+            "linear-gradient(135deg, rgba(34,193,255,0.18), rgba(108,99,255,0.18))",
+
+          border: "1px solid rgba(34,193,255,0.25)",
+
+          fontSize: "28px"
         }}
       >
-        Allow
-      </button>
+        📍
+      </div>
 
-      <button
-        onClick={() => setShowLocationPopup(false)}
+      {/* 🔥 TITLE */}
+      <div
         style={{
-          flex: 1,
-          padding: "10px",
-          borderRadius: "20px",
-          border: "1px solid rgba(255,255,255,0.15)",
-          background: "transparent",
+          textAlign: "center",
+          fontSize: "24px",
+          fontWeight: "700",
+
+          background:
+            "linear-gradient(135deg, #22c1ff, #6c63ff)",
+
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent"
+        }}
+      >
+        Use your location?
+      </div>
+
+      {/* 🔥 SUBTEXT */}
+      <div
+        style={{
+          marginTop: "14px",
+
+          textAlign: "center",
+
+          fontSize: "14px",
+          lineHeight: "24px",
+
           color: "#94a3b8"
         }}
       >
-        Not now
-      </button>
+        nokku.ai can show nearby stores,
+        faster delivery options,
+        and smarter local recommendations.
+      </div>
+
+      {/* 🔥 BUTTONS */}
+      <div
+        style={{
+          display: "flex",
+          gap: "14px",
+          marginTop: "28px"
+        }}
+      >
+
+        {/* ALLOW */}
+        <button
+          onClick={requestUserLocation}
+          style={{
+            flex: 1,
+
+            height: "52px",
+
+            borderRadius: "18px",
+
+            border: "none",
+
+            cursor: "pointer",
+
+            fontSize: "15px",
+            fontWeight: "700",
+
+            color: "#ffffff",
+
+            background:
+              "linear-gradient(135deg, #22c1ff, #6c63ff)",
+
+            boxShadow:
+              "0 10px 30px rgba(34,193,255,0.28)",
+
+            transition: "all 0.2s ease"
+          }}
+        >
+          Allow
+        </button>
+
+        {/* NOT NOW */}
+        <button
+          onClick={() => setShowLocationPopup(false)}
+          style={{
+            flex: 1,
+
+            height: "52px",
+
+            borderRadius: "18px",
+
+            cursor: "pointer",
+
+            fontSize: "15px",
+            fontWeight: "600",
+
+            background: "transparent",
+
+            color: "#cbd5e1",
+
+            border:
+              "1px solid rgba(255,255,255,0.12)",
+
+            transition: "all 0.2s ease"
+          }}
+        >
+          Not now
+        </button>
+
+      </div>
     </div>
-  </div>
+  </>
 )}
 </div>   {/* MAIN container */}
 </>

@@ -548,9 +548,6 @@ color: "#e5e7eb"         // base text (soft white)
 </div>
 
 	</div>
-
-				
-
 				<SuggestionChips setQuery={setQuery} search={search} />
 			  </div>
 			)}
