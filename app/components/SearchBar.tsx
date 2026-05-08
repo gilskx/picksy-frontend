@@ -73,7 +73,7 @@ export default function SearchBar({
   // 🔥 FIXED STICKY LOGIC
   
  position: hasSearched && query ? "sticky" : "relative",
-top: hasSearched && query ? "105px" : "auto",
+top: hasSearched && query ? "82px" : "auto",
 zIndex: hasSearched ? 900 : "auto",
 
   background: "transparent",

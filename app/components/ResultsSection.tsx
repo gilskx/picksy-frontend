@@ -296,15 +296,26 @@ border:
 )}
       {/* LOADING / EMPTY / GRID */}
 {loading ? (
-  <div style={{ textAlign: "center", padding: "40px 0" }}>
+  <div style={{
+    minHeight: "calc(100vh - 260px)",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "0 16px"
+  }}>
 
     {/* 🌊 AI WAVE */}
     <div style={{
   position: "relative",
   width: "220px",
-  height: "130px",
+  height: "80px",
   margin: "0 auto",
-  filter: "drop-shadow(0 20px 38px rgba(69,140,256,0.40))"
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  filter: "drop-shadow(0 14px 30px rgba(59,130,246,0.38))"
 }}>
 
 

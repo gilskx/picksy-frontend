@@ -657,7 +657,7 @@ fontWeight: "500",
 	<div style={{
   minHeight: hasSearched ? "calc(100vh - 120px)" : "auto",
 
-  paddingTop: hasSearched || loading ? "55px" : "12px",
+  paddingTop: hasSearched || loading ? "1px" : "12px",
   paddingBottom: "12px",
   paddingLeft: "0px",
   paddingRight: "0px",

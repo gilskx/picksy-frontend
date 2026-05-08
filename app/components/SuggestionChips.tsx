@@ -7,89 +7,98 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
   const [selectedSuggestion, setSelectedSuggestion] = useState<string | null>(null);
 
   const categories = [
-    {
-      title: "🛒 Groceries",
-      items: [
-        "Grocery essentials",
-        "Fresh produce",
-        "Healthy snacks"
-      ]
-    },
-    
-    {
-      title: "📱 Electronics",
-      items: [
-        "iPhone 16",
-        "Gaming laptops",
-        "Wireless headphones"
-      ]
-    },
-    {
-      title: "🏠 Home",
-      items: [
-        "Kitchen appliances",
-        "Smart home devices",
-        "Home essentials"
-      ]
-    },
-    {
-      title: "👶 Baby",
-      items: [
-        "Baby care",
-        "Diapers",
-        "Baby strollers"
-      ]
-    },
-    {
-      title: "👗 Women",
-      items: [
-        "Women fashion",
-        "Handbags",
-        "Sneakers"
-      ]
-    },
-    {
-      title: "👔 Men",
-      items: [
-        "Men fashion",
-        "Watches",
-        "Sneakers"
-      ]
-    },
-    {
-      title: "💪 Health",
-      items: [
-        "Protein powder",
-        "Fitness trackers",
-        "Health supplements"
-      ]
-    },
-    {
-      title: "⌚ Accessories",
-      items: [
-        "Smart watches",
-        "Travel bags",
-        "Sunglasses"
-      ]
-    },
-    {
-      title: "🎮 Gaming",
-      items: [
-        "Gaming consoles",
-        "Gaming chairs",
-        "Gaming accessories"
-      ]
-    },
-	{
-      title: "💊 Medicine",
-      items: [
-        "Cold & flu medicine",
-        "Pain relief",
-        "Daily wellness"
-      ]
-    }
-  ];
-
+  {
+    title: "🛒 Groceries",
+    items: [
+      "Grocery essentials",
+      "Fresh produce",
+      "Healthy snacks",
+      "Weekly deals"
+    ]
+  },
+  
+  {
+    title: "📱 Electronics",
+    items: [
+      "iPhone 16",
+      "Gaming laptops",
+      "Wireless headphones",
+      "Smart watches"
+    ]
+  },
+  {
+    title: "🏠 Home",
+    items: [
+      "Kitchen appliances",
+      "Smart home devices",
+      "Home essentials",
+      "Cleaning supplies"
+    ]
+  },
+  {
+    title: "👶 Baby",
+    items: [
+      "Baby care",
+      "Diapers",
+      "Baby strollers",
+      "Baby monitors"
+    ]
+  },
+  {
+    title: "👗 Women",
+    items: [
+      "Women fashion",
+      "Handbags",
+      "Sneakers",
+      "Beauty products"
+    ]
+  },
+  {
+    title: "👔 Men",
+    items: [
+      "Men fashion",
+      "Watches",
+      "Sneakers",
+      "Grooming kits"
+    ]
+  },
+  {
+    title: "💪 Health",
+    items: [
+      "Protein powder",
+      "Fitness trackers",
+      "Health supplements",
+      "Workout gear"
+    ]
+  },
+  {
+    title: "⌚ Accessories",
+    items: [
+      "Smart watches",
+      "Travel bags",
+      "Sunglasses",
+      "Phone cases"
+    ]
+  },
+  {
+    title: "🎮 Gaming",
+    items: [
+      "Gaming consoles",
+      "Gaming chairs",
+      "Gaming accessories",
+      "Gaming monitors"
+    ]
+  },
+  {
+    title: "💊 Medicine",
+    items: [
+      "Cold & flu medicine",
+      "Pain relief",
+      "Daily wellness",
+      "First aid"
+    ]
+  }
+];
   return (
     <div
       style={{

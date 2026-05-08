@@ -505,8 +505,8 @@ boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
     width: "100%",
     display: "flex",
     justifyContent: "center",
-    marginTop: "105px",
-    marginBottom: "1px",
+    marginTop: "82px",
+    marginBottom: "8px",
     position: "relative",
     zIndex: 900
   }}>
