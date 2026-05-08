@@ -6,231 +6,275 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
 
   const [selectedSuggestion, setSelectedSuggestion] = useState<string | null>(null);
 
- const categories = [
-  {
-    title: "🛒 Groceries",
-    items: [
-      "Milk delivery near me",
-      "Rice and grocery essentials",
-      "Fresh vegetables nearby"
-    ]
-  },
-  {
-    title: "💊 Medicine",
-    items: [
-      "Fever relief tablets",
-      "Cold & flu medicine",
-      "Pain relief options"
-    ]
-  },
-  {
-    title: "📱 Electronics",
-    items: [
-      "iPhone 16 offers",
-      "Laptops under $1000",
-      "Wireless headphones"
-    ]
-  },
-  {
-    title: "🏠 Home",
-    items: [
-      "Washing machines",
-      "Refrigerators",
-      "Kitchen appliances"
-    ]
-  },
-  {
-    title: "👶 Baby",
-    items: [
-      "Baby diapers",
-      "Baby care essentials",
-      "Baby strollers"
-    ]
-  },
-  {
-    title: "👗 Women",
-    items: [
-      "Women handbags",
-      "Women fashion",
-      "Women sneakers"
-    ]
-  },
-  {
-    title: "👔 Men",
-    items: [
-      "Men watches",
-      "Men sneakers",
-      "Men fashion"
-    ]
-  },
-  {
-    title: "💪 Health",
-    items: [
-      "Protein powders",
-      "Fitness trackers",
-      "Health supplements"
-    ]
-  }
-];
+  const categories = [
+    {
+      title: "🛒 Groceries",
+      items: [
+        "Grocery essentials",
+        "Fresh produce",
+        "Healthy snacks"
+      ]
+    },
+    
+    {
+      title: "📱 Electronics",
+      items: [
+        "iPhone 16",
+        "Gaming laptops",
+        "Wireless headphones"
+      ]
+    },
+    {
+      title: "🏠 Home",
+      items: [
+        "Kitchen appliances",
+        "Smart home devices",
+        "Home essentials"
+      ]
+    },
+    {
+      title: "👶 Baby",
+      items: [
+        "Baby care",
+        "Diapers",
+        "Baby strollers"
+      ]
+    },
+    {
+      title: "👗 Women",
+      items: [
+        "Women fashion",
+        "Handbags",
+        "Sneakers"
+      ]
+    },
+    {
+      title: "👔 Men",
+      items: [
+        "Men fashion",
+        "Watches",
+        "Sneakers"
+      ]
+    },
+    {
+      title: "💪 Health",
+      items: [
+        "Protein powder",
+        "Fitness trackers",
+        "Health supplements"
+      ]
+    },
+    {
+      title: "⌚ Accessories",
+      items: [
+        "Smart watches",
+        "Travel bags",
+        "Sunglasses"
+      ]
+    },
+    {
+      title: "🎮 Gaming",
+      items: [
+        "Gaming consoles",
+        "Gaming chairs",
+        "Gaming accessories"
+      ]
+    },
+	{
+      title: "💊 Medicine",
+      items: [
+        "Cold & flu medicine",
+        "Pain relief",
+        "Daily wellness"
+      ]
+    }
+  ];
 
   return (
     <div
       style={{
-        marginTop: "22px",
+        marginTop: "18px",
         width: "100%",
-        maxWidth: "1050px",
+        maxWidth: "1180px",
         marginInline: "auto",
-        padding: "0 12px"
+        padding: "0 18px"
       }}
     >
 
-      {categories.map((cat, idx) => {
+      {/* GRID */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))",
+          gap: "22px"
+        }}
+      >
 
-        const emoji = cat.title.split(" ")[0];
-        const text = cat.title.split(" ").slice(1).join(" ");
+        {categories.map((cat, idx) => {
 
-        return (
-          <div
-            key={idx}
-            style={{
-              marginBottom: "22px"
-            }}
-          >
+          const emoji = cat.title.split(" ")[0];
+          const text = cat.title.split(" ").slice(1).join(" ");
 
-            {/* 🔥 CATEGORY TITLE */}
+          return (
             <div
+              key={idx}
+
               style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: "8px",
-                marginBottom: "12px",
+                background: "rgba(255,255,255,0.38)",
 
-                fontSize: "13px",
-                fontWeight: 600,
-                letterSpacing: "0.4px",
+                backdropFilter: "blur(14px)",
 
-                color: "#dbeafe",
+                border: "1px solid rgba(59,130,246,0.12)",
 
-                textTransform: "uppercase",
+                borderRadius: "24px",
 
-                opacity: 0.95
+                padding: "16px",
+
+                boxShadow:
+                  "0 12px 35px rgba(59,130,246,0.06)",
+
+                transition: "all 0.22s ease",
+
+                minHeight: "145px"
+              }}
+
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform =
+                  "translateY(-4px)";
+
+                e.currentTarget.style.boxShadow =
+                  "0 20px 45px rgba(59,130,246,0.12)";
+              }}
+
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform =
+                  "translateY(0px)";
+
+                e.currentTarget.style.boxShadow =
+                  "0 12px 35px rgba(59,130,246,0.06)";
               }}
             >
-              <span style={{ fontSize: "14px" }}>
-                {emoji}
-              </span>
 
-              <span
+              {/* CATEGORY TITLE */}
+              <div
                 style={{
-                  backgroundImage:
-                    "linear-gradient(135deg, #38bdf8, #818cf8)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent"
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+
+                  marginBottom: "18px",
+
+                  fontSize: "18px",
+                  fontWeight: 700,
+
+                  color: "#2563eb",
+
+                  letterSpacing: "0.2px"
                 }}
               >
-                {text}
-              </span>
+                <span style={{ fontSize: "18px" }}>
+                  {emoji}
+                </span>
+
+                <span>{text}</span>
+              </div>
+
+              {/* ITEMS */}
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "10px"
+                }}
+              >
+
+                {cat.items.map((s: string, i: number) => {
+
+                  const isSelected = selectedSuggestion === s;
+
+                  return (
+                    <div
+                      key={i}
+
+                      onClick={() => {
+
+                        if (selectedSuggestion !== s) {
+                          setSelectedSuggestion(s);
+                          setQuery(s);
+                          return;
+                        }
+
+                        search(s);
+                      }}
+
+                      style={{
+                        padding: "10px 14px",
+
+                        borderRadius: "999px",
+
+                        fontSize: "13px",
+                        fontWeight: 500,
+
+                        cursor: "pointer",
+                        userSelect: "none",
+
+                        transition: "all 0.2s ease",
+
+                        background: isSelected
+                          ? "linear-gradient(135deg, rgba(59,130,246,0.18), rgba(99,102,241,0.18))"
+                          : "rgba(255,255,255,0.55)",
+
+                        color: isSelected
+                          ? "#2563eb"
+                          : "#334155",
+
+                        border: isSelected
+                          ? "1px solid rgba(59,130,246,0.28)"
+                          : "1px solid rgba(59,130,246,0.08)",
+
+                        boxShadow: isSelected
+                          ? "0 10px 25px rgba(59,130,246,0.10)"
+                          : "none"
+                      }}
+
+                      onMouseEnter={(e) => {
+
+                        if (isSelected) return;
+
+                        const el = e.currentTarget;
+
+                        el.style.transform = "translateY(-2px)";
+                        el.style.background =
+                          "rgba(255,255,255,0.72)";
+                        el.style.border =
+                          "1px solid rgba(59,130,246,0.18)";
+                      }}
+
+                      onMouseLeave={(e) => {
+
+                        if (isSelected) return;
+
+                        const el = e.currentTarget;
+
+                        el.style.transform = "translateY(0px)";
+                        el.style.background =
+                          "rgba(255,255,255,0.55)";
+                        el.style.border =
+                          "1px solid rgba(59,130,246,0.08)";
+                      }}
+                    >
+                      {s}
+                    </div>
+                  );
+                })}
+
+              </div>
+
             </div>
+          );
+        })}
 
-            {/* 🔥 CHIP ROW */}
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                gap: "12px"
-              }}
-            >
-              {cat.items.map((s: string, i: number) => {
-
-                const isSelected = selectedSuggestion === s;
-
-                return (
-                  <div
-                    key={i}
-
-                    onClick={() => {
-
-                      // ✅ FIRST CLICK → SELECT ONLY
-                      if (selectedSuggestion !== s) {
-                        setSelectedSuggestion(s);
-                        setQuery(s);
-                        return;
-                      }
-
-                      // ✅ SECOND CLICK SAME ITEM → SEARCH
-                      search(s);
-                    }}
-
-                    style={{
-                      padding: "10px 18px",
-                      borderRadius: "999px",
-
-                      fontSize: "13px",
-                      fontWeight: 500,
-
-                      cursor: "pointer",
-                      userSelect: "none",
-
-                      transition: "all 0.22s ease",
-
-                      backdropFilter: "blur(10px)",
-
-                      border: isSelected
-                        ? "1px solid rgba(96,165,250,0.55)"
-                        : "1px solid rgba(255,255,255,0.08)",
-
-                      background: isSelected
-                        ? "linear-gradient(135deg, rgba(34,193,255,0.18), rgba(108,99,255,0.18))"
-                        : "rgba(255,255,255,0.02)",
-
-                      color: isSelected
-                        ? "#ffffff"
-                        : "#38bdf8",
-
-                      boxShadow: isSelected
-                        ? "0 0 18px rgba(34,193,255,0.22)"
-                        : "0 0 0 rgba(0,0,0,0)"
-                    }}
-
-                    onMouseEnter={(e) => {
-
-                      if (isSelected) return;
-
-                      const el = e.currentTarget;
-
-                      el.style.transform = "translateY(-2px)";
-                      el.style.border =
-                        "1px solid rgba(96,165,250,0.35)";
-                      el.style.background =
-                        "rgba(255,255,255,0.04)";
-                      el.style.color = "#ffffff";
-                    }}
-
-                    onMouseLeave={(e) => {
-
-                      if (isSelected) return;
-
-                      const el = e.currentTarget;
-
-                      el.style.transform = "translateY(0px)";
-                      el.style.border =
-                        "1px solid rgba(255,255,255,0.08)";
-                      el.style.background =
-                        "rgba(255,255,255,0.02)";
-                      el.style.color = "#38bdf8";
-                    }}
-                  >
-                    {s}
-                  </div>
-                );
-              })}
-            </div>
-
-          </div>
-        );
-      })}
+      </div>
 
     </div>
   );

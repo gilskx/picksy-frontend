@@ -1,4 +1,4 @@
-"use client";
+use client";
 import "./globals.css";
 export default function LoadingSection({ loading, loadingMessage, onCancel }: any) {
 
@@ -9,16 +9,23 @@ export default function LoadingSection({ loading, loadingMessage, onCancel }: an
     <>
       {/* 🔥 AI MESSAGE PANEL */}
       <div style={{
-          background: "#000000", 
+          background: "rgba(255,255,255,0.68)",
+
+backdropFilter: "blur(18px)",
+
+border: "1px solid rgba(59,130,246,0.14)",
+
+boxShadow: "0 20px 50px rgba(59,130,246,0.08)", 
         padding: "18px",
         borderRadius: "12px",
         marginBottom: "20px",
-        boxShadow: "0 6px 20px rgba(0,0,0,0.08)",
         borderLeft: "5px solid #2c7be5"
       }}>
         <div style={{
-          fontWeight: "600",
-          fontSize: "15px"
+         fontWeight: "700",
+fontSize: "16px",
+color: "#1e293b",
+letterSpacing: "0.2px",
         }}>
           🤖 nokku.ai is working...
         </div>
@@ -36,7 +43,19 @@ export default function LoadingSection({ loading, loadingMessage, onCancel }: an
   fontSize: "14px",
   color: "#555"
 }}>
+  <div style={{
+  marginTop: "12px",
+
+  fontSize: "15px",
+
+  color: "#334155",
+
+  fontWeight: "500",
+
+  lineHeight: "24px"
+}}>
   {loadingMessage}
+</div>
 </div>
 
 {/* 🔥 ADD BACK BUTTON HERE */}

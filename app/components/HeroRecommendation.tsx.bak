@@ -671,7 +671,7 @@ if (name.includes(",")) {
       fontSize: "22px",
       fontWeight: "700",
 	  marginTop: "12px",
-      color: "rgba(34,193,255,0.75)"
+      color: "#2563eb"
     }}>
       Save ${saveAmount}
     </div>

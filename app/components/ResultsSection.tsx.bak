@@ -108,7 +108,7 @@ return (
               color: "#334155",
 fontWeight: "500",
             }}>
-              More options recommended by nokku.ai for you "{query}" - {displayProducts.length} Products and enables comparison across leading brands — instantly
+              More options for "{query}" — nokku.ai found similar products you can compare.
             </div>
 
           </div>
@@ -152,7 +152,7 @@ boxShadow: "0 10px 30px rgba(59,130,246,0.25)"
       // 🔥 SAME BACKGROUND FOR ALL (ACTIVE vs INACTIVE)
      background: "rgba(255,255,255,0.05)",
 
-color: "#22c1ff",
+color: mode === m ? "#2563eb" : "#334155",
 
 border:
   mode === m
@@ -301,9 +301,10 @@ border:
     {/* 🌊 AI WAVE */}
     <div style={{
   position: "relative",
-  width: "200px",
-  height: "120px",
-  margin: "0 auto"
+  width: "220px",
+  height: "130px",
+  margin: "0 auto",
+  filter: "drop-shadow(0 20px 38px rgba(59,130,246,0.30))"
 }}>
 
 
@@ -323,13 +324,15 @@ border:
 
     {/* 🔤 STAGE TEXT */}
     <div style={{
-      marginTop: "20px",
-      fontSize: "15px",
-      color: "rgba(34, 193, 255, 0.75)",
-      fontWeight: "500"
-    }}>
-      {loadingMessage}
-    </div>
+  marginTop: "22px",
+  fontSize: "16px",
+  color: "#2563eb",
+  fontWeight: "340",
+  letterSpacing: "0.2px",
+  textShadow: "0 4px 18px rgba(59,130,246,0.22)"
+}}>
+  {loadingMessage}
+</div>
 
  
 

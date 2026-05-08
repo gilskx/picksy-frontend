@@ -428,22 +428,72 @@ color: "#0f172a"    //    color
     <div className="nokku-floating-logo" style={{
   position: "fixed",
   top: "15px",
-      left: "20px",
-      zIndex: 9999,
+      left: "20px",zIndex: 9999,
       background: "rgba(255,255,255,0.55)",
 backdropFilter: "blur(12px)",
 border: "1px solid rgba(255,255,255,0.4)",
 boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
       padding: "6px 14px",
       borderRadius: "20px",
-      fontFamily: "'Comic Sans MS', 'Comic Neue', cursive",
+      fontFamily: "Inter, sans-serif",
       fontWeight: "700",
-      fontSize: "18px",
+      fontSize: "20px",
       backgroundImage: "linear-gradient(135deg, #22c1ff, #6c63ff)",
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent"
     }}>
-      ✨ nokku.ai
+      <span style={{
+  display: "flex",
+  alignItems: "center",
+  gap: "8px"
+}}>
+
+  <span style={{
+  display: "flex",
+  alignItems: "center",
+  gap: "10px"
+}}>
+
+  <span style={{
+    fontSize: "24px",
+
+    background:
+      "linear-gradient(135deg, #38bdf8, #6366f1)",
+
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+
+    filter:
+      "drop-shadow(0 0 8px rgba(99,102,241,0.22))"
+  }}>
+    <img
+  src="/nokku-icon.png"
+  alt="nokku.ai"
+  style={{
+    width: "72px",
+    height: "72px",
+
+    objectFit: "cover",
+    display: "block",
+
+    borderRadius: "50%",
+
+    WebkitMaskImage:
+      "radial-gradient(circle, black 62%, rgba(0,0,0,0.75) 74%, transparent 100%)",
+    maskImage:
+      "radial-gradient(circle, black 62%, rgba(0,0,0,0.75) 74%, transparent 100%)",
+
+    filter:
+      "drop-shadow(0 8px 18px rgba(59,130,246,0.18))"
+  }}
+/>
+  </span>
+
+ 
+
+</span>
+
+</span>
     </div>
 
     {/* ✅ FIXED SEARCH BAR */}
@@ -458,7 +508,7 @@ boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
     marginTop: "8px",
     marginBottom: "0px"
   }}>
-    <div style={{ width: "100%", maxWidth: "700px" }}>
+    <div style={{ width: "100%", maxWidth: "620px" }}>
       <SearchBar
         query={query}
         setQuery={setQuery}
@@ -473,12 +523,37 @@ boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
   </div>
 )}
 
+<div style={{
+  position: "absolute",
+  top: "160px",
+  left: "50%",
+  transform: "translateX(-50%)",
 
+  width: "320px",
+height: "320px",
+
+  borderRadius: "50%",
+
+  background: `
+    radial-gradient(
+      circle,
+      rgba(59,130,246,0.18),
+      rgba(99,102,241,0.08),
+      transparent 70%
+    )
+  `,
+
+  filter: "blur(45px)",
+
+  zIndex: 0,
+
+  animation: "pulse 6s ease-in-out infinite"
+}} />
 
 			{/* HERO */}
 			{!hasSearched && (
   <div className="nokku-hero" style={{
-    padding: "40px 20px 30px",
+    padding: "24px 20px 14px",
 				textAlign: "left",
 				//color: "#fff"
 				color: "inherit"
@@ -486,19 +561,23 @@ boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
 			  {/* MAIN HEADLINE */}
 			   <div style={{
 	  textAlign: "center",
-	  marginBottom: "26px",
+	  marginBottom: "16px",
 	  animation: "fadeInUp 0.6s ease",
 	}}>
 
 	  
 	  <div style={{
-		fontSize: "26px",
-		fontWeight: "700",
-		letterSpacing: "-0.3px",
+		fontSize: "34px",
+lineHeight: "48px",
+fontWeight: "800",
+letterSpacing: "-1.5px",
+		
+		
 		background: "linear-gradient(135deg, #22c1ff, #6c63ff)",
 		WebkitBackgroundClip: "text",
 		WebkitTextFillColor: "transparent",
-		textShadow: "0 4px 20px rgba(0,0,0,0.5)"
+		textShadow: `
+  0 10px 35px rgba(59,130,246,0.18)`,
 	  }}>
 		Search anything, Decide smarter.
 	  </div>
@@ -510,17 +589,24 @@ boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  gap: "6px",
+  gap: "8px",
   textAlign: "center",
   width: "100%",
 
-  // 🔥 SAME GRADIENT AS TITLE
   background: "linear-gradient(135deg, #22c1ff, #6c63ff)",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent"
 }}>
-  <span style={{ opacity: 0.8 }}>✨</span>
-  ✨nokku.ai finds the best match, cheaper alternatives, and compares real-time deals across multiple trusted sources — instantly.
+  <span style={{
+    WebkitTextFillColor: "initial",
+    fontSize: "17px"
+  }}>
+    🛒💡
+  </span>
+
+  <span>
+    One search. Multiple stores, nokku.ai finds the best product, smarter alternatives, and better deals instantly.
+  </span>
 </div>
 
 <div style={{
@@ -551,7 +637,8 @@ boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
   fontSize: "12px",
 
   // 🔥 FADED LOOK
-  color: "#64748b",
+  color: "#475569",
+fontWeight: "500",
 
   letterSpacing: "0.3px"
 }}>
@@ -566,7 +653,7 @@ boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
 			{/* MAIN */}
 		  {/* MAIN */}
 	<div style={{
-  minHeight: "calc(100vh - 120px)",
+  minHeight: hasSearched ? "calc(100vh - 120px)" : "auto",
 
   paddingTop: hasSearched || loading ? "55px" : "12px",
   paddingBottom: "12px",
@@ -592,8 +679,8 @@ boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
 {loading && (
   <div style={{
     position: "fixed",
-    top: "68px",
-    left: "20px",
+    top: "118px",
+    left: "24px",
     zIndex: 1000
   }}>
     <button
@@ -726,15 +813,15 @@ boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
         background: "rgba(15,23,42,0.18)",
 backdropFilter: "blur(6px)",
 
-backdropFilter: "blur(18px)",
+
 
 color: "#334155",
 
 border: "1px solid rgba(255,255,255,0.45)",
 
 boxShadow: "0 25px 60px rgba(148,163,184,0.18)",
-        color: "#e5e7eb",
-        boxShadow: "0 30px 80px rgba(0,0,0,0.6)",
+        
+        
         position: "relative"
       }}
     >
@@ -831,7 +918,7 @@ backdropFilter: "blur(18px)",
         padding: "30px 26px",
 
         boxShadow: `
-          0 25px 80px rgba(0,0,0,0.65),
+          0 20px 50px rgba(148,163,184,0.16),
           0 0 35px rgba(34,193,255,0.12)
         `
       }}
@@ -891,9 +978,7 @@ backdropFilter: "blur(18px)",
           color: "#475569"
         }}
       >
-        nokku.ai can show nearby stores,
-        faster delivery options,
-        and smarter local recommendations.
+        ✨ One search across multiple stores. nokku.ai finds the best products, smarter alternatives, and better deals instantly.
       </div>
 
       {/* 🔥 BUTTONS */}

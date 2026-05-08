@@ -155,45 +155,61 @@ export default function SearchBar({
     />
 
     {/* BUTTON */}
-    <button
-      onClick={() => {
-        setShowSuggestions(false);
-        search();
-      }}
-      style={{
-        background: "linear-gradient(135deg, #3b82f6, #6366f1)",
-        color: "#fff",
-        borderRadius: "50%",
-        width: "44px",
-        height: "44px",
-        fontSize: "16px",
-        border: "none",
-        cursor: "pointer",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        marginLeft: "6px",
-        boxShadow: "0 6px 20px rgba(59,130,246,0.5)",
-        transition: "all 0.2s ease",
-        position: "relative",
-        zIndex: 5,
-        WebkitTapHighlightColor: "transparent"
-      }}
-      onMouseOver={(e) => {
-        e.currentTarget.style.transform = "scale(1.1)";
-      }}
-      onMouseOut={(e) => {
-        e.currentTarget.style.transform = "scale(1)";
-      }}
-      onTouchStart={(e) => {
-        e.currentTarget.style.transform = "scale(0.95)";
-      }}
-      onTouchEnd={(e) => {
-        e.currentTarget.style.transform = "scale(1)";
-      }}
-    >
-      🔍
-    </button>
+<button
+  disabled={!query.trim()}
+  onClick={() => {
+    if (!query.trim()) return;
+
+    setShowSuggestions(false);
+    search();
+  }}
+  style={{
+    background: query.trim()
+      ? "linear-gradient(135deg, #3b82f6, #6366f1)"
+      : "rgba(148,163,184,0.35)",
+
+    color: "#fff",
+    borderRadius: "50%",
+    width: "44px",
+    height: "44px",
+    fontSize: "16px",
+    border: "none",
+
+    cursor: query.trim() ? "pointer" : "not-allowed",
+
+    opacity: query.trim() ? 1 : 0.55,
+
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: "6px",
+
+    boxShadow: query.trim()
+      ? "0 6px 20px rgba(59,130,246,0.5)"
+      : "none",
+
+    transition: "all 0.2s ease",
+    position: "relative",
+    zIndex: 5,
+    WebkitTapHighlightColor: "transparent"
+  }}
+  onMouseOver={(e) => {
+    if (!query.trim()) return;
+    e.currentTarget.style.transform = "scale(1.1)";
+  }}
+  onMouseOut={(e) => {
+    e.currentTarget.style.transform = "scale(1)";
+  }}
+  onTouchStart={(e) => {
+    if (!query.trim()) return;
+    e.currentTarget.style.transform = "scale(0.95)";
+  }}
+  onTouchEnd={(e) => {
+    e.currentTarget.style.transform = "scale(1)";
+  }}
+>
+  🔍
+</button>
 
   </div>
 
@@ -204,7 +220,9 @@ export default function SearchBar({
       maxWidth: hasSearched ? "600px" : "700px",
       background: "#fff",
       borderRadius: "10px",
-      boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+      boxShadow: `
+  0 15px 45px rgba(59,130,246,0.12),
+  0 0 0 1px rgba(255,255,255,0.4)`,
       marginTop: "6px",
       overflow: "hidden"
     }}>

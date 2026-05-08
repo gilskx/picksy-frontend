@@ -712,7 +712,7 @@ if (name.includes(",")) {
     ${cheaper.price}
   </div>
 
-  <div style={{ ccolor: "#0f172a" }}>•</div>
+  <div style={{ color: "#0f172a" }}>•</div>
 
   <div style={{ color: "#0f172a" }}>
     ⭐ {Number(cheaper.rating || 3.5).toFixed(1)}
