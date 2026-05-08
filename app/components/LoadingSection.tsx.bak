@@ -43,7 +43,19 @@ letterSpacing: "0.2px",
   fontSize: "14px",
   color: "#555"
 }}>
+  <div style={{
+  marginTop: "12px",
+
+  fontSize: "15px",
+
+  color: "#334155",
+
+  fontWeight: "500",
+
+  lineHeight: "24px"
+}}>
   {loadingMessage}
+</div>
 </div>
 
 {/* 🔥 ADD BACK BUTTON HERE */}

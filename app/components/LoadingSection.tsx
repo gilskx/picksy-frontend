@@ -1,4 +1,4 @@
-use client";
+"use client";
 import "./globals.css";
 export default function LoadingSection({ loading, loadingMessage, onCancel }: any) {
 
