@@ -209,7 +209,7 @@ input:-webkit-autofill {
 @media (max-width: 768px) {
   .nokku-hero-recommendation {
     padding: 0 10px !important;
-    margin-top: 40px !important;
+    margin-top: 8px !important;
   }
 
   .nokku-hero-rec-grid {

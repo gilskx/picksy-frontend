@@ -443,7 +443,7 @@ height: "min(300px, 78vw)",
 
   padding: "0",        // 🔥 KEY FIX (remove horizontal padding)
 
-  marginTop: "50px", //5/3
+  marginTop: "25px", //5/3
   borderRadius: "16px",
   overflow: "hidden"
 }}>
