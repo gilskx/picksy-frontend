@@ -583,6 +583,23 @@ height: "320px",
 	  animation: "fadeInUp 0.6s ease",
 	}}>
 
+ <div style={{  ////nokku ai
+		fontSize: "24px",
+letterSpacing: "-1.5px",
+		
+		
+		background: "linear-gradient(135deg, #22c1ff, #6c63ff)",
+		WebkitBackgroundClip: "text",
+		WebkitTextFillColor: "transparent",
+		textShadow: `
+  0 10px 35px rgba(59,130,246,0.18)`,
+	  }}>
+		nokku.ai
+	  </div>
+
+
+
+
 	  
 	  <div style={{
 		fontSize: "34px",
@@ -696,8 +713,8 @@ fontWeight: "500",
 {loading && (
   <div style={{
     position: "fixed",
-    top: "110px",
-    left: "50px",
+    top: "35px",
+    left: "24px",
     zIndex: 1000
   }}>
     <button

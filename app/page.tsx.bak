@@ -508,9 +508,10 @@ boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
     display: "flex",
     justifyContent: "center",
     marginTop: "18px",
-    marginBottom: "10px",
+    marginBottom: "14px",
     position: "relative",
-    zIndex: 900
+    zIndex: 1200,
+    padding: "0 16px"
   }}>
     <div style={{ width: "100%", maxWidth: "620px" }}>
 	<div style={{
@@ -581,6 +582,23 @@ height: "320px",
 	  marginBottom: "16px",
 	  animation: "fadeInUp 0.6s ease",
 	}}>
+
+ <div style={{  ////logo
+		fontSize: "24px",
+letterSpacing: "-1.5px",
+		
+		
+		background: "linear-gradient(135deg, #22c1ff, #6c63ff)",
+		WebkitBackgroundClip: "text",
+		WebkitTextFillColor: "transparent",
+		textShadow: `
+  0 10px 35px rgba(59,130,246,0.18)`,
+	  }}>
+		nokku.ai
+	  </div>
+
+
+
 
 	  
 	  <div style={{
@@ -695,8 +713,8 @@ fontWeight: "500",
 {loading && (
   <div style={{
     position: "fixed",
-    top: "110px",
-    left: "50px",
+    top: "35px",
+    left: "24px",
     zIndex: 1000
   }}>
     <button
