@@ -130,7 +130,8 @@ const renderList = (list: string[]) => {
   overflowX: "hidden",
   borderRadius: "24px",
   padding: "20px 12px",
-  background: "#000000",
+  background: "radial-gradient(circle at center, #0ea5e9 0%, #020617 65%, #000000 100%)", //5/5 Back color
+  
 }}>
 
         {/* HEADER */}
@@ -591,14 +592,17 @@ height: "min(300px, 78vw)",
   {(() => {
     const name = cheaper.name || "";
 
-    if (name.includes("|")) {
-      return name.split("|").map((s: string) => s.trim())[0];
-    }
+   if (name.includes(" - ")) {
+  return name.split(" - ").map((s: string) => s.trim())[0];
+}
 
-    if (name.includes(",")) {
-      return name.split(",").map((s: string) => s.trim())[0];
-    }
+if (name.includes("|")) {
+  return name.split("|").map((s: string) => s.trim())[0];
+}
 
+if (name.includes(",")) {
+  return name.split(",").map((s: string) => s.trim())[0];
+}
     return name;
   })()}
 </div>

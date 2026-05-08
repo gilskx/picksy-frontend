@@ -63,7 +63,7 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
         return (
           <div key={idx} style={{ marginBottom: "14px" }}>
 
-            {/* 🔥 CATEGORY TITLE (ENHANCED) */}
+            {/* 🔥 CATEGORY   TITLE (ENHANCED) */}
             <div
               style={{
                 fontSize: "12px",

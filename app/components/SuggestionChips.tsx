@@ -1,6 +1,10 @@
 "use client";
 
+import { useState } from "react";
+
 export default function SuggestionChips({ setQuery, query, search }: any) {
+
+  const [selectedSuggestion, setSelectedSuggestion] = useState<string | null>(null);
 
   const categories = [
     {
@@ -63,7 +67,7 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
         return (
           <div key={idx} style={{ marginBottom: "14px" }}>
 
-            {/* 🔥 CATEGORY   TITLE (ENHANCED) */}
+            {/* 🔥 CATEGORY TITLE */}
             <div
               style={{
                 fontSize: "12px",
@@ -76,8 +80,6 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
                 alignItems: "center",
                 gap: "6px",
                 transition: "all 0.2s ease",
-
-                // ✨ subtle glow
                 textShadow: "0 0 8px rgba(34,193,255,0.25)"
               }}
 
@@ -90,10 +92,8 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
               }}
             >
 
-              {/* ✅ Emoji stays natural */}
               <span>{emoji}</span>
 
-              {/* ✅ Slightly richer gradient */}
               <span
                 style={{
                   backgroundImage: "linear-gradient(135deg, #38bdf8, #818cf8)",
@@ -115,55 +115,92 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
                 gap: "10px"
               }}
             >
-              {cat.items.map((s: string, i: number) => (
-                <div
-                  key={i}
-                  onClick={() => {
-                    setQuery(s);
-                    search(s);
-                  }}
+              {cat.items.map((s: string, i: number) => {
 
-                  style={{
-                    padding: "6px 14px",
-                    borderRadius: "20px",
-                    background: "transparent",
+                const isSelected = selectedSuggestion === s;
 
-                    backgroundImage: "linear-gradient(135deg, #22c1ff, #6c63ff)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
+                return (
+                  <div
+                    key={i}
 
-                    fontSize: "13px",
-                    cursor: "pointer",
-                    transition: "all 0.2s ease",
+                    onClick={() => {
 
-                    border: "1px solid rgba(255,255,255,0.12)"
-                  }}
+                      // ✅ FIRST CLICK → ONLY SELECT
+                      if (selectedSuggestion !== s) {
+                        setSelectedSuggestion(s);
+                        setQuery(s);
+                        return;
+                      }
 
-                  onMouseEnter={(e) => {
-                    const el = e.currentTarget;
+                      // ✅ SECOND CLICK SAME ITEM → SEARCH
+                      search(s);
+                    }}
 
-                    el.style.backgroundImage = "none";
-                    (el.style as any).webkitBackgroundClip = "initial";
-                    (el.style as any).webkitTextFillColor = "#ffffff";
-                    el.style.color = "#ffffff";
+                    style={{
+                      padding: "6px 14px",
+                      borderRadius: "20px",
+                      fontSize: "13px",
+                      cursor: "pointer",
+                      transition: "all 0.2s ease",
 
-                    el.style.border = "1px solid #ffffff";
-                  }}
+                      background: isSelected
+                        ? "linear-gradient(135deg, #22c1ff, #6c63ff)"
+                        : "transparent",
 
-                  onMouseLeave={(e) => {
-                    const el = e.currentTarget;
+                      backgroundImage: isSelected
+                        ? "none"
+                        : "linear-gradient(135deg, #22c1ff, #6c63ff)",
 
-                    el.style.backgroundImage = "linear-gradient(135deg, #22c1ff, #6c63ff)";
-                    (el.style as any).webkitBackgroundClip = "text";
-                    (el.style as any).webkitTextFillColor = "transparent";
+                      WebkitBackgroundClip: isSelected ? "initial" : "text",
+                      WebkitTextFillColor: isSelected ? "#ffffff" : "transparent",
 
-                    el.style.color = "transparent";
-                    el.style.border = "1px solid rgba(255,255,255,0.12)";
-                  }}
-                >
-                  {s}
-                </div>
-              ))}
+                      color: isSelected
+                        ? "#ffffff"
+                        : "transparent",
+
+                      border: isSelected
+                        ? "1px solid rgba(255,255,255,0.35)"
+                        : "1px solid rgba(255,255,255,0.12)",
+
+                      boxShadow: isSelected
+                        ? "0 0 18px rgba(34,193,255,0.35)"
+                        : "none"
+                    }}
+
+                    onMouseEnter={(e) => {
+
+                      // 🔥 KEEP SELECTED STYLE
+                      if (isSelected) return;
+
+                      const el = e.currentTarget;
+
+                      el.style.backgroundImage = "none";
+                      (el.style as any).webkitBackgroundClip = "initial";
+                      (el.style as any).webkitTextFillColor = "#ffffff";
+
+                      el.style.color = "#ffffff";
+                      el.style.border = "1px solid #ffffff";
+                    }}
+
+                    onMouseLeave={(e) => {
+
+                      // 🔥 KEEP SELECTED STYLE
+                      if (isSelected) return;
+
+                      const el = e.currentTarget;
+
+                      el.style.backgroundImage = "linear-gradient(135deg, #22c1ff, #6c63ff)";
+                      (el.style as any).webkitBackgroundClip = "text";
+                      (el.style as any).webkitTextFillColor = "transparent";
+
+                      el.style.color = "transparent";
+                      el.style.border = "1px solid rgba(255,255,255,0.12)";
+                    }}
+                  >
+                    {s}
+                  </div>
+                );
+              })}
             </div>
 
           </div>

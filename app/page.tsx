@@ -412,7 +412,7 @@ setEventSourceRef(es);
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "stretch",
-    background: "#000000",   // ✅ FULL BLACK
+    background: "#000000",   // ✅ FULL BLACK // cccccc
 color: "#e5e7eb"         // base text (soft white)	
   }}>
 
@@ -548,9 +548,6 @@ color: "#e5e7eb"         // base text (soft white)
 </div>
 
 	</div>
-
-				
-
 				<SuggestionChips setQuery={setQuery} search={search} />
 			  </div>
 			)}
@@ -558,14 +555,18 @@ color: "#e5e7eb"         // base text (soft white)
 			{/* MAIN */}
 		  {/* MAIN */}
 	<div style={{
-	  minHeight: "calc(100vh - 120px)",
-	  paddingTop: hasSearched || loading ? "55px" : "0px",
-	  display: "flex",
-	  flexDirection: "column",
-	  justifyContent: "flex-start",
-		alignItems: "stretch",
-	  padding: "12px 0"
-	}}>
+  minHeight: "calc(100vh - 120px)",
+
+  paddingTop: hasSearched || loading ? "55px" : "12px",
+  paddingBottom: "12px",
+  paddingLeft: "0px",
+  paddingRight: "0px",
+
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-start",
+  alignItems: "stretch"
+}}>
 	  <div style={{ width: "100%" }}>   {/* ✅ ADD THIS WRAPPER */}
 
 			  {/* FILTERS */}
