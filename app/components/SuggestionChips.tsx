@@ -13,7 +13,7 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
       "Grocery essentials",
       "Fresh produce",
       "Healthy snacks",
-      "Weekly deals"
+      "Organic Vegetables"
     ]
   },
   
@@ -21,11 +21,14 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
     title: "📱 Electronics",
     items: [
       "iPhone 16",
-      "Gaming laptops",
-      "Wireless headphones",
-      "Smart watches"
+	  "Laptops",
+	  "Television",
+	   "Smart watches",
+	  "Wireless headphones"
+      
     ]
   },
+  
   {
     title: "🏠 Home",
     items: [
@@ -36,12 +39,21 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
     ]
   },
   {
+  title: "🏀 Sports",
+  items: [
+    "Sports shoes",
+    "Fitness equipment",
+    "Outdoor games",
+    "Sports accessories"
+  ]
+},
+  {
     title: "👶 Baby",
     items: [
       "Baby care",
       "Diapers",
-      "Baby strollers",
-      "Baby monitors"
+      "Baby strollers"
+      
     ]
   },
   {
@@ -92,7 +104,7 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
   {
     title: "💊 Medicine",
     items: [
-      "Cold & flu medicine",
+      "Vitamins",
       "Pain relief",
       "Daily wellness",
       "First aid"
