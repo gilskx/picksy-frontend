@@ -45,12 +45,12 @@
 
 /* 🎯 FILTER INPUT ONLY */
 .filter-input {
-  color: #ffffff;
+  color: #0f172a;
 }
 
 /* ✅ APPLY FADE ANIMATION */
 .filter-input::placeholder {
-  color: #86efac;
+  color: #64748b;
   opacity: 1;
   animation: placeholderFade 2.5s ease-in-out infinite;
 }
@@ -63,7 +63,7 @@
 
 /* autofill fix */
 input:-webkit-autofill {
-  -webkit-text-fill-color: #ffffff !important;
+  -webkit-text-fill-color: #0f172a !important;
   transition: background-color 9999s ease-in-out 0s;
 }
 

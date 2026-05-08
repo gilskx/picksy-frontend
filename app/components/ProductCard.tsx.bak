@@ -63,14 +63,15 @@ const toggleCompare = (item: any) => {
 		className="nokku-product-card"
 		style={{
          //background: "#000000", 
-		 background: "rgba(255,255,255,0.03)",
+		 background: "rgba(255,255,255,0.42)",
+backdropFilter: "blur(12px)",
 
-boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
+boxShadow: "0 10px 30px rgba(148,163,184,0.10)",
         borderRadius: "16px",
         padding: "14px",
         transition: "all 0.25s ease",
         position: "relative",
-        border: "1px solid #f0f0f0"
+        border: "1px solid rgba(148,163,184,0.14)"
       }}
       onMouseOver={(e) => {
         e.currentTarget.style.transform = "translateY(-6px)";
@@ -116,32 +117,64 @@ boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
         </div>
       )}
 
-      {/* IMAGE */}
-      <div style={{
-        height: "170px",
-        background: "#f9fafc",
-        borderRadius: "12px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
-
-      }}>
-        <img src={p.image}
+     {/* IMAGE - CLICKABLE SAME AS SOLD ON BUTTON */}
+{(p.url || p.link) ? (
+  <a
+    href={(p.url || p.link).startsWith("http")
+      ? (p.url || p.link)
+      : `https://${p.url || p.link}`}
+    target="_blank"
+    rel="noopener noreferrer"
     style={{
-    maxHeight: "100%",
-    maxWidth: "100%",
-	height: "160px",
-    objectFit: "contain",
-    transition: "transform 0.3s ease"   // 🔥 add this
-  }}
-  onMouseOver={(e) => {
-    e.currentTarget.style.transform = "scale(1.05)";  // 🔥 zoom in
-  }}
-  onMouseOut={(e) => {
-    e.currentTarget.style.transform = "scale(1)";     // 🔥 zoom out
-  }}
-/>
-      </div>
+      height: "170px",
+      background: "#f9fafc",
+      borderRadius: "12px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      textDecoration: "none",
+      cursor: "pointer",
+      overflow: "hidden"
+    }}
+  >
+    <img
+      src={p.image}
+      style={{
+        maxHeight: "100%",
+        maxWidth: "100%",
+        height: "160px",
+        objectFit: "contain",
+        transition: "transform 0.3s ease"
+      }}
+      onMouseOver={(e) => {
+        e.currentTarget.style.transform = "scale(1.05)";
+      }}
+      onMouseOut={(e) => {
+        e.currentTarget.style.transform = "scale(1)";
+      }}
+    />
+  </a>
+) : (
+  <div style={{
+    height: "170px",
+    background: "#f9fafc",
+    borderRadius: "12px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden"
+  }}>
+    <img
+      src={p.image}
+      style={{
+        maxHeight: "100%",
+        maxWidth: "100%",
+        height: "160px",
+        objectFit: "contain"
+      }}
+    />
+  </div>
+)}
 
       {/* TITLE */}
       <div style={{
@@ -149,7 +182,7 @@ boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
         marginTop: "10px",
         height: "42px",
         overflow: "hidden",
-        color: "rgba(34, 193, 255, 0.75)",
+        color: "#0f172a",
 		
         fontWeight: "500"
       }}>
@@ -166,13 +199,13 @@ boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
   {/* PRICE */}
   <div style={{
     fontWeight: "700",
-    color: "rgba(34, 193, 255, 0.75)",
+    color: "#0f172a",
     fontSize: "17px"
   }}>
     {p.price && p.price > 0 ? `$${p.price}` : (
       <div style={{
         fontSize: "12px",
-        color: "rgba(34, 193, 255, 0.75)",
+        color: "#0f172a",
         marginTop: "4px"
       }}>
         Price unavailable
@@ -213,7 +246,7 @@ boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
       <div style={{
         marginTop: "8px",
         fontSize: "12px",
-        color: "rgba(34, 193, 255, 0.75)",
+        color: "#0f172a",
 		background: "transparent",
         padding: "6px 10px",
         borderRadius: "8px",
@@ -230,7 +263,7 @@ boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
          marginBottom: "10px",
         marginTop: "6px",
 		fontWeight: "500",
-		color: "rgba(34, 193, 255, 0.75)",
+		color: "#0f172a",
 		
       }}>
 	    

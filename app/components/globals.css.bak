@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&display=swap');
+
+:root {
+  --bg-main: #000000;
+
+  /* BIG FONT (logo gradient style) */
+  --text-primary: linear-gradient(135deg, #22c1ff, #6c63ff);
+
+  /* SMALL FONT */
+  --text-secondary: #9ca3af;
+}
+
 /* shimmer stays same */
 @keyframes shimmer {
   0% { background-position: -400px 0; }
@@ -15,26 +27,324 @@
   animation: shimmer 1.2s infinite linear;
 }
 
-/* placeholder animation */
-@keyframes placeholderPulse {
-  0% { opacity: 0.5; }
-  50% { opacity: 0.8; }
-  100% { opacity: 0.5; }
+/* 🔥 NEW: smooth fade + glow animation */
+@keyframes placeholderFade {
+  0% {
+    opacity: 0.4;
+    color: #86efac;
+  }
+  50% {
+    opacity: 0.9;
+    color: #bbf7d0; /* lighter green glow */
+  }
+  100% {
+    opacity: 0.4;
+    color: #86efac;
+  }
 }
 
 /* 🎯 FILTER INPUT ONLY */
 .filter-input {
-  color: #ffffff;
+  color: #0f172a;
 }
 
+/* ✅ APPLY FADE ANIMATION */
 .filter-input::placeholder {
-  color: #86efac;
+  color: #94a3b8;
   opacity: 1;
-  animation: placeholderPulse 2.5s ease-in-out infinite;
+  animation: placeholderFade 2.5s ease-in-out infinite;
+}
+
+/* ✅ smooth fade on focus */
+.filter-input:focus::placeholder {
+  opacity: 0.2;
+  transition: opacity 0.3s ease;
 }
 
 /* autofill fix */
 input:-webkit-autofill {
-  -webkit-text-fill-color: #ffffff !important;
+  -webkit-text-fill-color: #0f172a !important;
   transition: background-color 9999s ease-in-out 0s;
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .nokku-page {
+    padding: 16px !important;
+  }
+
+  .nokku-hero {
+    min-height: auto !important;
+    padding-top: 90px !important;
+  }
+
+  .nokku-search-box {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .nokku-results-grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .nokku-recommendation-layout {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .nokku-product-card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .nokku-floating-logo {
+    top: 12px !important;
+    left: 12px !important;
+    transform: scale(0.85);
+  }
+}
+
+
+@media (max-width: 768px) {
+  .nokku-search-wrapper {
+    width: 100% !important;
+    padding: 4px !important;
+    margin-top: 10px !important;
+  }
+
+  .nokku-search-box {
+    max-width: 100% !important;
+    width: 100% !important;
+    border-radius: 28px !important;
+    padding: 4px 6px !important;
+  }
+
+  .nokku-search-box input {
+    font-size: 15px !important;
+    min-width: 0 !important;
+  }
+
+  .nokku-search-box button {
+    width: 40px !important;
+    height: 40px !important;
+    flex-shrink: 0 !important;
+  }
+}
+@media (max-width: 768px) {
+  .nokku-results-section {
+    padding: 12px !important;
+    margin: 12px auto !important;
+  }
+
+  .nokku-results-section > div {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  .nokku-results-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .filter-input {
+    width: 100% !important;
+    min-width: 100% !important;
+  }
+
+  .nokku-results-section select {
+    width: 100% !important;
+    min-width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .nokku-product-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 12px !important;
+  }
+
+  .nokku-product-card img {
+    height: 140px !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .nokku-suggestion-chips {
+    gap: 8px !important;
+    margin-top: 16px !important;
+    padding: 0 6px !important;
+  }
+
+  .nokku-suggestion-chips div {
+    font-size: 12px !important;
+    padding: 6px 10px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .nokku-suggestion-chips {
+    gap: 8px !important;
+    margin-top: 16px !important;
+    padding: 0 6px !important;
+  }
+
+  .nokku-suggestion-chips div {
+    font-size: 12px !important;
+    padding: 6px 10px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .nokku-hero-recommendation {
+    padding: 0 10px !important;
+    margin-top: 40px !important;
+  }
+
+  .nokku-hero-rec-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .nokku-hero-product-image {
+    width: 220px !important;
+    height: 220px !important;
+    margin: 30px auto 0 !important;
+  }
+
+  .nokku-hero-product-image > div {
+    width: 260px !important;
+    height: 260px !important;
+  }
+
+  .nokku-hero-product-image img {
+    width: 150px !important;
+  }
+
+  .nokku-cheaper-grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .nokku-cheaper-right {
+    flex-direction: column !important;
+    margin-left: 0 !important;
+    align-items: center !important;
+  }
+}
+@media (max-width: 768px) {
+  .nokku-loading-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .nokku-footer {
+    padding: 24px 12px !important;
+    font-size: 12px !important;
+  }
+
+  .nokku-footer > div:first-child {
+    gap: 18px !important;
+    flex-wrap: wrap !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .nokku-filters-panel {
+    width: 100% !important;
+    position: relative !important;
+    top: auto !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .nokku-compare-bar {
+    width: calc(100% - 24px) !important;
+    bottom: 12px !important;
+    padding: 10px 12px !important;
+    justify-content: space-between !important;
+  }
+
+  .nokku-compare-bar button {
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+  }
+}
+@media (max-width: 768px) {
+  .nokku-compare-page {
+    padding: 14px !important;
+    margin-left: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  .nokku-compare-layout {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .nokku-compare-table {
+    margin-left: 0 !important;
+    overflow-x: auto !important;
+    width: 100% !important;
+  }
+
+  .nokku-compare-table > div {
+    min-width: 620px !important;
+  }
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(59,130,246,0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(59,130,246,0.7);
+    transform: scale(1.03);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(59,130,246,0.3);
+    transform: scale(1);
+  }
+}
+
+html,
+body {
+  background: #000;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
 }

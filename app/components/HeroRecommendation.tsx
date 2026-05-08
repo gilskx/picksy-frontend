@@ -13,7 +13,7 @@ export default function HeroRecommendation({
   who_should_buy_cheaper        // 🔥 ADD
 }: any) {
 
-if (!recommendation) {
+if (!recommendation) { color: "#0f172a"
   return null;   // 🔥 NOTHING on home screen
 }
 
@@ -98,7 +98,7 @@ const renderList = (list: string[]) => {
   return list.map((t, i) => (
     <div key={i} style={{
       fontSize: "13px",
-      color: "#22c1ff",
+      color: "#0f172a",
       marginBottom: "6px"
     }}>
       ✔ {t}
@@ -128,9 +128,15 @@ const renderList = (list: string[]) => {
   maxWidth: "100%",
   boxSizing: "border-box",
   overflowX: "hidden",
-  borderRadius: "24px",
+  borderRadius: "20px",
   padding: "20px 12px",
-  background: "#000000",
+  background: "transparent",
+
+backdropFilter: "blur(10px)",
+
+border: "1px solid rgba(255,255,255,0.22)",
+
+boxShadow: "0 10px 30px rgba(148,163,184,0.06)",
 }}>
 
         {/* HEADER */}
@@ -144,8 +150,8 @@ const renderList = (list: string[]) => {
 <div style={{
   fontSize: "13px",
   marginBottom: "15px",
-  color: "rgba(34, 193, 255, 0.75)",
-  letterSpacing: "0.3px",
+  color: "#2563eb",
+  letterSpacing: "0.2px",
   fontWeight: "500"
 }}>
   ✨ nokku.ai picked this based on best price, high ratings, and overall value.
@@ -234,7 +240,7 @@ else if (fullName.includes(",")) {
         <div style={{
           marginTop: "6px",
           fontSize: "12px",
-          color: "#22c1ff",
+          color: "#0f172a",
           maxWidth: "100%",
           lineHeight: "1.4"
         }}>
@@ -279,7 +285,7 @@ else if (fullName.includes(",")) {
       letterSpacing: "-0.5px",
 	   marginTop: "10px",
       
-		color: "#22c1ff"
+		color: "#475569"
     }}>
       ${p.price}
     </div>
@@ -288,7 +294,7 @@ else if (fullName.includes(",")) {
       fontSize: "15px",
        display: "flex",
       alignItems: "center",
-	  color: "#22c1ff",
+	  color: "#0f172a",
       gap: "14px",
 	   marginTop: "14px",
     }}>
@@ -311,7 +317,7 @@ else if (fullName.includes(",")) {
   textDecoration: "none",
   fontWeight: "500",
   fontSize: "14px",
-  color: "#22c1ff",
+  color: "#0f172a",
   whiteSpace: "nowrap",
   transition: "all 0.25s ease",
   cursor: "pointer",
@@ -355,7 +361,7 @@ height: "min(300px, 78vw)",
       width: "92%",
       height: "92%",
       borderRadius: "50%",
-      border: "2px solid rgba(59,130,246,0.55)",
+      border: "1px solid rgba(59,130,246,0.18)",
       boxSizing: "border-box",
       transformOrigin: "center center"
     }}
@@ -378,7 +384,7 @@ height: "min(300px, 78vw)",
       width: "76%",
       height: "76%",
       borderRadius: "50%",
-      border: "1px dashed rgba(59,130,246,0.45)",
+      border: "1px dashed rgba(59,130,246,0.12)",
       boxSizing: "border-box",
       transformOrigin: "center center"
     }}
@@ -420,7 +426,7 @@ height: "min(300px, 78vw)",
         height: "auto",
         objectFit: "contain",
         display: "block",
-        filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.9))"
+        filter: "drop-shadow(0 20px 35px rgba(15,23,42,0.12))"
       }}
     />
   </a>
@@ -498,11 +504,11 @@ height: "min(300px, 78vw)",
     <div style={{
       fontWeight: "510",
       marginBottom: "10px",
-	  color: "#22c1ff",
+	  color: "#0f172a",
 	  fontSize: "20px",
      
     }}>
-      🏆 Why this is best !!
+      🏆 Why nokku.ai recommends this
 	  
     </div>
   
@@ -511,7 +517,7 @@ height: "min(300px, 78vw)",
     <div style={{
       marginTop: "16px", //5/3
       fontSize: "20px",
-	  color: "#22c1ff"
+	  color: "#0f172a"
       
     }}>
       👤 Who should buy
@@ -520,7 +526,7 @@ height: "min(300px, 78vw)",
 	<div style={{
       marginTop: "8px",
       fontSize: "20px",
-	  color: "#22c1ff"
+	  color: "#0f172a"
       
     }}>
       {renderList(who_should_buy_best)}
@@ -563,13 +569,13 @@ height: "min(300px, 78vw)",
   // 🔥 soft glow
   boxShadow: "0 8px 25px rgba(34,193,255,0.15)"
 }}>
-  💡 nokku.ai found a Budget pick ${saveAmount} with a smarter option
+  💡 Smarter budget alternative ${saveAmount} with a smarter option
 </div>
 
 {/* 👤 WHO SHOULD BUY */}
 <div style={{
   fontSize: "12px",
-  color: "rgba(34, 193, 255, 0.75)",
+  color: "#2563eb",
   marginTop: "4px",
   fontStyle: "italic",
   textAlign: "center" ,
@@ -584,7 +590,7 @@ height: "min(300px, 78vw)",
 <div style={{
   fontSize: "22px",
   fontWeight: "600",
-  color: "#22c1ff",
+  color: "#0f172a",
   marginTop: "30px",
   marginBottom: "6px"
 }}>
@@ -665,7 +671,7 @@ if (name.includes(",")) {
       fontSize: "22px",
       fontWeight: "700",
 	  marginTop: "12px",
-      color: "rgba(34,193,255,0.75)"
+      color: "#2563eb"
     }}>
       Save ${saveAmount}
     </div>
@@ -673,7 +679,7 @@ if (name.includes(",")) {
     {/* SOLD ON */}
     <div style={{
       fontSize: "14px",
-      color: "#22c1ff",
+      color: "#2563eb",
 	  marginTop: "12px",
       opacity: 0.9
     }}>
@@ -698,18 +704,17 @@ if (name.includes(",")) {
   display: "inline-flex",
   alignItems: "center",
   gap: "10px",
-  padding: "6px 12px",
-  borderRadius: "20px",
-  background: "rgba(59,130,246,0.1)",
-  fontSize: "px"
+
+  fontSize: "16px",
+  fontWeight: "600"
 }}>
-  <div style={{ color: "#22c1ff", fontWeight: "600" }}>
+  <div style={{ color: "#0f172a", fontWeight: "600" }}>
     ${cheaper.price}
   </div>
 
-  <div style={{ color: "#22c1ff" }}>•</div>
+  <div style={{ ccolor: "#0f172a" }}>•</div>
 
-  <div style={{ color: "#22c1ff" }}>
+  <div style={{ color: "#0f172a" }}>
     ⭐ {Number(cheaper.rating || 3.5).toFixed(1)}
   </div>
 
@@ -727,8 +732,8 @@ if (name.includes(",")) {
       padding: "6px 14px",
       borderRadius: "25px",
       background: "rgba(59,130,246,0.1)",
-      border: "1px solid rgba(59,130,246,0.3)",
-      color: "#22c1ff",
+      border: "1px solid rgba(59,130,246,0.14)",
+      color: "#0f172a",
       textDecoration: "none",
       fontWeight: "500",
       fontSize: "14px",
@@ -753,14 +758,14 @@ if (name.includes(",")) {
               <div style={{
                 fontSize: "14px",
                 fontWeight: "600",
-                color: "#22c1ff",
+                color: "#0f172a",
 				marginTop: "35px",
                 marginBottom: "8px"
               }}>
                 👤 Why Should Buy
               </div>
 
-              <div style={{ fontSize: "14px", color: "#22c1ff" }}>
+              <div style={{ fontSize: "14px", color: "#0f172a" }}>
                 {recommendation.why_cheaper_product.map((item: string, i: number) => (
                   <div key={i} style={{ marginBottom: "6px" }}>
                     ✓ {item}

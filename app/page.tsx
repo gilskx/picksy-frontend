@@ -412,8 +412,16 @@ setEventSourceRef(es);
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "stretch",
-    background: "#000000",   // ✅ FULL BLACK // cccccc
-color: "#e5e7eb"         // base text (soft white)	
+    background: `
+linear-gradient(
+  180deg,
+  #dbeafe 0%,
+  #eff6ff 38%,
+  #f8fbff 100%
+)
+`,
+
+color: "#0f172a"    //    color
   }}>
 
     {/* HEADER BADGE */}
@@ -422,7 +430,10 @@ color: "#e5e7eb"         // base text (soft white)
   top: "15px",
       left: "20px",
       zIndex: 9999,
-      background: "#000000",
+      background: "rgba(255,255,255,0.55)",
+backdropFilter: "blur(12px)",
+border: "1px solid rgba(255,255,255,0.4)",
+boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
       padding: "6px 14px",
       borderRadius: "20px",
       fontFamily: "'Comic Sans MS', 'Comic Neue', cursive",
@@ -540,7 +551,7 @@ color: "#e5e7eb"         // base text (soft white)
   fontSize: "12px",
 
   // 🔥 FADED LOOK
-  color: "rgba(255,255,255,0.45)",
+  color: "#64748b",
 
   letterSpacing: "0.3px"
 }}>
@@ -591,8 +602,8 @@ color: "#e5e7eb"         // base text (soft white)
         width: "42px",
         height: "42px",
         borderRadius: "50%",
-        border: "1px solid rgba(59,130,246,0.4)",
-        background: "rgba(2,6,23,0.7)",
+        border: "1px solid rgba(59,130,246,0.4)",	
+        background: "rgba(255,255,255,0.72)",
         backdropFilter: "blur(8px)",
         display: "flex",
         alignItems: "center",
@@ -712,7 +723,16 @@ color: "#e5e7eb"         // base text (soft white)
         minHeight: "300px",
         padding: "40px",
         borderRadius: "20px",
-        background: "#000000",
+        background: "rgba(15,23,42,0.18)",
+backdropFilter: "blur(6px)",
+
+
+
+color: "#334155",
+
+border: "1px solid rgba(255,255,255,0.45)",
+
+boxShadow: "0 25px 60px rgba(148,163,184,0.18)",
         color: "#e5e7eb",
         boxShadow: "0 30px 80px rgba(0,0,0,0.6)",
         position: "relative"
@@ -738,7 +758,15 @@ color: "#e5e7eb"         // base text (soft white)
       {activeCard === "about" && (
         <>
           <h2>About nokku.ai</h2>
-          <p>nokku is an AI-powered product discovery platform...</p>
+          <p>About nokku.ai
+
+nokku.ai is an AI-powered shopping and product discovery platform that helps users find the best products, smarter alternatives, and real-time deals across multiple trusted stores — all in one place.
+
+Instead of manually searching across different websites, nokku.ai uses AI to compare prices, ratings, product quality, and overall value to recommend the best match for each user.
+
+Users can explore products across categories like electronics, groceries, home appliances, fashion, baby products, health, and more while also discovering cheaper alternatives, comparing products side-by-side, and viewing insights powered by AI.
+
+nokku.ai is designed to make online shopping faster, smarter, and more transparent.</p>
         </>
       )}
 
@@ -774,7 +802,7 @@ color: "#e5e7eb"         // base text (soft white)
       style={{
         position: "fixed",
         inset: 0,
-        background: "rgba(0,0,0,0.72)",
+        background: "rgba(15,23,42,0.18)",
         backdropFilter: "blur(6px)",
         zIndex: 9998
       }}
@@ -793,7 +821,8 @@ color: "#e5e7eb"         // base text (soft white)
 
         zIndex: 9999,
 
-        background: "#020617",
+        background: "rgba(255,255,255,0.78)",
+backdropFilter: "blur(18px)",
 
         border: "1px solid rgba(34,193,255,0.25)",
 
@@ -859,7 +888,7 @@ color: "#e5e7eb"         // base text (soft white)
           fontSize: "14px",
           lineHeight: "24px",
 
-          color: "#94a3b8"
+          color: "#475569"
         }}
       >
         nokku.ai can show nearby stores,

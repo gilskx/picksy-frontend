@@ -105,8 +105,8 @@ return (
           <div>
             <div style={{
               fontSize: "14px",
-              fontWeight: "500",
-              color: "rgba(34,193,255,0.75)",
+              color: "#334155",
+fontWeight: "500",
             }}>
               More options recommended by nokku.ai for you "{query}" - {displayProducts.length} Products and enables comparison across leading brands — instantly
             </div>
@@ -152,7 +152,7 @@ boxShadow: "0 10px 30px rgba(59,130,246,0.25)"
       // 🔥 SAME BACKGROUND FOR ALL (ACTIVE vs INACTIVE)
      background: "rgba(255,255,255,0.05)",
 
-color: "#22c1ff",
+color: mode === m ? "#2563eb" : "#334155",
 
 border:
   mode === m
@@ -199,7 +199,7 @@ border:
 		fontSize: "12px",
       border: "1px solid rgba(59,130,246,0.35)",
       background: "rgba(59,130,246,0.12)",
-      color: "rgba(226, 232, 240, 0.75)",
+      color: "#0f172a",
       outline: "none",
 
       // 🔥 FORCE REMOVE DEFAULT INPUT STYLES
@@ -208,7 +208,7 @@ border:
       MozAppearance: "none" as any,
 
       // 🔥 FORCE TEXT RENDERING (IMPORTANT)
-      WebkitTextFillColor: "#e2e8f0"
+      WebkitTextFillColor: "#e2e8f0" //// neeeed 
     };
 
     return (
@@ -272,13 +272,21 @@ border:
 <style jsx>{`
   input,
   select {
-    background: rgba(59,130,246,0.12) !important;
-    color: #e2e8f0 !important;
-    border: 1px solid rgba(59,130,246,0.35) !important;
+    background: rgba(255,255,255,0.78) !important;
+    color: #0f172a !important;
+
+    border: 1px solid rgba(59,130,246,0.22) !important;
+
+    font-weight: 500 !important;
   }
 
   input::placeholder {
-    color: rgba(226, 232, 240, 0.6) !important;
+    color: #475569 !important;
+    opacity: 1 !important;
+  }
+
+  select {
+    color: #0f172a !important;
   }
 `}</style>
 	
