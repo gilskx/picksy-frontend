@@ -505,8 +505,10 @@ boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
     width: "100%",
     display: "flex",
     justifyContent: "center",
-    marginTop: "8px",
-    marginBottom: "0px"
+    marginTop: "105px",
+    marginBottom: "1px",
+    position: "relative",
+    zIndex: 900
   }}>
     <div style={{ width: "100%", maxWidth: "620px" }}>
       <SearchBar
@@ -679,8 +681,8 @@ fontWeight: "500",
 {loading && (
   <div style={{
     position: "fixed",
-    top: "118px",
-    left: "24px",
+    top: "110px",
+    left: "50px",
     zIndex: 1000
   }}>
     <button

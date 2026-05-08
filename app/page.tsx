@@ -505,8 +505,10 @@ boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
     width: "100%",
     display: "flex",
     justifyContent: "center",
-    marginTop: "8px",
-    marginBottom: "0px"
+    marginTop: "105px",
+    marginBottom: "1px",
+    position: "relative",
+    zIndex: 900
   }}>
     <div style={{ width: "100%", maxWidth: "620px" }}>
       <SearchBar
@@ -655,7 +657,7 @@ fontWeight: "500",
 	<div style={{
   minHeight: hasSearched ? "calc(100vh - 120px)" : "auto",
 
-  paddingTop: hasSearched || loading ? "55px" : "12px",
+  paddingTop: hasSearched || loading ? "1px" : "12px",
   paddingBottom: "12px",
   paddingLeft: "0px",
   paddingRight: "0px",

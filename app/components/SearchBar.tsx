@@ -72,24 +72,23 @@ export default function SearchBar({
 
   // 🔥 FIXED STICKY LOGIC
   position: hasSearched && query ? "sticky" : "relative",
-  top: hasSearched && query ? "0px" : "auto",
-  zIndex: hasSearched ? 1000 : "auto",
+ position: hasSearched && query ? "sticky" : "relative",
+top: hasSearched && query ? "105px" : "auto",
+zIndex: hasSearched ? 900 : "auto",
 
   background: "transparent",
 
   // 🔥 REMOVE EMPTY SPACE WHEN NO QUERY
-  padding: hasSearched && query ? "6px" : "0px",
+  padding: "0px",
 
-  boxShadow: hasSearched && query
-    ? "0 4px 12px rgba(0,0,0,0.1)"
-    : "none",
+ boxShadow: "none",
 
   transition: "all 0.3s ease"
 }}>
 
   <div className="nokku-search-box" style={{
-    background: "rgba(255,255,255,0.06)",
-    border: "1px solid rgba(255,255,255,0.15)",
+    background: "rgba(255,255,255,0.46)",
+	border: "1px solid rgba(59,130,246,0.08)",
     backdropFilter: "blur(12px)",
     borderRadius: "40px",
     maxWidth: hasSearched ? "600px" : "700px",
@@ -170,8 +169,8 @@ export default function SearchBar({
 
     color: "#fff",
     borderRadius: "50%",
-    width: "44px",
-    height: "44px",
+    width: "34px",
+    height: "34px",
     fontSize: "16px",
     border: "none",
 

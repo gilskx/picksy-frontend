@@ -78,18 +78,16 @@ export default function SearchBar({
   background: "transparent",
 
   // 🔥 REMOVE EMPTY SPACE WHEN NO QUERY
-  padding: hasSearched && query ? "6px" : "0px",
+  padding: "0px",
 
-  boxShadow: hasSearched && query
-    ? "0 4px 12px rgba(0,0,0,0.1)"
-    : "none",
+ boxShadow: "none",
 
   transition: "all 0.3s ease"
 }}>
 
   <div className="nokku-search-box" style={{
-    background: "rgba(255,255,255,0.06)",
-    border: "1px solid rgba(255,255,255,0.15)",
+    background: "rgba(255,255,255,0.46)",
+	border: "1px solid rgba(59,130,246,0.08)",
     backdropFilter: "blur(12px)",
     borderRadius: "40px",
     maxWidth: hasSearched ? "600px" : "700px",
@@ -155,45 +153,61 @@ export default function SearchBar({
     />
 
     {/* BUTTON */}
-    <button
-      onClick={() => {
-        setShowSuggestions(false);
-        search();
-      }}
-      style={{
-        background: "linear-gradient(135deg, #3b82f6, #6366f1)",
-        color: "#fff",
-        borderRadius: "50%",
-        width: "44px",
-        height: "44px",
-        fontSize: "16px",
-        border: "none",
-        cursor: "pointer",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        marginLeft: "6px",
-        boxShadow: "0 6px 20px rgba(59,130,246,0.5)",
-        transition: "all 0.2s ease",
-        position: "relative",
-        zIndex: 5,
-        WebkitTapHighlightColor: "transparent"
-      }}
-      onMouseOver={(e) => {
-        e.currentTarget.style.transform = "scale(1.1)";
-      }}
-      onMouseOut={(e) => {
-        e.currentTarget.style.transform = "scale(1)";
-      }}
-      onTouchStart={(e) => {
-        e.currentTarget.style.transform = "scale(0.95)";
-      }}
-      onTouchEnd={(e) => {
-        e.currentTarget.style.transform = "scale(1)";
-      }}
-    >
-      🔍
-    </button>
+<button
+  disabled={!query.trim()}
+  onClick={() => {
+    if (!query.trim()) return;
+
+    setShowSuggestions(false);
+    search();
+  }}
+  style={{
+    background: query.trim()
+      ? "linear-gradient(135deg, #3b82f6, #6366f1)"
+      : "rgba(148,163,184,0.35)",
+
+    color: "#fff",
+    borderRadius: "50%",
+    width: "34px",
+    height: "34px",
+    fontSize: "16px",
+    border: "none",
+
+    cursor: query.trim() ? "pointer" : "not-allowed",
+
+    opacity: query.trim() ? 1 : 0.55,
+
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: "6px",
+
+    boxShadow: query.trim()
+      ? "0 6px 20px rgba(59,130,246,0.5)"
+      : "none",
+
+    transition: "all 0.2s ease",
+    position: "relative",
+    zIndex: 5,
+    WebkitTapHighlightColor: "transparent"
+  }}
+  onMouseOver={(e) => {
+    if (!query.trim()) return;
+    e.currentTarget.style.transform = "scale(1.1)";
+  }}
+  onMouseOut={(e) => {
+    e.currentTarget.style.transform = "scale(1)";
+  }}
+  onTouchStart={(e) => {
+    if (!query.trim()) return;
+    e.currentTarget.style.transform = "scale(0.95)";
+  }}
+  onTouchEnd={(e) => {
+    e.currentTarget.style.transform = "scale(1)";
+  }}
+>
+  🔍
+</button>
 
   </div>
 
