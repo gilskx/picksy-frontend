@@ -34,7 +34,8 @@ export const metadata: Metadata = {
   },
 
   icons: {
-    icon: "/favicon.ico", // 🔥 replace this file with your logo
+    icon: "/nokku-favicon.ico", // 🔥 replace this file with your logo
+	shortcut: "/nokku-favicon.ico",
   },
 };
 

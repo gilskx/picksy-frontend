@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
   openGraph: {
      title: "nokku.ai | Smarter Shopping with AI",
-    description: "nokku.ai analyzes top results, finds the best pick, highlights cheaper options, and compares trusted sources in seconds.",
+    description: " Compare trusted stores, find the best products, and discover cheaper alternatives with nokku.ai.",
     url: "https://nokku.ai",
     siteName: "nokku.ai",
     images: [
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   },
 
   icons: {
-    icon: "/favicon.ico", // 🔥 replace this file with your logo
+    icon: "/nokku-favicon.ico", // 🔥 replace this file with your logo
   },
 };
 
