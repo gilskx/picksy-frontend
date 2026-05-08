@@ -442,6 +442,8 @@ boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent"
     }}>
+	
+	{/* // Logo moved to search bar
       <span style={{
   display: "flex",
   alignItems: "center",
@@ -493,7 +495,7 @@ boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
 
 </span>
 
-</span>
+</span> */ }
     </div>
 
     {/* ✅ FIXED SEARCH BAR */}
