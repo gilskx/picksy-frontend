@@ -508,7 +508,7 @@ boxShadow: "0 10px 35px rgba(59,130,246,0.08)",
     display: "flex",
     justifyContent: "center",
     marginTop: "18px",
-    marginBottom: "4px",
+    marginBottom: "3px",
     position: "relative",
     zIndex: 1200,
     padding: "0 16px"
