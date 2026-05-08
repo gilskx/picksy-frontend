@@ -13,12 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "nokku.ai",
-  description: "nokku.ai analyzes top results, finds the best pick, highlights cheaper options, and compares trusted sources in seconds. - alginexa llc product",
+  title: "nokku.ai | Smarter Shopping with AI",
+  description:   "nokku.ai helps you compare trusted stores, find the best products, and discover cheaper alternatives in one simple search. - alginexa llc product",
+
 
   openGraph: {
-    title: "nokku.ai",
-    description: "nokku.ai analyzes top results, finds the best pick, highlights cheaper options, and compares trusted sources in seconds.",
+     title: "nokku.ai | Smarter Shopping with AI",
+    description: " Compare trusted stores, find the best products, and discover cheaper alternatives with nokku.ai.",
     url: "https://nokku.ai",
     siteName: "nokku.ai",
     images: [

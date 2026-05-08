@@ -1,0 +1,15 @@
+
+
+"display": "standalone"
+icon-192.png
+export const metadata = {
+  title: "nokku.ai",
+  description: "AI shopping assistant",
+  manifest: "/manifest.json",
+  themeColor: "#000000",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "nokku.ai",
+  },
+};
