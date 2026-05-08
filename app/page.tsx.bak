@@ -1013,7 +1013,10 @@ backdropFilter: "blur(18px)",
           color: "#475569"
         }}
       >
-        ✨ One search across multiple stores. nokku.ai finds the best products, smarter alternatives, and better deals instantly.
+	  
+        Want more accurate results?
+		✨ nokku.ai can use your location to find nearby stores, local prices, pickup options, and faster delivery choices — so you don’t have to search store by store.
+
       </div>
 
       {/* 🔥 BUTTONS */}

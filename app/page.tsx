@@ -1013,8 +1013,9 @@ backdropFilter: "blur(18px)",
           color: "#475569"
         }}
       >
-        ✨ Want more accurate results?
-		nokku.ai can use your location to find nearby stores, local prices, pickup options, and faster delivery choices — so you don’t have to search store by store.
+	  
+        Want more accurate results?
+		Allow location to help ✨ nokku.ai compare nearby stores, pickup options, delivery timing, and local prices — all in one search.
 
       </div>
 
