@@ -73,7 +73,7 @@ input:-webkit-autofill {
   }
 
   .nokku-page {
-    padding: 16px !important;
+    padding: 0 !important;
   }
 
   .nokku-hero {

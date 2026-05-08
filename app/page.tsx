@@ -571,7 +571,7 @@ height: "320px",
 			{/* HERO */}
 			{!hasSearched && (
   <div className="nokku-hero" style={{
-    padding: "24px 20px 14px",
+     padding: "10px 20px 14px",
 				textAlign: "left",
 				//color: "#fff"
 				color: "inherit"
@@ -586,7 +586,8 @@ height: "320px",
  <div style={{  ////nokku ai
 		fontSize: "24px",
 letterSpacing: "-1.5px",
-		
+		marginTop: "0px",
+marginBottom: "0px",
 		
 		background: "linear-gradient(135deg, #22c1ff, #6c63ff)",
 		WebkitBackgroundClip: "text",
