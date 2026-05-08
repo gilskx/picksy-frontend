@@ -61,8 +61,10 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
     items: [
       "Women fashion",
       "Handbags",
+	  "Jewelry",
       "Sneakers",
-      "Beauty products"
+      "Beauty products",
+	  "Dresses"
     ]
   },
   {
@@ -71,7 +73,9 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
       "Men fashion",
       "Watches",
       "Sneakers",
-      "Grooming kits"
+      "Grooming kits",
+	  "Wallets",
+	   "Shirts"
     ]
   },
   {
@@ -89,7 +93,8 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
       "Smart watches",
       "Travel bags",
       "Sunglasses",
-      "Phone cases"
+      "Phone cases",
+	  "Belts"
     ]
   },
   {
@@ -107,7 +112,9 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
       "Vitamins",
       "Pain relief",
       "Daily wellness",
-      "First aid"
+      "First aid",
+	  "Bandages",
+	   "Thermometers"
     ]
   }
 ];
