@@ -61,7 +61,10 @@ export default function CompareAIView({ compareList, onBack }: any) {
   zIndex: 2,
         maxWidth: "1300px",
         margin: "0 auto",
-        padding: "20px 4px",
+        padding:
+  typeof window !== "undefined" && window.innerWidth < 768
+    ? "14px 10px"
+    : "20px 4px",
         marginLeft: "-8px"
       }}>
 
@@ -90,12 +93,18 @@ export default function CompareAIView({ compareList, onBack }: any) {
 
         {!loading && aiCompare && (
 
-          <div className="nokku-compare-layout" style={{
-  display: "grid",
-  gridTemplateColumns: "380px 1fr",
-            gap: "12px",
-            alignItems: "start"
-          }}>
+         <div
+  className="nokku-compare-layout"
+  style={{
+    display: "grid",
+    gridTemplateColumns:
+      typeof window !== "undefined" && window.innerWidth < 768
+        ? "1fr"
+        : "380px 1fr",
+    gap: "12px",
+    alignItems: "start"
+  }}
+>
 
             {/* LEFT */}
             <div>
@@ -106,13 +115,29 @@ export default function CompareAIView({ compareList, onBack }: any) {
             <div style={{ display: "flex", flexDirection: "column" }}>
 
               {/* TABLE */}
-              <div style={{
-                background: "rgba(17, 24, 39, 0.85)",
-                backdropFilter: "blur(10px)",
-                borderRadius: "12px",
-                overflow: "hidden",
-                marginLeft: "15px"
-              }}>
+              <div
+  style={{
+    width: "100%",
+    overflowX: "auto",
+    overflowY: "hidden",
+    WebkitOverflowScrolling: "touch",
+    paddingBottom: "8px"
+  }}
+>
+  <div
+    className="nokku-compare-table"
+    style={{
+      background: "rgba(17, 24, 39, 0.85)",
+      backdropFilter: "blur(10px)",
+      borderRadius: "12px",
+      overflow: "hidden",
+      marginLeft:
+        typeof window !== "undefined" && window.innerWidth < 768
+          ? "0px"
+          : "15px",
+      minWidth: "720px"
+    }}
+  >
 
                 {/* HEADER (UPDATED) */}
                 <div style={{
@@ -134,7 +159,8 @@ export default function CompareAIView({ compareList, onBack }: any) {
     border: "1px solid rgba(255,255,255,0.1)",
     borderRadius: "12px",
     padding: "12px",
-    width: "160px",
+    minWidth: "220px",
+width: "220px",
     backdropFilter: "blur(6px)"
   }}>
 
@@ -268,7 +294,7 @@ export default function CompareAIView({ compareList, onBack }: any) {
                 ))}
 
               </div>
-
+ </div>
               {/* DECISION */}
               <div style={{
                 marginTop: "25px",
