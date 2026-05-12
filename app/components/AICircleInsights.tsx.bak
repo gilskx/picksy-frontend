@@ -1,7 +1,9 @@
 "use client";
 
 export default function AICircleInsights({ insights = [] }: any) {
+
   return (
+
     <div className="wrapper">
 
       <div className="ai-circle">
@@ -23,50 +25,123 @@ export default function AICircleInsights({ insights = [] }: any) {
       </div>
 
       <style jsx>{`
-        .wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 40px;
-}
 
-        .ai-circle {
-          width: 340px;
-          height: 340px;
-          border-radius: 50%;
-          border: 2px solid rgba(59,130,246,0.35);
-          box-shadow: 0 0 40px rgba(59,130,246,0.35);
+        .wrapper {
+
           display: flex;
           flex-direction: column;
+
           justify-content: center;
           align-items: center;
-          padding: 40px;
-          text-align: center;
-          animation: pulse 3s infinite;
+
+          width: 100%;
+          max-width: 100%;
+
+          box-sizing: border-box;
+
+          position: relative;
+
+          margin: 0 auto 30px auto;
+
+          overflow: visible;
         }
 
-        /* 🔥 UPDATED TITLE */
+        .ai-circle {
+
+          width: 340px;
+          height: 340px;
+
+          border-radius: 50%;
+
+          border: 2px solid rgba(59,130,246,0.35);
+
+          box-shadow:
+            0 0 40px rgba(59,130,246,0.35);
+
+          display: flex;
+          flex-direction: column;
+
+          justify-content: center;
+          align-items: center;
+
+          padding: 40px;
+
+          text-align: center;
+
+          animation: pulse 3s infinite;
+
+          margin: 0 auto;
+
+          box-sizing: border-box;
+
+          flex-shrink: 0;
+
+          position: relative;
+
+          z-index: 2;
+        }
+
+        /* TITLE */
+
         .ai-title {
+
           font-size: 14px;
+
           letter-spacing: 2px;
+
           font-weight: 700;
+
           margin-bottom: 18px;
-          font-family: "Inter", "Segoe UI", sans-serif;
+
+          font-family:
+            "Inter",
+            "Segoe UI",
+            sans-serif;
 
           color: transparent;
-          background: linear-gradient(90deg, #38bdf8, #6366f1, #a855f7);
+
+          background:
+            linear-gradient(
+              90deg,
+              #38bdf8,
+              #6366f1,
+              #a855f7
+            );
+
           -webkit-background-clip: text;
+
           -webkit-text-fill-color: transparent;
         }
 
-        /* 🔥 UPDATED CONTENT */
+        /* CONTENT */
+
         .ai-content {
+
           font-size: 13px;
-          color: #e0e7ff;   /* brighter + cleaner */
+
+          color: #e0e7ff;
+
           line-height: 1.7;
-          font-family: "Inter", "Segoe UI", sans-serif;
-          text-shadow: 0 0 10px rgba(99,102,241,0.3); /* subtle glow */
+
+          font-family:
+            "Inter",
+            "Segoe UI",
+            sans-serif;
+
+          text-shadow:
+            0 0 10px rgba(99,102,241,0.3);
+
+          width: 100%;
+
+          max-width: 75%;
+
+          margin: 0 auto;
+
+          word-break: break-word;
+
+          overflow-wrap: anywhere;
+
+          box-sizing: border-box;
         }
 
         .ai-line {
@@ -74,29 +149,82 @@ export default function AICircleInsights({ insights = [] }: any) {
         }
 
         @keyframes pulse {
-          0% { box-shadow: 0 0 15px rgba(59,130,246,0.25); }
-          50% { box-shadow: 0 0 55px rgba(59,130,246,0.6); }
-          100% { box-shadow: 0 0 15px rgba(59,130,246,0.25); }
+
+          0% {
+            box-shadow:
+              0 0 15px rgba(59,130,246,0.25);
+          }
+
+          50% {
+            box-shadow:
+              0 0 55px rgba(59,130,246,0.6);
+          }
+
+          100% {
+            box-shadow:
+              0 0 15px rgba(59,130,246,0.25);
+          }
         }
-		@media (max-width: 768px) {
-  .wrapper {
-    justify-content: center;
-    margin-bottom: 20px;
-  }
 
-  .ai-circle {
-    width: 240px;
-height: 240px;
-padding: 22px;
-  }
+        /* MOBILE */
 
-  .ai-content {
-    font-size: 12px;
-    line-height: 1.5;
-	overflow-wrap: break-word;
-word-break: break-word;
-  }
-}
+        @media (max-width: 768px) {
+
+          .wrapper {
+
+            width: 100%;
+
+            max-width: 100%;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            margin: 0 auto 24px auto;
+
+            overflow: visible;
+          }
+
+          .ai-circle {
+
+            width: min(78vw, 240px);
+
+            height: min(78vw, 240px);
+
+            padding: 18px;
+
+            box-sizing: border-box;
+
+            margin: 0 auto;
+
+            flex-shrink: 0;
+          }
+
+          .ai-title {
+
+            font-size: 13px;
+
+            margin-bottom: 12px;
+
+            letter-spacing: 1.5px;
+          }
+
+          .ai-content {
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+            max-width: 78%;
+          }
+
+          .ai-line {
+            margin-bottom: 8px;
+          }
+        }
+
       `}</style>
 
     </div>

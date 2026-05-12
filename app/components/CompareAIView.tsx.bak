@@ -61,11 +61,8 @@ export default function CompareAIView({ compareList, onBack }: any) {
   zIndex: 2,
         maxWidth: "1300px",
         margin: "0 auto",
-        padding:
-  typeof window !== "undefined" && window.innerWidth < 768
-    ? "14px 10px"
-    : "20px 4px",
-        
+        padding: "20px 4px",
+        marginLeft: "0px"
       }}>
 
         <button
@@ -93,18 +90,12 @@ export default function CompareAIView({ compareList, onBack }: any) {
 
         {!loading && aiCompare && (
 
-         <div
-  className="nokku-compare-layout"
-  style={{
-    display: "grid",
-    gridTemplateColumns:
-      typeof window !== "undefined" && window.innerWidth < 768
-        ? "1fr"
-        : "380px 1fr",
-    gap: "12px",
-    alignItems: "start"
-  }}
->
+          <div className="nokku-compare-layout" style={{
+  display: "grid",
+  gridTemplateColumns: "380px 1fr",
+            gap: "12px",
+            alignItems: "start"
+          }}>
 
             {/* LEFT */}
             <div>
@@ -115,38 +106,18 @@ export default function CompareAIView({ compareList, onBack }: any) {
             <div style={{ display: "flex", flexDirection: "column" }}>
 
               {/* TABLE */}
-              <div
-  style={{
-    width: "100%",
-    overflowX: "auto",
-    overflowY: "hidden",
-    WebkitOverflowScrolling: "touch",
-    paddingBottom: "8px"
-  }}
->
-  <div
-    className="nokku-compare-table"
-    style={{
-      background: "rgba(17, 24, 39, 0.85)",
-      backdropFilter: "blur(10px)",
-      borderRadius: "12px",
-      overflow: "hidden",
-      marginLeft:
-        typeof window !== "undefined" && window.innerWidth < 768
-          ? "0px"
-          : "15px",
-      width: "100%"
-    }}
-  >
+              <div className="nokku-compare-table" style={{
+  background: "rgba(17, 24, 39, 0.85)",
+                backdropFilter: "blur(10px)",
+                borderRadius: "12px",
+                overflow: "hidden",
+                marginLeft: "15px"
+              }}>
 
                 {/* HEADER (UPDATED) */}
                 <div style={{
                   display: "grid",
-                  gridTemplateColumns:
-  typeof window !== "undefined" && window.innerWidth < 768
-    ? "80px 1fr 1fr"
-    : "140px 1fr 1fr",
-	columnGap: "10px",
+                  gridTemplateColumns: "120px minmax(0,1fr) minmax(0,1fr)",
                   padding: "20px",
                   background: "rgba(31, 41, 55, 0.6)"
                 }}>
@@ -163,11 +134,7 @@ export default function CompareAIView({ compareList, onBack }: any) {
     border: "1px solid rgba(255,255,255,0.1)",
     borderRadius: "12px",
     padding: "12px",
-    width: "100%",
-maxWidth:
-  typeof window !== "undefined" && window.innerWidth < 768
-    ? "unset"
-    : "220px",
+    width: "160px",
     backdropFilter: "blur(6px)"
   }}>
 
@@ -218,14 +185,8 @@ maxWidth:
 {/* 🔥 BUY NOW ROW */}
 <div style={{
   display: "grid",
-  gridTemplateColumns:
-  typeof window !== "undefined" && window.innerWidth < 768
-    ? "80px 1fr 1fr"
-    : "140px 1fr 1fr",
-  padding:
-  typeof window !== "undefined" && window.innerWidth < 768
-    ? "14px 10px"
-    : "14px 20px",
+  gridTemplateColumns: "120px minmax(0,1fr) minmax(0,1fr)",
+  padding: "14px 20px",
   borderTop: "1px solid rgba(255,255,255,0.06)",
   alignItems: "center"
 }}>
@@ -238,13 +199,7 @@ maxWidth:
     const url = products[i]?.url || products[i]?.link;
 
     return (
-      <div
-  key={i}
-  style={{
-    display: "flex",
-    justifyContent: "center"
-  }}
->
+      <div key={i}>
         {url ? (
           <a
             href={url?.startsWith("http") ? url : `https://${url}`}
@@ -252,10 +207,7 @@ maxWidth:
             rel="noopener noreferrer"
             style={{
               display: "inline-block",
-              padding:
-  typeof window !== "undefined" && window.innerWidth < 768
-    ? "14px 10px"
-    : "14px 20px",
+              padding: "10px 18px",
               borderRadius: "25px",
               background: "linear-gradient(135deg, #6366f1, #3b82f6)",
               color: "#fff",
@@ -279,14 +231,8 @@ maxWidth:
                 {aiCompare.table?.map((row: any, i: number) => (
                   <div key={i} style={{
                     display: "grid",
-                    gridTemplateColumns:
-  typeof window !== "undefined" && window.innerWidth < 768
-    ? "80px 1fr 1fr"
-    : "140px 1fr 1fr",
-                    padding:
-  typeof window !== "undefined" && window.innerWidth < 768
-    ? "14px 10px"
-    : "14px 20px",
+                    gridTemplateColumns: "140px 1fr 1fr",
+                    padding: "14px 20px",
                     borderTop: "1px solid rgba(255,255,255,0.06)",
                     alignItems: "center"
                   }}>
@@ -322,7 +268,7 @@ maxWidth:
                 ))}
 
               </div>
- </div>
+
               {/* DECISION */}
               <div style={{
                 marginTop: "25px",

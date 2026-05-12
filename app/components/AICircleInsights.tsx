@@ -24,12 +24,10 @@ export default function AICircleInsights({ insights = [] }: any) {
 
       <style jsx>{`
         .wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 40px;
-}
+          display: flex;
+          justify-content: flex-end;
+          margin-bottom: 40px;
+        }
 
         .ai-circle {
           width: 340px;
@@ -72,10 +70,6 @@ export default function AICircleInsights({ insights = [] }: any) {
         .ai-line {
           margin-bottom: 10px;
         }
-		.ai-title {
-  margin-bottom: 12px;
-  font-size: 13px;
-}
 
         @keyframes pulse {
           0% { box-shadow: 0 0 15px rgba(59,130,246,0.25); }
@@ -89,16 +83,14 @@ export default function AICircleInsights({ insights = [] }: any) {
   }
 
   .ai-circle {
-    width: 240px;
-height: 240px;
-padding: 22px;
+    width: 260px;
+    height: 260px;
+    padding: 28px;
   }
 
   .ai-content {
     font-size: 12px;
     line-height: 1.5;
-	overflow-wrap: break-word;
-word-break: break-word;
   }
 }
       `}</style>
