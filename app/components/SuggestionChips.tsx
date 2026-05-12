@@ -9,6 +9,7 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
   const categories = [
   {
     title: "🛒 Groceries",
+    bg: "/category-bg/groceries.png",
     items: [
       "Grocery essentials",
       "Fresh produce",
@@ -151,23 +152,33 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
               key={idx}
 
               style={{
-                background: "rgba(255,255,255,0.38)",
+  position: "relative",
+  overflow: "hidden",
 
-                backdropFilter: "blur(14px)",
+  background: cat.bg
+    ? `
+      linear-gradient(
+        180deg,
+        rgba(239,246,255,0.88) 0%,
+        rgba(239,246,255,0.78) 45%,
+        rgba(239,246,255,0.58) 100%
+      ),
+      url(${cat.bg})
+    `
+    : "rgba(255,255,255,0.38)",
 
-                border: "1px solid rgba(59,130,246,0.12)",
+  backgroundSize: cat.bg ? "cover" : undefined,
+  backgroundPosition: cat.bg ? "center bottom" : undefined,
+  backgroundRepeat: "no-repeat",
 
-                borderRadius: "24px",
-
-                padding: "16px",
-
-                boxShadow:
-                  "0 12px 35px rgba(59,130,246,0.06)",
-
-                transition: "all 0.22s ease",
-
-                minHeight: "145px"
-              }}
+  backdropFilter: "blur(14px)",
+  border: "1px solid rgba(59,130,246,0.14)",
+  borderRadius: "24px",
+  padding: "16px",
+  boxShadow: "0 12px 35px rgba(59,130,246,0.08)",
+  transition: "all 0.22s ease",
+  minHeight: "145px"
+}}
 
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform =
@@ -252,8 +263,8 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
                         transition: "all 0.2s ease",
 
                         background: isSelected
-                          ? "linear-gradient(135deg, rgba(59,130,246,0.18), rgba(99,102,241,0.18))"
-                          : "rgba(255,255,255,0.55)",
+  ? "linear-gradient(135deg, rgba(59,130,246,0.20), rgba(99,102,241,0.20))"
+  : "rgba(255,255,255,0.72)",
 
                         color: isSelected
                           ? "#2563eb"
@@ -261,7 +272,7 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
 
                         border: isSelected
                           ? "1px solid rgba(59,130,246,0.28)"
-                          : "1px solid rgba(59,130,246,0.08)",
+                          : "1px solid rgba(59,130,246,0.12)",
 
                         boxShadow: isSelected
                           ? "0 10px 25px rgba(59,130,246,0.10)"
