@@ -135,14 +135,17 @@ export default function CompareAIView({ compareList, onBack }: any) {
         typeof window !== "undefined" && window.innerWidth < 768
           ? "0px"
           : "15px",
-      minWidth: "720px"
+      width: "100%"
     }}
   >
 
                 {/* HEADER (UPDATED) */}
                 <div style={{
                   display: "grid",
-                  gridTemplateColumns: "140px 1fr 1fr",
+                  gridTemplateColumns:
+  typeof window !== "undefined" && window.innerWidth < 768
+    ? "80px 1fr 1fr"
+    : "140px 1fr 1fr",
                   padding: "20px",
                   background: "rgba(31, 41, 55, 0.6)"
                 }}>
@@ -159,8 +162,10 @@ export default function CompareAIView({ compareList, onBack }: any) {
     border: "1px solid rgba(255,255,255,0.1)",
     borderRadius: "12px",
     padding: "12px",
-    minWidth: "220px",
-width: "220px",
+    width:
+  typeof window !== "undefined" && window.innerWidth < 768
+    ? "150px"
+    : "220px",
     backdropFilter: "blur(6px)"
   }}>
 
@@ -211,7 +216,10 @@ width: "220px",
 {/* 🔥 BUY NOW ROW */}
 <div style={{
   display: "grid",
-  gridTemplateColumns: "140px 1fr 1fr",
+  gridTemplateColumns:
+  typeof window !== "undefined" && window.innerWidth < 768
+    ? "80px 1fr 1fr"
+    : "140px 1fr 1fr",
   padding: "14px 20px",
   borderTop: "1px solid rgba(255,255,255,0.06)",
   alignItems: "center"
@@ -225,7 +233,13 @@ width: "220px",
     const url = products[i]?.url || products[i]?.link;
 
     return (
-      <div key={i}>
+      <div
+  key={i}
+  style={{
+    display: "flex",
+    justifyContent: "center"
+  }}
+>
         {url ? (
           <a
             href={url?.startsWith("http") ? url : `https://${url}`}
@@ -257,7 +271,10 @@ width: "220px",
                 {aiCompare.table?.map((row: any, i: number) => (
                   <div key={i} style={{
                     display: "grid",
-                    gridTemplateColumns: "140px 1fr 1fr",
+                    gridTemplateColumns:
+  typeof window !== "undefined" && window.innerWidth < 768
+    ? "80px 1fr 1fr"
+    : "140px 1fr 1fr",
                     padding: "14px 20px",
                     borderTop: "1px solid rgba(255,255,255,0.06)",
                     alignItems: "center"

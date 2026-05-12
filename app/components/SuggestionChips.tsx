@@ -9,7 +9,7 @@ export default function SuggestionChips({ setQuery, query, search }: any) {
   const categories = [
   {
     title: "🛒 Groceries",
-    bg: "/category-bg/groceries.png",
+   // bg: "/category-bg/groceries.png",
     items: [
       "Grocery essentials",
       "Fresh produce",

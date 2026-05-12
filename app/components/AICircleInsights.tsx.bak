@@ -24,10 +24,12 @@ export default function AICircleInsights({ insights = [] }: any) {
 
       <style jsx>{`
         .wrapper {
-          display: flex;
-          justify-content: flex-end;
-          margin-bottom: 40px;
-        }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 40px;
+}
 
         .ai-circle {
           width: 340px;
@@ -76,6 +78,25 @@ export default function AICircleInsights({ insights = [] }: any) {
           50% { box-shadow: 0 0 55px rgba(59,130,246,0.6); }
           100% { box-shadow: 0 0 15px rgba(59,130,246,0.25); }
         }
+		@media (max-width: 768px) {
+  .wrapper {
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .ai-circle {
+    width: 240px;
+height: 240px;
+padding: 22px;
+  }
+
+  .ai-content {
+    font-size: 12px;
+    line-height: 1.5;
+	overflow-wrap: break-word;
+word-break: break-word;
+  }
+}
       `}</style>
 
     </div>
