@@ -146,6 +146,7 @@ export default function CompareAIView({ compareList, onBack }: any) {
   typeof window !== "undefined" && window.innerWidth < 768
     ? "80px 1fr 1fr"
     : "140px 1fr 1fr",
+	columnGap: "10px",
                   padding: "20px",
                   background: "rgba(31, 41, 55, 0.6)"
                 }}>
@@ -162,9 +163,10 @@ export default function CompareAIView({ compareList, onBack }: any) {
     border: "1px solid rgba(255,255,255,0.1)",
     borderRadius: "12px",
     padding: "12px",
-    width:
+    width: "100%",
+maxWidth:
   typeof window !== "undefined" && window.innerWidth < 768
-    ? "150px"
+    ? "unset"
     : "220px",
     backdropFilter: "blur(6px)"
   }}>
@@ -220,7 +222,10 @@ export default function CompareAIView({ compareList, onBack }: any) {
   typeof window !== "undefined" && window.innerWidth < 768
     ? "80px 1fr 1fr"
     : "140px 1fr 1fr",
-  padding: "14px 20px",
+  padding:
+  typeof window !== "undefined" && window.innerWidth < 768
+    ? "14px 10px"
+    : "14px 20px",
   borderTop: "1px solid rgba(255,255,255,0.06)",
   alignItems: "center"
 }}>
